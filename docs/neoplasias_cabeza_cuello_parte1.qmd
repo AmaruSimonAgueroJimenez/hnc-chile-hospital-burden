@@ -94,35 +94,69 @@ All hospital discharges whose primary diagnosis (DIAG1 field) corresponded to IC
 
 Direct standardization was applied using the WHO World Standard Population, which comprises 17 five-year age groups from 0–4 through 80+. The weights are: 0–4: 8,860; 5–9: 8,690; 10–14: 8,600; 15–19: 8,470; 20–24: 8,220; 25–29: 7,930; 30–34: 7,610; 35–39: 7,150; 40–44: 6,590; 45–49: 6,040; 50–54: 5,370; 55–59: 4,550; 60–64: 3,720; 65–69: 2,960; 70–74: 2,210; 75–79: 1,520; 80+: 1,540 (total weight $W = \sum w_i = 100{,}000$).
 
-The population denominator for each year × age group × sex cell was drawn from INE census projections. For each stratum defined by year $t$, sex $s$, and age group $i$, the age-specific hospitalization rate was calculated as:
+The population denominator for each year × age group × sex cell was drawn from INE census projections. For each stratum defined by year $t$, sex $s$, and age group $i$, the **age-specific hospitalization rate** (per 100,000 person-years) is
 
-$$\text{Rate}_{i,t,s} = \frac{d_{i,t,s}}{N_{i,t,s}} \times 100{,}000$$
+$$
+\text{Rate}_{i,t,s} \;=\; \frac{d_{i,t,s}}{N_{i,t,s}} \times 10^{5},
+$$
 
-where $d_{i,t,s}$ denotes the number of hospital discharges and $N_{i,t,s}$ the corresponding mid-year population estimate.
+where:
 
-The age-standardized rate (ASR) was then obtained by weighting these specific rates according to the standard population:
+- $\text{Rate}_{i,t,s}$ — hospitalization rate (per 100,000) in age group $i$, year $t$, sex $s$;
+- $d_{i,t,s}$ — number of HNC hospital discharges in stratum $(i,t,s)$;
+- $N_{i,t,s}$ — mid-year population at risk in the same stratum (INE projection);
+- $i \in \{1,\ldots,17\}$ indexes the 5-year age bands $0{-}4, 5{-}9, \ldots, 80^{+}$.
 
-$$\text{ASR}_{t,s} = \frac{\sum_{i=1}^{17} \text{Rate}_{i,t,s} \times w_i}{\sum_{i=1}^{17} w_i}$$
+The **age-standardized rate** (ASR), using the WHO World Standard Population as the external reference, is the weighted average of the age-specific rates:
 
-where $w_i$ is the WHO weight for age group $i$. This formulation removes the confounding effect of differential age structures across regions and time periods, enabling valid comparisons.
+$$
+\text{ASR}_{t,s} \;=\; \frac{\sum_{i=1}^{17} w_i \,\text{Rate}_{i,t,s}}{\sum_{i=1}^{17} w_i},
+$$
+
+where:
+
+- $w_i$ — WHO World Standard weight for age group $i$ (the 17 weights given above; $\sum_i w_i = W = 100{,}000$);
+- the numerator is the count of cases that would be expected in the standard population had it experienced the age-specific rates observed in stratum $(t,s)$;
+- the denominator $W$ normalizes the weights, so the ASR is expressed on the same per-100,000 scale as the age-specific rates.
+
+Direct standardization removes the confounding effect of differential age structures across regions and time periods, enabling valid comparisons over time and between geographic units [@ahmad2001age].
 
 ### Proportional Redistribution of Age Bands
 
-Since EGRESOS data from 2010 to 2023 report age in broad 10-year bands (e.g., "10 a 19"), while the WHO standardization requires 5-year bands, a proportional redistribution procedure was applied. For a given 10-year age band $B$ (e.g., 10–19) comprising two 5-year subgroups $b_1$ (10–14) and $b_2$ (15–19), the hospitalizations were apportioned as:
+EGRESOS data from 2010 to 2023 report age in 10-year bands (e.g., "10–19"), but direct standardization with the WHO reference requires 5-year bands. For each 10-year band $B$ comprising two 5-year subgroups $b_1$ and $b_2$, hospitalizations were apportioned in proportion to the population at risk in each subgroup:
 
-$$d_{b_j} = d_B \times \frac{N_{b_j}}{N_{b_1} + N_{b_2}}, \quad j \in \{1, 2\}$$
+$$
+d_{b_j} \;=\; d_B \times \frac{N_{b_j}}{N_{b_1} + N_{b_2}}, \qquad j \in \{1, 2\},
+$$
 
-where $d_B$ is the total discharge count in the 10-year band and $N_{b_j}$ is the population of the $j$-th 5-year subgroup in the corresponding year, sex, and geographic unit. This approach assumes that the age-specific hospitalization rate is approximately uniform within each 10-year band — a standard assumption in demographic redistribution when finer age detail is unavailable. Data from 2024, which are already provided in 5-year bands, were assigned directly without redistribution.
+where:
+
+- $d_B$ — total discharges observed in the 10-year band $B$;
+- $N_{b_j}$ — INE projected population in the $j$-th 5-year subgroup, for the same year, sex, and geographic unit;
+- $d_{b_j}$ — imputed number of discharges allocated to subgroup $b_j$, satisfying $d_{b_1} + d_{b_2} = d_B$.
+
+This estimator is the maximum-likelihood allocation under the assumption that the *age-specific hospitalization rate is approximately uniform within the 10-year band* (so $d_{b_j} / N_{b_j}$ does not vary across the two 5-year cells). It is the standard demographic redistribution device when finer age detail is unavailable. Data from 2024 are already provided in 5-year bands and were used directly without redistribution.
 
 ### Sex Ratio and Temporal Trends
 
-The male-to-female sex ratio was computed annually as the quotient of the male ASR over the female ASR:
+The **male-to-female sex ratio** of standardized rates in year $t$ is
 
-$$\text{SR}_t = \frac{\text{ASR}_{t,\text{male}}}{\text{ASR}_{t,\text{female}}}$$
+$$
+\text{SR}_t \;=\; \frac{\text{ASR}_{t,\text{male}}}{\text{ASR}_{t,\text{female}}},
+$$
 
-Values above 1.0 indicate male predominance, while values below 1.0 indicate female predominance. Temporal trends in ASR were assessed descriptively through time-series visualization and percentage change calculations between the baseline year (2010) and the final year (2024), defined as:
+where:
 
-$$\Delta\% = \frac{\text{ASR}_{2024} - \text{ASR}_{2010}}{\text{ASR}_{2010}} \times 100$$
+- $\text{ASR}_{t,\text{male}}, \text{ASR}_{t,\text{female}}$ — sex-specific age-standardized rates in year $t$ (per 100,000), computed independently with the WHO standard;
+- $\text{SR}_t > 1$ — male predominance in year $t$; $\text{SR}_t < 1$ — female predominance; $\text{SR}_t = 1$ — equal burden.
+
+Temporal change between the first and the last year of the observation window is summarized by the **percentage change in ASR**:
+
+$$
+\Delta\%_{2010\rightarrow 2024} \;=\; \frac{\text{ASR}_{2024} - \text{ASR}_{2010}}{\text{ASR}_{2010}} \times 100,
+$$
+
+where positive (negative) values indicate an increase (decrease) of the standardized rate over the 15-year window, expressed as a percentage of the 2010 baseline.
 
 ## Geospatial Analysis
 
@@ -136,23 +170,50 @@ Spatial relationships between municipalities were formalized through a Queen con
 
 ### Global Spatial Autocorrelation — Moran's I
 
-Global spatial autocorrelation was assessed using Moran's I statistic, defined as:
+Global spatial autocorrelation of the municipal ASR was assessed with **Moran's I** [@moran1950notes]:
 
-$$I = \frac{n}{\sum_{i}\sum_{j} w_{ij}} \times \frac{\sum_{i}\sum_{j} w_{ij}(x_i - \bar{x})(x_j - \bar{x})}{\sum_{i}(x_i - \bar{x})^2}$$
+$$
+I \;=\; \frac{n}{S_0}\;\frac{\displaystyle\sum_{i=1}^{n}\sum_{j=1}^{n} w_{ij}\,(x_i - \bar{x})(x_j - \bar{x})}{\displaystyle\sum_{i=1}^{n}(x_i - \bar{x})^{2}}, \qquad S_0 \,=\, \sum_{i}\sum_{j} w_{ij},
+$$
 
-where $n$ is the number of spatial units, $x_i$ is the ASR value for municipality $i$, $\bar{x}$ is the overall mean, and $w_{ij}$ are the elements of the spatial weights matrix. Moran's I ranges approximately from $-1$ (perfect dispersion) to $+1$ (perfect clustering), with the expected value under the null hypothesis of spatial randomness being $E[I] = -1/(n-1)$. Statistical significance was assessed using the analytical normal approximation, where the $z$-score is computed as:
+where:
 
-$$z = \frac{I - E[I]}{\sqrt{\text{Var}(I)}}$$
+- $n$ — number of spatial units (municipalities);
+- $x_i$ — municipal ASR for unit $i$ over the 2010–2024 period;
+- $\bar{x} = \tfrac{1}{n}\sum_i x_i$ — unweighted mean of the ASR across units;
+- $w_{ij}$ — element $(i,j)$ of the row-standardized Queen contiguity weights matrix $\mathbf{W}$;
+- $S_0$ — sum of all spatial weights (with row standardization, $S_0 = n$).
 
-and evaluated against the standard normal distribution at $\alpha = 0.05$.
+The statistic can be read as a *spatial Pearson correlation* between $x_i$ and its spatial lag $\sum_j w_{ij} x_j$. It ranges from approximately $-1$ (perfect dispersion / negative autocorrelation) to $+1$ (perfect clustering), with the expectation under the null of spatial randomness
+
+$$
+\mathbb{E}[I] \;=\; -\frac{1}{n-1}.
+$$
+
+Significance was evaluated with the analytical normal approximation, using the standardized statistic
+
+$$
+z \;=\; \frac{I - \mathbb{E}[I]}{\sqrt{\mathrm{Var}(I)}},
+$$
+
+compared against $\mathcal{N}(0,1)$ at $\alpha = 0.05$.
 
 ### Local Indicators of Spatial Association (LISA)
 
-To identify the specific location of spatial clusters and outliers, Local Indicators of Spatial Association [LISA] were computed. The local Moran's $I_i$ for each municipality $i$ is defined as:
+To localize clusters and spatial outliers, **Local Indicators of Spatial Association** (LISA) were computed [@anselin1995local]. The local Moran statistic for municipality $i$ is
 
-$$I_i = \frac{(x_i - \bar{x})}{\sigma^2_x} \sum_{j} w_{ij}(x_j - \bar{x})$$
+$$
+I_i \;=\; \frac{(x_i - \bar{x})}{\sigma^{2}_{x}} \sum_{j=1}^{n} w_{ij}\,(x_j - \bar{x}), \qquad
+\sigma^{2}_{x} \,=\, \frac{1}{n}\sum_{i=1}^{n}(x_i - \bar{x})^{2},
+$$
 
-where $\sigma^2_x = \frac{1}{n}\sum_i(x_i - \bar{x})^2$. Statistical significance of each local statistic was determined through a conditional randomization procedure with 999 permutations, where the value of $x_i$ is held fixed and the remaining $n-1$ values are randomly permuted across spatial locations to generate a reference distribution under the null hypothesis of spatial randomness. Pseudo $p$-values were computed as the proportion of permuted statistics equal to or more extreme than the observed $I_i$, and significance was set at $p < 0.05$.
+where:
+
+- $x_i$, $\bar{x}$, $w_{ij}$ — defined as in the global Moran's I above;
+- $\sigma^{2}_{x}$ — empirical variance of the ASR across the $n$ municipalities;
+- $I_i$ — contribution of municipality $i$ to the global Moran's I; the global statistic satisfies $I = \sum_i I_i / (\sum_i w_{i\cdot})$ up to standardization.
+
+Statistical significance of each $I_i$ was obtained by **conditional randomization** with 999 permutations: $x_i$ is held fixed while the remaining $n-1$ values are randomly permuted across locations, building a reference distribution under the null of spatial randomness. The pseudo $p$-value is the proportion of permuted statistics at least as extreme as the observed $I_i$; significance was set at $p < 0.05$.
 
 Based on the combination of sign and significance, each municipality was classified into one of five categories: High-High (hot spot: high ASR municipality surrounded by high ASR neighbors), Low-Low (cold spot: low ASR surrounded by low ASR), High-Low (spatial outlier: high ASR surrounded by low ASR), Low-High (spatial outlier: low ASR surrounded by high ASR), or Not Significant.
 

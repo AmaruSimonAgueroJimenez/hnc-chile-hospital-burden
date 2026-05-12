@@ -80,27 +80,83 @@ Comorbidities were extracted from secondary diagnostic fields (DIAGNOSTICO2–DI
 
 ## Network Construction
 
-Comorbidity co-occurrence networks were constructed for each year (2019–2024) as undirected weighted graphs $G = (V, E, w)$, where nodes $V$ represent comorbidity groups and edges $E$ connect comorbidities that co-occur in at least one patient [@barabasi2011; @hidalgo2009]. Edge weights $w_{ij}$ were computed using the Jaccard similarity coefficient [@jaccard1901]:
+Comorbidity co-occurrence networks were constructed for each year (2019–2024) as undirected weighted graphs $G = (V, E, w)$, where nodes $V$ represent comorbidity groups and edges $E$ connect comorbidities that co-occur in at least one patient [@barabasi2011; @hidalgo2009]. Edge weights $w_{ij}$ were computed with the **Jaccard similarity coefficient** [@jaccard1901],
 
-$$J(A,B) = \frac{|A \cap B|}{|A \cup B|}$$
+$$
+w_{ij} \;=\; J(P_i, P_j) \;=\; \frac{|P_i \cap P_j|}{|P_i \cup P_j|} \;\in\; [0,1],
+$$
 
-where $A$ and $B$ are the sets of patients with comorbidities $i$ and $j$, respectively. To filter noise and retain only clinically relevant associations, edges with Jaccard weights below the 70th percentile of the weight distribution were removed.
+where:
+
+- $P_i \subseteq \{1,\ldots,N\}$ — set of hospitalizations in which comorbidity $i$ is recorded (in any of the secondary diagnostic fields DIAGNOSTICO2–DIAGNOSTICO35);
+- $|P_i \cap P_j|$ — number of patients with **both** comorbidities $i$ and $j$;
+- $|P_i \cup P_j|$ — number of patients with **at least one** of them;
+- $w_{ij} = 1$ if the two comorbidities always co-occur in the same patients, and $w_{ij} = 0$ if they never co-occur.
+
+The Jaccard index normalizes co-occurrence by the joint exposure, so it is unaffected by very common diagnoses that would dominate raw co-occurrence counts. To filter noise and retain clinically relevant links, edges with Jaccard weights below the 70th percentile of the empirical weight distribution were removed.
 
 ## Community Detection
 
-Community structure was identified using the Louvain algorithm [@blondel2008], which optimizes modularity $Q$ [@newman2006]:
+Community structure was identified with the **Louvain algorithm** [@blondel2008], a greedy heuristic that maximizes the weighted **modularity** [@newman2006]:
 
-$$Q = \frac{1}{2m} \sum_{ij} \left[ w_{ij} - \frac{k_i k_j}{2m} \right] \delta(c_i, c_j)$$
+$$
+Q \;=\; \frac{1}{2m} \sum_{i,j \in V}\left[\, w_{ij} \,-\, \frac{k_i\,k_j}{2m}\,\right]\,\delta(c_i, c_j),
+\qquad m \,=\, \tfrac{1}{2}\sum_{i,j} w_{ij},
+$$
 
-where $m$ is the total edge weight, $k_i$ is the weighted degree of node $i$, $c_i$ is the community assignment of node $i$, and $\delta$ is the Kronecker delta. Communities represent clusters of comorbidities that co-occur more frequently with each other than with the rest of the network.
+where:
+
+- $w_{ij}$ — weight of the edge between nodes $i$ and $j$ (Jaccard);
+- $k_i = \sum_{j} w_{ij}$ — weighted degree (strength) of node $i$;
+- $m$ — total edge weight in the network;
+- $c_i$ — community label assigned to node $i$;
+- $\delta(c_i,c_j) = 1$ if $i$ and $j$ are in the same community, $0$ otherwise.
+
+The bracketed term is the difference between the observed weight $w_{ij}$ and the weight expected under a configuration null model that preserves the degree sequence. $Q$ ranges roughly in $[-1/2, 1]$; $Q \gtrsim 0.3$ indicates a non-trivial community structure.
 
 ## Centrality Analysis
 
-Multiple centrality metrics were computed to characterize the structural importance of individual comorbidities within the network [@freeman1978; @vandenheuvel2013]: degree centrality (number of connections), betweenness centrality (frequency of occurrence on shortest paths between other nodes), closeness centrality (inverse average distance to all other nodes), and eigenvector centrality (importance based on the importance of connected nodes).
+Several centrality measures were computed to characterize the structural importance of each comorbidity [@freeman1978; @vandenheuvel2013]. For node $i$ in a network with $n$ nodes:
+
+- **Degree centrality** — number (or strength) of direct neighbors,
+
+  $$
+  C_{D}(i) \;=\; \frac{k_i}{n-1}.
+  $$
+
+- **Betweenness centrality** — fraction of all shortest paths passing through $i$,
+
+  $$
+  C_{B}(i) \;=\; \sum_{s\neq i \neq t} \frac{\sigma_{st}(i)}{\sigma_{st}},
+  $$
+
+  where $\sigma_{st}$ is the number of shortest paths between $s$ and $t$ and $\sigma_{st}(i)$ those that go through $i$.
+
+- **Closeness centrality** — inverse mean geodesic distance to the rest of the network,
+
+  $$
+  C_{C}(i) \;=\; \frac{n-1}{\sum_{j\neq i} d(i,j)},
+  $$
+
+  with $d(i,j)$ the shortest-path length between $i$ and $j$.
+
+- **Eigenvector centrality** — proportional to the importance of the neighbors of $i$,
+
+  $$
+  C_{E}(i) \;=\; \frac{1}{\lambda}\sum_{j\in V} w_{ij}\,C_{E}(j),
+  $$
+
+  where $\lambda$ is the largest eigenvalue of the adjacency matrix $\mathbf{W}=(w_{ij})$; equivalently $\mathbf{W}\,\mathbf{c} = \lambda\,\mathbf{c}$ and $C_E(i)$ is the $i$-th component of the leading eigenvector $\mathbf{c}$.
 
 ## K-Core Decomposition
 
-K-core decomposition [@seidman1983] was applied to identify the maximally connected subgraphs. A $k$-core is the maximal subgraph in which every node has degree at least $k$. The coreness of each node indicates how deeply embedded it is within the dense core of the network, providing a measure of structural cohesion that complements centrality metrics.
+The **$k$-core** of a network is the maximal subgraph $H \subseteq G$ such that every node in $H$ has degree at least $k$ **within $H$**:
+
+$$
+H_k \;=\; \arg\max\left\{\, |V(H)| \,:\, H \subseteq G,\; \deg_H(v) \geq k \text{ for all } v \in V(H)\,\right\}.
+$$
+
+The **coreness** of node $i$ is the largest $k$ such that $i \in H_k$. High coreness indicates that a comorbidity is deeply embedded in the densely connected core of the network and is a measure of structural cohesion that complements centrality [@seidman1983].
 
 ## Subsite-Specific Analysis
 

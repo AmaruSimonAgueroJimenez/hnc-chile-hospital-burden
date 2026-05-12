@@ -134,83 +134,159 @@ Continuous variables (age, length of stay) are reported as mean, median, standar
 
 ### 1.4.2 Bivariate Associations
 
-**Chi-square test** for independence between categorical variables and mortality status:
-$$\chi^2 = \sum_{i,j} \frac{(O_{ij} - E_{ij})^2}{E_{ij}}$$
+Independence between each categorical covariate and the binary mortality outcome was tested with the **Pearson chi-square statistic**
 
-where $O_{ij}$ is the observed frequency and $E_{ij}$ is the expected frequency under the null hypothesis of independence.
+$$
+\chi^{2} \;=\; \sum_{i=1}^{R}\sum_{j=1}^{C} \frac{(O_{ij} - E_{ij})^{2}}{E_{ij}},
+$$
 
-**Wilcoxon rank-sum test** for comparing length of stay distribution between groups with and without each comorbidity.
+where:
+
+- $O_{ij}$ — observed count in row $i$ and column $j$ of the $R \times C$ contingency table;
+- $E_{ij} = (R_i \cdot C_j)/N$ — count expected under the null hypothesis of independence, with $R_i$, $C_j$ the row/column marginals and $N$ the table total;
+- under $H_0$, $\chi^{2} \;\dot\sim\; \chi^{2}_{(R-1)(C-1)}$.
+
+The **Wilcoxon rank-sum (Mann–Whitney $U$) test** compared the length-of-stay distribution between patients with and without each comorbidity, without assuming normality or homoscedasticity.
 
 ### 1.4.3 Mixed-Effects Logistic Regression for Mortality
 
-A generalized estimating equations (GEE) approach is used to account for the clustered structure of observations by year:
+In-hospital mortality $Y_{ij} \in \{0,1\}$ (death = 1) is modeled with a **mixed-effects logistic regression** with a random intercept for the cluster (year of admission $j$):
 
-$$\log\left(\frac{\pi_{ij}}{1-\pi_{ij}}\right) = \beta_0 + \mathbf{x}_{ij}^T\boldsymbol{\beta} + u_j$$
+$$
+Y_{ij} \,\mid\, u_j \;\sim\; \text{Bernoulli}(\pi_{ij}),
+\qquad
+\mathrm{logit}(\pi_{ij}) \;=\; \log\!\left(\frac{\pi_{ij}}{1-\pi_{ij}}\right)
+\;=\; \beta_0 \,+\, \mathbf{x}_{ij}^{\top}\boldsymbol{\beta} \,+\, u_j,
+$$
 
-where:
-- $\pi_{ij}$ is the probability of mortality for patient $i$ in cluster $j$ (year)
-- $\beta_0$ is the intercept
-- $\mathbf{x}_{ij}$ is the vector of covariates (age, sex, service category, severity, mortality risk, comorbidities)
-- $\boldsymbol{\beta}$ is the vector of regression coefficients
-- $u_j \sim N(0, \sigma^2_u)$ is the random intercept for cluster $j$
+with $u_j \sim \mathcal{N}(0,\sigma^{2}_{u})$ independent across years. Symbols:
 
-An exchangeable working correlation structure is used. Models are fit separately for each of the eight primary cancer sites. Results are reported as odds ratios (OR) with 95% confidence intervals (CI).
+- $\pi_{ij}$ — probability of in-hospital death for patient $i$ admitted in year $j$;
+- $\beta_0$ — fixed intercept (log-odds of death in the reference category, year-average);
+- $\mathbf{x}_{ij}$ — covariate vector for patient $i,j$: age, sex, service, GRD severity, GRD mortality risk, and the binary comorbidity indicators;
+- $\boldsymbol{\beta}$ — fixed-effect log-odds ratios; the exponentiated coefficient $e^{\beta_k}$ is the OR for a one-unit change in $x_k$;
+- $u_j$ — random intercept absorbing unobserved year-level heterogeneity; $\sigma^{2}_{u}$ quantifies between-year variability of baseline mortality risk.
+
+Models were fit by maximum likelihood with Laplace approximation, separately for each of the eight primary cancer subsites. Estimates are reported as odds ratios with 95% Wald confidence intervals.
 
 ### 1.4.4 Negative Binomial Mixed Models for Length of Stay
 
-Length of stay is modeled as a count outcome using negative binomial regression with random intercepts by year:
+Length of stay is a non-negative count with overdispersion relative to Poisson. We use a **negative-binomial mixed model** with a log link and a random intercept for year:
 
-$$\log(\mu_{ij}) = \beta_0 + \mathbf{x}_{ij}^T\boldsymbol{\beta} + u_j$$
-$$Y_{ij} \sim \text{NB}(\mu_{ij}, \theta)$$
+$$
+Y_{ij} \,\mid\, u_j \;\sim\; \mathrm{NB}\!\left(\mu_{ij}, \theta\right),
+\qquad
+\log(\mu_{ij}) \;=\; \beta_0 \,+\, \mathbf{x}_{ij}^{\top}\boldsymbol{\beta} \,+\, u_j,
+$$
 
-where:
-- $Y_{ij}$ is the length of stay (in days) for patient $i$ in year $j$
-- $\mu_{ij}$ is the expected length of stay
-- $\theta$ is the dispersion parameter
-- Other terms are as defined above
+with $u_j \sim \mathcal{N}(0,\sigma^{2}_{u})$ and the NB$(\mu,\theta)$ variance
 
-Results are reported as incidence rate ratios (IRR) with 95% CI. Models are fit separately for each primary cancer site.
+$$
+\mathrm{Var}(Y_{ij}\mid u_j) \;=\; \mu_{ij} \,+\, \mu_{ij}^{2}/\theta.
+$$
+
+Symbols:
+
+- $Y_{ij}$ — length of stay in days for patient $i,j$;
+- $\mu_{ij}$ — conditional mean stay given covariates and the year effect;
+- $\theta$ — dispersion parameter; smaller $\theta$ implies greater overdispersion, and $\theta \to \infty$ recovers the Poisson model;
+- $\mathbf{x}_{ij},\boldsymbol{\beta},u_j$ — as in the logistic model.
+
+Coefficients are reported as **incidence rate ratios** $\mathrm{IRR}_k = e^{\beta_k}$ (multiplicative effect on expected stay) with 95% CIs.
 
 ### 1.4.5 Area Under the Receiver Operating Characteristic Curve (AUC)
 
-$$\text{AUC} = \int_0^1 \text{TPR}(x) \, d\text{FPR}(x)$$
+Discrimination of the mortality model is summarized by the area under the ROC curve,
 
-where TPR (true positive rate) and FPR (false positive rate) are computed across all classification thresholds.
+$$
+\mathrm{AUC} \;=\; \int_{0}^{1} \mathrm{TPR}\!\left(\mathrm{FPR}^{-1}(u)\right)\,du
+\;=\; \Pr\!\big(\hat{p}_{i} > \hat{p}_{j} \,\big|\, y_i = 1,\, y_j = 0\big),
+$$
 
-### 1.4.6 Hosmer-Lemeshow Test
+where for every classification threshold $c \in [0,1]$ on the predicted probability $\hat{p}$:
 
-The Hosmer-Lemeshow statistic partitions predicted probabilities into deciles and tests goodness of fit:
+- $\mathrm{TPR}(c) = \Pr(\hat{p} > c \mid Y = 1)$ — true positive rate (sensitivity);
+- $\mathrm{FPR}(c) = \Pr(\hat{p} > c \mid Y = 0)$ — false positive rate (1 − specificity);
+- $\mathrm{AUC} = 0.5$ — no discrimination; $\mathrm{AUC} = 1$ — perfect ranking of cases above controls.
 
-$$\text{HL} = \sum_{g=1}^{G} \frac{(O_g - E_g)^2}{E_g(1 - E_g)/n_g}$$
+### 1.4.6 Hosmer–Lemeshow Goodness-of-Fit
 
-where $O_g$ and $E_g$ are observed and expected events in decile $g$, and $n_g$ is the sample size in decile $g$. A p-value > 0.05 indicates adequate model fit.
+Calibration of the logistic model was assessed with the **Hosmer–Lemeshow** statistic, which compares observed and expected events across $G$ deciles of predicted risk:
 
-### 1.4.7 Pseudo-R², McFadden's Coefficient of Determination
+$$
+\mathrm{HL} \;=\; \sum_{g=1}^{G} \frac{\big(O_g - n_g\bar{p}_g\big)^{2}}{n_g\,\bar{p}_g\,(1 - \bar{p}_g)},
+$$
 
-$$R^2_{\text{McF}} = 1 - \frac{\log L_f}{\log L_0}$$
+where:
 
-where $\log L_f$ is the log-likelihood of the fitted model and $\log L_0$ is the log-likelihood of the null model.
+- $G$ — number of risk groups (we use $G = 10$, i.e., deciles of $\hat{p}$);
+- $n_g$ — number of patients in group $g$;
+- $O_g$ — observed deaths in group $g$;
+- $\bar{p}_g$ — mean predicted probability in group $g$ (so $E_g = n_g \bar{p}_g$).
+
+Under $H_0$ (model well-calibrated), $\mathrm{HL} \;\dot\sim\; \chi^{2}_{G-2}$; $p > 0.05$ supports adequate calibration.
+
+### 1.4.7 McFadden's Pseudo-$R^{2}$
+
+$$
+R^{2}_{\mathrm{McF}} \;=\; 1 \,-\, \frac{\ell(\hat{\boldsymbol{\beta}})}{\ell(\mathbf{0})},
+$$
+
+where:
+
+- $\ell(\hat{\boldsymbol{\beta}})$ — log-likelihood of the fitted model;
+- $\ell(\mathbf{0})$ — log-likelihood of the intercept-only ("null") model.
+
+Both log-likelihoods are negative, so $R^{2}_{\mathrm{McF}} \in [0,1]$; values of 0.2–0.4 are typically considered indicative of good fit in logistic models.
 
 ### 1.4.8 Matthews Correlation Coefficient (MCC)
 
-$$\text{MCC} = \frac{TP \cdot TN - FP \cdot FN}{\sqrt{(TP + FP)(TP + FN)(TN + FP)(TN + FN)}}$$
+For a binary classifier at a fixed threshold, the **Matthews correlation coefficient** is
 
-where TP, TN, FP, FN are true positives, true negatives, false positives, and false negatives.
+$$
+\mathrm{MCC} \;=\; \frac{TP\cdot TN \;-\; FP\cdot FN}{\sqrt{(TP+FP)(TP+FN)(TN+FP)(TN+FN)}},
+$$
+
+where $TP, TN, FP, FN$ are the cells of the confusion matrix (true/false positives/negatives). $\mathrm{MCC} \in [-1, 1]$: $+1$ perfect agreement, $0$ no better than chance, $-1$ perfect disagreement. Unlike accuracy, MCC stays meaningful with class imbalance.
 
 ### 1.4.9 Brier Score
 
-$$\text{Brier} = \frac{1}{N}\sum_{i=1}^{N}(y_i - \hat{p}_i)^2$$
+The **Brier score** is the mean squared error between predicted probabilities and observed binary outcomes,
 
-where $y_i$ is the true outcome and $\hat{p}_i$ is the predicted probability.
+$$
+\mathrm{BS} \;=\; \frac{1}{N}\sum_{i=1}^{N}\big(y_i - \hat{p}_i\big)^{2},
+$$
 
-### 1.4.10 Root Mean Squared Error (RMSE) and Mean Absolute Error (MAE)
+where:
 
-$$\text{RMSE} = \sqrt{\frac{1}{N}\sum_{i=1}^{N}(\hat{y}_i - y_i)^2}$$
-$$\text{MAE} = \frac{1}{N}\sum_{i=1}^{N}|\hat{y}_i - y_i|$$
+- $N$ — number of patients in the validation set;
+- $y_i \in \{0,1\}$ — observed outcome;
+- $\hat{p}_i \in [0,1]$ — predicted probability of the event for patient $i$.
+
+$\mathrm{BS} = 0$ is perfect; $\mathrm{BS} = 0.25$ is the score of a non-informative model that predicts $\hat{p}_i \equiv 0.5$ for everyone. It rewards both calibration and discrimination.
+
+### 1.4.10 RMSE and MAE for Length-of-Stay
+
+Predictive accuracy of the continuous length-of-stay model is summarized by
+
+$$
+\mathrm{RMSE} \;=\; \sqrt{\frac{1}{N}\sum_{i=1}^{N}\big(\hat{y}_i - y_i\big)^{2}},
+\qquad
+\mathrm{MAE} \;=\; \frac{1}{N}\sum_{i=1}^{N}\big|\hat{y}_i - y_i\big|,
+$$
+
+where $y_i$ is the observed length of stay (days), $\hat{y}_i$ its prediction, and $N$ the validation sample size. RMSE penalizes large errors more strongly because of the square; MAE is in the same units as the outcome and is more robust to outliers.
 
 ### 1.4.11 Youden's J Statistic
 
-$$J = \text{TPR} + \text{TNR} - 1 = \text{Sensitivity} + \text{Specificity} - 1$$
+For threshold selection on the ROC curve we use **Youden's $J$**:
+
+$$
+J(c) \;=\; \mathrm{TPR}(c) \,+\, \mathrm{TNR}(c) \,-\, 1
+\;=\; \mathrm{Sensitivity}(c) \,+\, \mathrm{Specificity}(c) \,-\, 1,
+$$
+
+where $c$ is the probability cut-off. $J \in [0,1]$; the **optimal cut-off** is $c^{*} = \arg\max_c J(c)$, the point that maximizes the vertical distance between the ROC curve and the chance diagonal.
 
 ---
 
@@ -1977,6 +2053,104 @@ plt.savefig(_FIG / "fig-roc-gee-logistic.png", dpi=300, bbox_inches="tight")
 plt.show()
 ```
 
+## 6.2 Forest Plot — Odds Ratios for In-Hospital Mortality
+
+```{python}
+#| label: fig-forest-gee-logistic
+#| fig-cap: "Figure 9. Forest plot — Odds Ratios (95% CI) for in-hospital mortality from the GEE mixed-effects logistic models, by cancer site. Reference line at OR=1. Filled markers = p<0.05."
+#| fig-width: 16
+#| fig-height: 12
+
+def _extract_or_ci(result, drop_intercept=True, cap=(0.01, 100.0)):
+    """Return DataFrame with var, OR, lo, hi, p — finite & capped for plotting."""
+    params = result.params
+    ci = result.conf_int()
+    pvals = result.pvalues
+    rows = []
+    for var in params.index:
+        if drop_intercept and var.lower() in {'const', 'intercept'}:
+            continue
+        coef = params[var]
+        lo, hi = (ci.loc[var, 0], ci.loc[var, 1]) if var in ci.index else (np.nan, np.nan)
+        p = pvals[var] if var in pvals.index else np.nan
+        or_v, or_lo, or_hi = np.exp(coef), np.exp(lo), np.exp(hi)
+        # Skip non-finite
+        if not np.isfinite(or_v) or not np.isfinite(or_lo) or not np.isfinite(or_hi):
+            continue
+        # Cap extreme CIs for display only
+        or_v_d  = float(np.clip(or_v,  cap[0], cap[1]))
+        or_lo_d = float(np.clip(or_lo, cap[0], cap[1]))
+        or_hi_d = float(np.clip(or_hi, cap[0], cap[1]))
+        rows.append({
+            'var': format_name(var),
+            'OR': or_v_d, 'lo': or_lo_d, 'hi': or_hi_d,
+            'p': p,
+        })
+    return pd.DataFrame(rows)
+
+# Build per-site dataframes
+forest_data_logit = {site: _extract_or_ci(res) for site, res in gee_mortality_results.items()}
+forest_data_logit = {s: d for s, d in forest_data_logit.items() if not d.empty}
+
+n_sites = len(forest_data_logit)
+n_cols = 3
+n_rows = int(np.ceil(n_sites / n_cols))
+
+fig, axes = plt.subplots(n_rows, n_cols, figsize=(16, 4 * n_rows), squeeze=False)
+
+for ax_idx, (site, df_f) in enumerate(forest_data_logit.items()):
+    r, c = divmod(ax_idx, n_cols)
+    ax = axes[r][c]
+    df_f = df_f.sort_values('OR').reset_index(drop=True)
+    y = np.arange(len(df_f))
+    sig_mask = (df_f['p'] < 0.05)
+    # Colors: red OR>1 sig, blue OR<1 sig, gray ns
+    colors = np.where(~sig_mask, '#9e9e9e',
+              np.where(df_f['OR'] > 1, '#c0392b', '#1f6f8b'))
+    # Error bars
+    ax.hlines(y, df_f['lo'], df_f['hi'], color=colors, linewidth=1.5, alpha=0.9)
+    ax.scatter(df_f['OR'], y,
+               s=55, marker='o',
+               facecolors=np.where(sig_mask, colors, 'white'),
+               edgecolors=colors, linewidths=1.5, zorder=3)
+    ax.axvline(1, color='#444', linestyle='--', linewidth=0.8, alpha=0.7)
+    ax.set_xscale('log')
+    ax.set_xlim(0.05, 50)
+    ax.set_yticks(y)
+    ax.set_yticklabels(df_f['var'], fontsize=8)
+    ax.set_xlabel('Odds Ratio (log scale)', fontsize=9)
+    ax.set_title(f'{site}  (n predictors = {len(df_f)})', fontsize=10, fontweight='bold')
+    ax.grid(axis='x', linestyle=':', alpha=0.4)
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+
+# Hide empty subplots
+for ax_idx in range(n_sites, n_rows * n_cols):
+    r, c = divmod(ax_idx, n_cols)
+    axes[r][c].set_visible(False)
+
+# Legend
+from matplotlib.lines import Line2D
+legend_elems = [
+    Line2D([0], [0], marker='o', linestyle='None', markersize=7,
+           markerfacecolor='#c0392b', markeredgecolor='#c0392b', label='OR > 1, p < 0.05 (harmful)'),
+    Line2D([0], [0], marker='o', linestyle='None', markersize=7,
+           markerfacecolor='#1f6f8b', markeredgecolor='#1f6f8b', label='OR < 1, p < 0.05 (protective)'),
+    Line2D([0], [0], marker='o', linestyle='None', markersize=7,
+           markerfacecolor='white', markeredgecolor='#9e9e9e', label='Not significant (p ≥ 0.05)'),
+    Line2D([0], [0], color='#444', linestyle='--', linewidth=1, label='OR = 1 (null)'),
+]
+fig.legend(handles=legend_elems, loc='lower center', ncol=4, frameon=False,
+           bbox_to_anchor=(0.5, -0.01), fontsize=10)
+
+fig.suptitle('Forest plot — GEE Logistic Mortality Models: Odds Ratios [95% CI] by Cancer Site',
+             fontsize=13, fontweight='bold', y=1.00)
+plt.tight_layout(rect=[0, 0.02, 1, 0.98])
+plt.savefig(os.path.join(OUTPUT_DIR, 'forest_gee_logistic_mortality.png'), dpi=300, bbox_inches='tight', facecolor='white')
+plt.savefig(_FIG / "fig-forest-gee-logistic.png", dpi=300, bbox_inches="tight")
+plt.show()
+```
+
 # 7. GEE Mixed-Effects Regression for Length of Stay (All Cancer Sites)
 
 ```{python}
@@ -2206,6 +2380,74 @@ for site in all_sites:
 
 gee_los_perf_df = pd.DataFrame(gee_los_perf)
 show_table(gee_los_perf_df, "Table 12: Performance & Fit Metrics - GEE Regression Models for LOS\n(QIC = Quasi-Information Criterion, Negative Binomial/Poisson family)", index=False)
+```
+
+## 7.1 Forest Plot — Incidence Rate Ratios for Length of Stay
+
+```{python}
+#| label: fig-forest-gee-los
+#| fig-cap: "Figure 10. Forest plot — Incidence Rate Ratios (95% CI) for length of stay from the GEE Negative Binomial mixed-effects models, by cancer site. Reference line at IRR=1. Filled markers = p<0.05."
+#| fig-width: 16
+#| fig-height: 12
+
+# Reuses _extract_or_ci defined in §6.2 — coefficients exponentiate to IRRs for log-link NB models.
+forest_data_los = {site: _extract_or_ci(res) for site, res in gee_los_results.items()}
+forest_data_los = {s: d for s, d in forest_data_los.items() if not d.empty}
+
+n_sites = len(forest_data_los)
+n_cols = 3
+n_rows = int(np.ceil(n_sites / n_cols))
+
+fig, axes = plt.subplots(n_rows, n_cols, figsize=(16, 4 * n_rows), squeeze=False)
+
+for ax_idx, (site, df_f) in enumerate(forest_data_los.items()):
+    r, c = divmod(ax_idx, n_cols)
+    ax = axes[r][c]
+    df_f = df_f.sort_values('OR').reset_index(drop=True)  # OR field carries IRR here
+    y = np.arange(len(df_f))
+    sig_mask = (df_f['p'] < 0.05)
+    # IRR > 1 means longer LOS (worse), IRR < 1 means shorter
+    colors = np.where(~sig_mask, '#9e9e9e',
+              np.where(df_f['OR'] > 1, '#b8860b', '#2e7d32'))
+    ax.hlines(y, df_f['lo'], df_f['hi'], color=colors, linewidth=1.5, alpha=0.9)
+    ax.scatter(df_f['OR'], y,
+               s=55, marker='s',
+               facecolors=np.where(sig_mask, colors, 'white'),
+               edgecolors=colors, linewidths=1.5, zorder=3)
+    ax.axvline(1, color='#444', linestyle='--', linewidth=0.8, alpha=0.7)
+    ax.set_xscale('log')
+    ax.set_xlim(0.3, 8)
+    ax.set_yticks(y)
+    ax.set_yticklabels(df_f['var'], fontsize=8)
+    ax.set_xlabel('Incidence Rate Ratio (log scale)', fontsize=9)
+    ax.set_title(f'{site}  (n predictors = {len(df_f)})', fontsize=10, fontweight='bold')
+    ax.grid(axis='x', linestyle=':', alpha=0.4)
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+
+for ax_idx in range(n_sites, n_rows * n_cols):
+    r, c = divmod(ax_idx, n_cols)
+    axes[r][c].set_visible(False)
+
+from matplotlib.lines import Line2D
+legend_elems = [
+    Line2D([0], [0], marker='s', linestyle='None', markersize=7,
+           markerfacecolor='#b8860b', markeredgecolor='#b8860b', label='IRR > 1, p < 0.05 (longer stay)'),
+    Line2D([0], [0], marker='s', linestyle='None', markersize=7,
+           markerfacecolor='#2e7d32', markeredgecolor='#2e7d32', label='IRR < 1, p < 0.05 (shorter stay)'),
+    Line2D([0], [0], marker='s', linestyle='None', markersize=7,
+           markerfacecolor='white', markeredgecolor='#9e9e9e', label='Not significant (p ≥ 0.05)'),
+    Line2D([0], [0], color='#444', linestyle='--', linewidth=1, label='IRR = 1 (null)'),
+]
+fig.legend(handles=legend_elems, loc='lower center', ncol=4, frameon=False,
+           bbox_to_anchor=(0.5, -0.01), fontsize=10)
+
+fig.suptitle('Forest plot — GEE Negative-Binomial LOS Models: IRR [95% CI] by Cancer Site',
+             fontsize=13, fontweight='bold', y=1.00)
+plt.tight_layout(rect=[0, 0.02, 1, 0.98])
+plt.savefig(os.path.join(OUTPUT_DIR, 'forest_gee_nb_los.png'), dpi=300, bbox_inches='tight', facecolor='white')
+plt.savefig(_FIG / "fig-forest-gee-los.png", dpi=300, bbox_inches="tight")
+plt.show()
 ```
 
 ---
