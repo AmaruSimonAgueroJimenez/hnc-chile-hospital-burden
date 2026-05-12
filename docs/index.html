@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HNC Chile — Hospital Burden of Head and Neck Cancer</title>
+<meta name="description" content="Reports and analyses on the hospital burden of head and neck malignant neoplasms in Chile (2010–2024).">
+<style>
+  :root {
+    --bg: #f7f8fa;
+    --card: #ffffff;
+    --ink: #1f2933;
+    --ink-soft: #52606d;
+    --accent: #0b5394;
+    --accent-soft: #e3edf7;
+    --border: #e4e7eb;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+  }
+  header {
+    background: linear-gradient(135deg, #0b5394 0%, #1c6cb8 100%);
+    color: #fff;
+    padding: 3rem 1.5rem 2.5rem;
+  }
+  header .wrap { max-width: 960px; margin: 0 auto; }
+  header h1 {
+    font-size: 1.9rem;
+    margin: 0 0 .5rem;
+    line-height: 1.25;
+  }
+  header p {
+    margin: 0;
+    opacity: .92;
+    font-size: 1.05rem;
+    max-width: 720px;
+  }
+  main {
+    max-width: 960px;
+    margin: -1.5rem auto 3rem;
+    padding: 0 1.5rem;
+  }
+  .intro {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  }
+  .intro p { margin: .25rem 0; color: var(--ink-soft); }
+  h2 {
+    font-size: 1.15rem;
+    color: var(--ink);
+    margin: 2rem 0 .75rem;
+    padding-bottom: .35rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  @media (min-width: 720px) {
+    .grid { grid-template-columns: 1fr 1fr; }
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem 1.4rem;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(11,83,148,.12);
+    border-color: var(--accent);
+  }
+  .card .tag {
+    display: inline-block;
+    font-size: .72rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: .15rem .55rem;
+    border-radius: 999px;
+    align-self: flex-start;
+    font-weight: 600;
+  }
+  .card h3 {
+    margin: .1rem 0;
+    font-size: 1.05rem;
+    color: var(--accent);
+    line-height: 1.3;
+  }
+  .card p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: .92rem;
+  }
+  .card .arrow {
+    margin-top: .25rem;
+    font-size: .85rem;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  footer {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem 2.5rem;
+    color: var(--ink-soft);
+    font-size: .85rem;
+    text-align: center;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  code {
+    background: #eef1f4;
+    padding: .1rem .35rem;
+    border-radius: 4px;
+    font-size: .9em;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>Hospital Burden of Head and Neck Cancer in Chile</h1>
+    <p>Hands-on application of methods from a Social Complexity Sciences PhD — spatial epidemiology, hierarchical prognostic models, and comorbidity networks — applied to hospital discharge (GRD) data, 2010–2024.</p>
+  </div>
+</header>
+
+<main>
+
+  <section class="intro">
+    <p>This site collects the HTML reports generated from the
+      <code>hnc-chile-hospital-burden</code> repository. Each card below links to the full report, rendered from its source <code>.qmd</code>.</p>
+  </section>
+
+  <h2>Reports</h2>
+  <div class="grid">
+
+    <a class="card" href="neoplasias_cabeza_cuello_parte1.html">
+      <span class="tag">Part 1 · Spatial epidemiology</span>
+      <h3>Age-standardized trends &amp; spatial clustering</h3>
+      <p>Age-Standardized Hospitalization Trends and Spatial Clustering of Head and Neck Malignant Neoplasms (C00–C14, C30–C32) in Chile, 2010–2024.</p>
+      <span class="arrow">Open report →</span>
+    </a>
+
+    <a class="card" href="neoplasias_cabeza_cuello_parte2.html">
+      <span class="tag">Part 2 · Prognosis</span>
+      <h3>In-hospital mortality &amp; length of stay</h3>
+      <p>In-Hospital Mortality and Length of Stay Analysis (GRD 2019–2024) — hierarchical models for head and neck malignant neoplasms.</p>
+      <span class="arrow">Open report →</span>
+    </a>
+
+    <a class="card" href="neoplasias_cabeza_cuello_redes.html">
+      <span class="tag">Part 3 · Networks</span>
+      <h3>Comorbidity network analysis</h3>
+      <p>Comorbidity Network Analysis in Head and Neck Malignant Neoplasm Hospitalizations in Chile (GRD 2019–2024).</p>
+      <span class="arrow">Open report →</span>
+    </a>
+
+    <a class="card" href="net%28esp%29.html">
+      <span class="tag">Supplementary material</span>
+      <h3>Network analysis in health sciences</h3>
+      <p>Foundations, methods, and applications of network analysis applied to public health problems (Spanish version).</p>
+      <span class="arrow">Open report →</span>
+    </a>
+
+  </div>
+
+  <h2>Materials &amp; downloads</h2>
+  <div class="grid">
+
+    <a class="card" href="Presentacion_CCyC_15min.pptx" download>
+      <span class="tag">Slide deck · PPTX</span>
+      <h3>15-min presentation (Head &amp; Neck Cancer)</h3>
+      <p>Summary slide deck of the project, covering all three parts (epidemiology, prognosis, networks). Microsoft PowerPoint format.</p>
+      <span class="arrow">Download .pptx →</span>
+    </a>
+
+    <a class="card" href="abstract_unificado_cabeza_cuello.docx" download>
+      <span class="tag">Abstract · DOCX</span>
+      <h3>Unified project abstract</h3>
+      <p>Combined abstract covering the three parts of the project (spatial epidemiology, prognosis, and comorbidity networks). Microsoft Word format.</p>
+      <span class="arrow">Download .docx →</span>
+    </a>
+
+  </div>
+
+</main>
+
+<footer>
+  Source code:
+  <a href="https://github.com/AmaruSimonAgueroJimenez/hnc-chile-hospital-burden">github.com/AmaruSimonAgueroJimenez/hnc-chile-hospital-burden</a>
+</footer>
+
+</body>
+</html>

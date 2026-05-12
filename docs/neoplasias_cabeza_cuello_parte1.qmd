@@ -1,0 +1,2504 @@
+---
+title: "Age-Standardized Hospitalization Trends and Spatial Clustering of Head and Neck Malignant Neoplasms (C00–C14, C30–C32) in Chile, 2010–2024"
+subtitle: "Tendencias de Hospitalización Estandarizadas por Edad y Agrupamiento Espacial de Neoplasias Malignas de Cabeza y Cuello (C00–C14, C30–C32) en Chile, 2010–2024"
+author:
+  - name: "Amaru Simón Agüero Jiménez"
+    email: "amaruaguero2004@ug.uchile.cl"
+    orcid: "0000-0001-7336-1833"
+date: "2026-04-06"
+lang: en
+format:
+  html:
+    embed-resources: true
+    smooth-scroll: true
+    toc: true
+    toc-depth: 6
+    toc-location: right
+    number-sections: true
+    number-depth: 6
+    code-fold: true
+    theme: cosmo
+    fig-cap-location: bottom
+bibliography: ref.bib
+csl: apa-numeric-superscript.csl
+execute:
+  warning: false
+  message: false
+  fig-width: 14
+  fig-height: 10
+---
+
+::: {.callout-note appearance="minimal"}
+
+## Resumen
+
+**ANÁLISIS EPIDEMIOLÓGICO DE HOSPITALIZACIONES POR NEOPLASIAS MALIGNAS DE CABEZA Y CUELLO EN CHILE, 2010–2024**
+
+**Introducción:** Las neoplasias malignas de cabeza y cuello (CIE-10 C00–C14, C30–C32) constituyen un grupo heterogéneo de tumores con carga epidemiológica relevante a nivel mundial, fuertemente vinculados al consumo de tabaco y alcohol, infección por virus del papiloma humano y exposiciones ocupacionales. En Chile la información poblacional y la distribución geográfica de estas hospitalizaciones han sido escasamente integradas en un análisis nacional.
+
+**Materiales y Métodos:** Estudio descriptivo ecológico basado en los Egresos Hospitalarios del Departamento de Estadísticas e Información en Salud (DEIS) del Ministerio de Salud de Chile, período 2010–2024. Se incluyeron los egresos con diagnóstico principal C00–C14 y C30–C32 clasificados en 18 categorías anatómicas y agrupados en subsitios clínicos (cavidad oral, glándulas salivales, orofaringe, nasofaringe, hipofaringe, faringe otra, sinonasal y laringe). Se calcularon tasas estandarizadas por edad (TEE) por sexo utilizando la población estándar mundial de la Organización Mundial de la Salud y proyecciones poblacionales del INE. El análisis geoespacial comunal empleó el índice global de Moran y los indicadores locales de asociación espacial (LISA) con matriz de contigüidad Queen sobre Chile continental.
+
+**Resultados:** Se analizaron 24.575 egresos hospitalarios en el período (16.472 hombres y 8.103 mujeres; razón M:F 2,03; promedio anual de 1.638), siendo el sitio más frecuente la laringe (C32), seguido de cavidad oral. La TEE total mostró una tendencia descendente moderada con marcado predominio masculino, alcanzando en 2024 valores aproximados de 13,9 por 100.000 en hombres y 6,7 en mujeres. El análisis espacial detectó autocorrelación positiva significativa para el total de neoplasias (Moran's I = 0,070; p = 0,049) y mayor para laringe (I = 0,092; p = 0,010), con 22 comunas clasificadas como conglomerados High–High (hot spots) y 24 como Low–Low (cold spots).
+
+**Conclusiones:** Las hospitalizaciones por cáncer de cabeza y cuello en Chile muestran un predominio masculino sostenido, concentración en laringe y cavidad oral, y conglomerados espaciales significativos que sugieren focos territoriales con implicaciones para la planificación preventiva y diagnóstica.
+
+**Palabras clave:** neoplasias de cabeza y cuello; cáncer laríngeo; tasas estandarizadas por edad; análisis espacial; Chile.
+
+:::
+
+::: {.callout-note appearance="minimal"}
+
+## Abstract
+
+**EPIDEMIOLOGICAL ANALYSIS OF HOSPITALIZATIONS FOR MALIGNANT NEOPLASMS OF THE HEAD AND NECK IN CHILE, 2010–2024**
+
+**Introduction:** Malignant neoplasms of the head and neck (ICD-10 C00–C14, C30–C32) represent a heterogeneous group of tumors with substantial epidemiological burden worldwide, strongly linked to tobacco and alcohol consumption, human papillomavirus infection, and occupational exposures. In Chile, population-level data and the geographic distribution of these hospitalizations have rarely been integrated within a unified national analysis.
+
+**Materials and Methods:** Descriptive ecological study based on the Hospital Discharge Database (EGRESOS) maintained by the Department of Health Statistics and Information (DEIS), Chilean Ministry of Health, covering 2010–2024. Discharges with primary diagnosis C00–C14 and C30–C32 were classified into 18 anatomical categories grouped into clinical subsites (oral cavity, salivary glands, oropharynx, nasopharynx, hypopharynx, other pharynx, sinonasal, and larynx). Sex-specific age-standardized rates (ASR) were computed using the WHO World Standard Population and Chilean population projections from INE. Municipal-level geospatial analysis employed global Moran's I and Local Indicators of Spatial Association (LISA) with Queen contiguity weights across continental Chile.
+
+**Results:** A total of 24,575 hospital discharges were analyzed (16,472 men and 8,103 women; M:F ratio 2.03; mean of 1,638 per year), with larynx (C32) as the most frequent site followed by oral cavity. Total ASR showed a moderate downward trend with sustained male predominance, reaching in 2024 approximately 13.9 per 100,000 in males and 6.7 in females. Spatial analysis revealed significant positive autocorrelation for total head and neck neoplasms (Moran's I = 0.070; p = 0.049) and stronger clustering for larynx (I = 0.092; p = 0.010), with 22 municipalities classified as High–High clusters (hot spots) and 24 as Low–Low (cold spots).
+
+**Conclusions:** Hospitalizations for head and neck cancer in Chile show sustained male predominance, concentration in larynx and oral cavity, and significant spatial clusters suggesting territorial foci with implications for preventive and diagnostic planning.
+
+**Keywords:** head and neck neoplasms; laryngeal cancer; age-standardized rates; spatial analysis; Chile.
+
+:::
+
+\newpage
+
+# Introduction
+
+Malignant neoplasms of the head and neck (HNC) represent a heterogeneous group of cancers arising from the oral cavity (C00-C06), salivary glands (C07-C08), oropharynx (C09-C10), nasopharynx (C11), hypopharynx (C12-C13), other parts of lip, oral cavity, and pharynx (C14), nasal cavity and middle ear (C30), accessory sinuses (C31), and larynx (C32). Collectively, HNC malignancies constitute a major cause of cancer morbidity and mortality globally, with substantial variation in incidence and etiology across geographic regions.
+
+Globally, head and neck cancers account for approximately 1.1 million new cases and over 600,000 deaths annually, representing roughly 3% of all cancer incidence worldwide. The epidemiology of HNC is characterized by strong dose-response relationships with tobacco and alcohol consumption, which together account for the majority of cases in high-income countries. In contrast, human papillomavirus (HPV) infection—particularly HPV-16 and HPV-18—drives an increasing proportion of oropharyngeal and nasopharyngeal cancers in developed nations. Nasopharyngeal cancer, while rare in most populations, exhibits exceptionally high incidence in Southeast Asia and North Africa, driven by endemic Epstein-Barr virus (EBV) infection and genetic predisposition. Laryngeal cancer remains one of the most common HNC sites globally and is strongly associated with occupational exposures in certain industries.
+
+In Chile, head and neck cancers represent an important public health concern. The country's burden of HNC is shaped by the high prevalence of tobacco smoking and alcohol consumption, particularly in lower socioeconomic groups. Limited data on HPV-related cancers suggest emerging trends in oropharyngeal malignancies among younger populations. Geographic variation in HNC incidence across Chilean regions may reflect differences in exposure patterns, healthcare access, and screening practices. These patterns underscore the need for a comprehensive, nationally representative analysis that integrates all C00–C14 and C30–C32 codes within a unified epidemiological framework.
+
+Hospital discharge records (EGRESOS) from the Department of Health Statistics and Information (DEIS) of the Chilean Ministry of Health provide a robust administrative data source capturing essentially all inpatient episodes in the country, covering both the public (FONASA) and, partially, the private (ISAPRE) healthcare sectors. Although these records reflect hospitalizations rather than incident cancer diagnoses, they constitute a valid indicator of disease burden and healthcare utilization at the population level. The continuous availability of EGRESOS data from 2001 onward, combined with census-based population projections from the National Institute of Statistics (INE), enables the computation of age-standardized hospitalization rates comparable across regions, time periods, and demographic subgroups.
+
+This analysis covers the period 2010–2024 and has the following objectives: (1) characterize the hospitalization burden from all malignant neoplasms of the head and neck using age-standardized rates (ASR); (2) identify disparities by sex, anatomical site, and administrative region; (3) evaluate geospatial clustering patterns at the municipal (comuna) level using spatial autocorrelation statistics; and (4) provide a detailed epidemiological profile for each individual ICD-10 category within the C00–C14 and C30–C32 ranges.
+
+# Methods
+
+## Data Sources
+
+Two main data sources were used. The first is the hospital discharge database (EGRESOS) maintained by the Department of Health Statistics and Information (DEIS) of the Chilean Ministry of Health, covering fiscal years 2010 through 2024. Each record contains the primary discharge diagnosis coded according to the International Classification of Diseases, 10th Revision (ICD-10), along with patient demographic information (sex, age group), geographic identifiers (region and municipality of residence), and administrative variables (year of discharge). EGRESOS captures all discharges from public hospitals in the National Health Service System (SNSS) and, since 2012, progressively includes private institutional discharges, providing near-universal coverage of inpatient episodes in Chile.
+
+The second source is the population projection file produced by the National Institute of Statistics (INE) based on the 2017 National Census. These projections provide annual population estimates disaggregated by region, municipality (comuna), individual age, and sex for the period 2002–2035. The projections were stored in Apache Parquet format and accessed programmatically.
+
+## Case Selection
+
+All hospital discharges whose primary diagnosis (DIAG1 field) corresponded to ICD-10 codes C00 through C14 and C30 through C32 (malignant neoplasms of head and neck organs), including all subcodes, were included in the analysis. Records with missing or invalid diagnosis codes, missing sex, or missing age group were excluded. The eighteen categories encompass: lip (C00), base of tongue (C01), other tongue (C02), gum (C03), floor of mouth (C04), palate (C05), other mouth (C06), parotid gland (C07), other salivary glands (C08), tonsil (C09), oropharynx (C10), nasopharynx (C11), piriform sinus (C12), hypopharynx (C13), other lip/oral/pharynx (C14), nasal cavity and middle ear (C30), accessory sinuses (C31), and larynx (C32).
+
+## Age Standardization
+
+Direct standardization was applied using the WHO World Standard Population, which comprises 17 five-year age groups from 0–4 through 80+. The weights are: 0–4: 8,860; 5–9: 8,690; 10–14: 8,600; 15–19: 8,470; 20–24: 8,220; 25–29: 7,930; 30–34: 7,610; 35–39: 7,150; 40–44: 6,590; 45–49: 6,040; 50–54: 5,370; 55–59: 4,550; 60–64: 3,720; 65–69: 2,960; 70–74: 2,210; 75–79: 1,520; 80+: 1,540 (total weight $W = \sum w_i = 100{,}000$).
+
+The population denominator for each year × age group × sex cell was drawn from INE census projections. For each stratum defined by year $t$, sex $s$, and age group $i$, the age-specific hospitalization rate was calculated as:
+
+$$\text{Rate}_{i,t,s} = \frac{d_{i,t,s}}{N_{i,t,s}} \times 100{,}000$$
+
+where $d_{i,t,s}$ denotes the number of hospital discharges and $N_{i,t,s}$ the corresponding mid-year population estimate.
+
+The age-standardized rate (ASR) was then obtained by weighting these specific rates according to the standard population:
+
+$$\text{ASR}_{t,s} = \frac{\sum_{i=1}^{17} \text{Rate}_{i,t,s} \times w_i}{\sum_{i=1}^{17} w_i}$$
+
+where $w_i$ is the WHO weight for age group $i$. This formulation removes the confounding effect of differential age structures across regions and time periods, enabling valid comparisons.
+
+### Proportional Redistribution of Age Bands
+
+Since EGRESOS data from 2010 to 2023 report age in broad 10-year bands (e.g., "10 a 19"), while the WHO standardization requires 5-year bands, a proportional redistribution procedure was applied. For a given 10-year age band $B$ (e.g., 10–19) comprising two 5-year subgroups $b_1$ (10–14) and $b_2$ (15–19), the hospitalizations were apportioned as:
+
+$$d_{b_j} = d_B \times \frac{N_{b_j}}{N_{b_1} + N_{b_2}}, \quad j \in \{1, 2\}$$
+
+where $d_B$ is the total discharge count in the 10-year band and $N_{b_j}$ is the population of the $j$-th 5-year subgroup in the corresponding year, sex, and geographic unit. This approach assumes that the age-specific hospitalization rate is approximately uniform within each 10-year band — a standard assumption in demographic redistribution when finer age detail is unavailable. Data from 2024, which are already provided in 5-year bands, were assigned directly without redistribution.
+
+### Sex Ratio and Temporal Trends
+
+The male-to-female sex ratio was computed annually as the quotient of the male ASR over the female ASR:
+
+$$\text{SR}_t = \frac{\text{ASR}_{t,\text{male}}}{\text{ASR}_{t,\text{female}}}$$
+
+Values above 1.0 indicate male predominance, while values below 1.0 indicate female predominance. Temporal trends in ASR were assessed descriptively through time-series visualization and percentage change calculations between the baseline year (2010) and the final year (2024), defined as:
+
+$$\Delta\% = \frac{\text{ASR}_{2024} - \text{ASR}_{2010}}{\text{ASR}_{2010}} \times 100$$
+
+## Geospatial Analysis
+
+### Municipal-Level Rate Estimation
+
+Municipal-level (comuna) ASR values were computed by aggregating hospitalizations and population denominators across the entire 2010–2024 period for each municipality, then applying the same direct standardization procedure described above. The resulting rates were joined to a shapefile of Chilean municipalities for cartographic visualization using choropleth maps. Island municipalities (Isla de Pascua, Juan Fernández, and Antarctic territories) were excluded from the spatial analysis due to their geographic isolation and absence of contiguous neighbors.
+
+### Spatial Weights Matrix
+
+Spatial relationships between municipalities were formalized through a Queen contiguity weights matrix $\mathbf{W}$, where two municipalities $i$ and $j$ are considered neighbors ($w_{ij} = 1$) if they share any portion of their boundary (edge or vertex), and $w_{ij} = 0$ otherwise, with $w_{ii} = 0$ by convention. The weights were row-standardized such that $\sum_j w_{ij} = 1$ for each municipality $i$, ensuring that the spatial lag of a variable represents the weighted average of its neighbors' values.
+
+### Global Spatial Autocorrelation — Moran's I
+
+Global spatial autocorrelation was assessed using Moran's I statistic, defined as:
+
+$$I = \frac{n}{\sum_{i}\sum_{j} w_{ij}} \times \frac{\sum_{i}\sum_{j} w_{ij}(x_i - \bar{x})(x_j - \bar{x})}{\sum_{i}(x_i - \bar{x})^2}$$
+
+where $n$ is the number of spatial units, $x_i$ is the ASR value for municipality $i$, $\bar{x}$ is the overall mean, and $w_{ij}$ are the elements of the spatial weights matrix. Moran's I ranges approximately from $-1$ (perfect dispersion) to $+1$ (perfect clustering), with the expected value under the null hypothesis of spatial randomness being $E[I] = -1/(n-1)$. Statistical significance was assessed using the analytical normal approximation, where the $z$-score is computed as:
+
+$$z = \frac{I - E[I]}{\sqrt{\text{Var}(I)}}$$
+
+and evaluated against the standard normal distribution at $\alpha = 0.05$.
+
+### Local Indicators of Spatial Association (LISA)
+
+To identify the specific location of spatial clusters and outliers, Local Indicators of Spatial Association [LISA] were computed. The local Moran's $I_i$ for each municipality $i$ is defined as:
+
+$$I_i = \frac{(x_i - \bar{x})}{\sigma^2_x} \sum_{j} w_{ij}(x_j - \bar{x})$$
+
+where $\sigma^2_x = \frac{1}{n}\sum_i(x_i - \bar{x})^2$. Statistical significance of each local statistic was determined through a conditional randomization procedure with 999 permutations, where the value of $x_i$ is held fixed and the remaining $n-1$ values are randomly permuted across spatial locations to generate a reference distribution under the null hypothesis of spatial randomness. Pseudo $p$-values were computed as the proportion of permuted statistics equal to or more extreme than the observed $I_i$, and significance was set at $p < 0.05$.
+
+Based on the combination of sign and significance, each municipality was classified into one of five categories: High-High (hot spot: high ASR municipality surrounded by high ASR neighbors), Low-Low (cold spot: low ASR surrounded by low ASR), High-Low (spatial outlier: high ASR surrounded by low ASR), Low-High (spatial outlier: low ASR surrounded by high ASR), or Not Significant.
+
+## Anatomical Classification
+
+ICD-10 codes were grouped into 18 sites and further into 8 clinical subsites: oral cavity (C00-C06: lip, tongue, gum, floor of mouth, palate, other mouth), salivary glands (C07-C08: parotid, other salivary), oropharynx (C09-C10: tonsil, oropharynx), nasopharynx (C11), hypopharynx (C12-C13: piriform sinus, hypopharynx), other pharynx (C14), nasal cavity/sinuses (C30-C31: nasal cavity/middle ear, accessory sinuses), and larynx (C32).
+
+## Software
+
+All analyses were conducted in Python 3.11. Age standardization and data manipulation were performed using pandas (v2.0+) and NumPy. Geospatial operations used GeoPandas for spatial joins and cartographic rendering, libpysal for the construction of spatial weights matrices, and esda for the computation of global Moran's I and local LISA statistics. Visualization was produced with Matplotlib and Seaborn. The computational document was rendered using Quarto with embedded Python code blocks to ensure full reproducibility.
+
+```{python}
+#| label: setup
+#| include: false
+
+import sys
+import subprocess
+import importlib
+from subprocess import DEVNULL
+
+def _pip_install(requirement: str):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "--upgrade", requirement],
+                          stdout=DEVNULL, stderr=DEVNULL)
+
+try:
+    from packaging.requirements import Requirement
+except Exception:
+    _pip_install("packaging")
+    from packaging.requirements import Requirement
+
+def ensure(requirement: str, import_name: str = None):
+    req = Requirement(requirement)
+    name = import_name or req.name
+    try:
+        mod = importlib.import_module(name)
+        ver = getattr(mod, "__version__", None)
+        if ver is not None and req.specifier and not req.specifier.contains(ver, prereleases=True):
+            raise ImportError()
+        return mod
+    except Exception:
+        _pip_install(requirement)
+        return importlib.import_module(name)
+
+ensure("numpy")
+ensure("scipy")
+ensure("pandas>=2.0.0", "pandas")
+ensure("pyarrow>=10.0.0", "pyarrow")
+ensure("matplotlib")
+ensure("seaborn")
+ensure("geopandas")
+ensure("libpysal")
+ensure("esda")
+ensure("splot")
+
+import pandas as pd
+import numpy as np
+import os
+import glob
+import warnings
+import matplotlib.pyplot as plt
+import seaborn as sns
+import geopandas as gpd
+from pathlib import Path
+from IPython.display import display
+from libpysal.weights import Queen
+from esda.moran import Moran
+
+warnings.filterwarnings('ignore')
+plt.rcParams['figure.dpi'] = 100
+plt.rcParams['savefig.dpi'] = 150
+sns.set_style("whitegrid")
+pd.set_option('display.max_columns', None)
+pd.set_option('display.precision', 2)
+
+base_path = os.path.dirname(os.getcwd())
+data_path = os.path.join(base_path, 'data')
+output_path = os.path.join(base_path, 'output_files')
+figures_path = os.path.join(output_path, 'figures')
+
+os.makedirs(output_path, exist_ok=True)
+os.makedirs(figures_path, exist_ok=True)
+```
+
+
+```{python}
+#| label: setup-save-outputs
+#| output: false
+#| echo: false
+
+# === Guardado automático de figuras y tablas ===
+# Cada chunk con `#| label: fig-XXX` guarda su figura en _FIG/"fig-XXX.png"
+# Cada chunk con `#| label: tbl-XXX` guarda su tabla en _TAB/"tbl-XXX.csv"
+from pathlib import Path
+
+_OUT_ROOT = Path("../output_files/epidemiologia")
+_FIG = _OUT_ROOT / "figures"
+_TAB = _OUT_ROOT / "tables"
+_FIG.mkdir(parents=True, exist_ok=True)
+_TAB.mkdir(parents=True, exist_ok=True)
+
+def _save_table(df, name):
+    """Guarda un DataFrame como CSV en _TAB."""
+    try:
+        df.to_csv(_TAB / f"{name}.csv", index=False)
+        print(f"[saved table] {name}.csv")
+    except Exception as e:
+        print(f"[save_table FAILED for {name}]: {e}")
+
+print(f"Save paths: figs -> {_FIG}  ·  tables -> {_TAB}")
+```
+
+```{python}
+#| label: constants
+#| include: false
+
+# Years of analysis
+YEARS = list(range(2010, 2025))
+
+# WHO Standard Population for direct standardization
+WHO_STANDARD_POPULATION = {
+    '0-4': 8860, '5-9': 8690, '10-14': 8600, '15-19': 8470,
+    '20-24': 8220, '25-29': 7930, '30-34': 7610, '35-39': 7150,
+    '40-44': 6590, '45-49': 6040, '50-54': 5370, '55-59': 4550,
+    '60-64': 3720, '65-69': 2960, '70-74': 2210, '75-79': 1520,
+    '80+': 1540
+}
+TOTAL_WHO_WEIGHT = sum(WHO_STANDARD_POPULATION.values())
+
+AGE_GROUPS_TUPLES = [
+    (0, 4), (5, 9), (10, 14), (15, 19), (20, 24), (25, 29),
+    (30, 34), (35, 39), (40, 44), (45, 49), (50, 54), (55, 59),
+    (60, 64), (65, 69), (70, 74), (75, 79)
+]
+
+AGE_ORDER = ['0-4', '5-9', '10-14', '15-19', '20-24', '25-29', '30-34', '35-39',
+             '40-44', '45-49', '50-54', '55-59', '60-64', '65-69', '70-74', '75-79', '80+']
+
+# ICD-10 codes for malignant neoplasms of head and neck (C00-C14, C30-C32)
+ICD10_CODES = {
+    "C00": "Malignant neoplasm of lip",
+    "C00.0": "External upper lip",
+    "C00.1": "External lower lip",
+    "C00.2": "External lip, unspecified",
+    "C00.3": "Upper lip, inner aspect",
+    "C00.4": "Lower lip, inner aspect",
+    "C00.5": "Lip, unspecified, inner aspect",
+    "C00.6": "Commissure of lip",
+    "C00.8": "Overlapping lesion of lip",
+    "C00.9": "Lip, unspecified",
+    "C01": "Malignant neoplasm of base of tongue",
+    "C02": "Malignant neoplasm of other and unspecified parts of tongue",
+    "C02.0": "Dorsal surface of tongue",
+    "C02.1": "Ventral surface of tongue",
+    "C02.2": "Lateral surface of tongue",
+    "C02.3": "Anterior two-thirds of tongue, part unspecified",
+    "C02.4": "Lingual frenum",
+    "C02.8": "Overlapping lesion of tongue",
+    "C02.9": "Tongue, unspecified",
+    "C03": "Malignant neoplasm of gum",
+    "C03.0": "Upper gum",
+    "C03.1": "Lower gum",
+    "C03.9": "Gum, unspecified",
+    "C04": "Malignant neoplasm of floor of mouth",
+    "C04.0": "Anterior floor of mouth",
+    "C04.1": "Lateral floor of mouth",
+    "C04.8": "Overlapping lesion of floor of mouth",
+    "C04.9": "Floor of mouth, unspecified",
+    "C05": "Malignant neoplasm of palate",
+    "C05.0": "Hard palate",
+    "C05.1": "Soft palate",
+    "C05.2": "Uvula",
+    "C05.8": "Overlapping lesion of palate",
+    "C05.9": "Palate, unspecified",
+    "C06": "Malignant neoplasm of other and unspecified parts of mouth",
+    "C06.0": "Mucosa of cheek",
+    "C06.1": "Vestibule of mouth",
+    "C06.2": "Retromolar area",
+    "C06.8": "Overlapping lesion of other parts of mouth",
+    "C06.9": "Mouth, unspecified",
+    "C07": "Malignant neoplasm of parotid gland",
+    "C08": "Malignant neoplasm of other and unspecified major salivary glands",
+    "C08.0": "Submandibular gland",
+    "C08.1": "Sublingual gland",
+    "C08.9": "Salivary gland, unspecified",
+    "C09": "Malignant neoplasm of tonsil",
+    "C09.0": "Tonsillar fossa",
+    "C09.1": "Tonsillar pillar",
+    "C09.8": "Overlapping lesion of tonsil",
+    "C09.9": "Tonsil, unspecified",
+    "C10": "Malignant neoplasm of oropharynx",
+    "C10.0": "Vallecula",
+    "C10.1": "Anterior surface of epiglottis",
+    "C10.2": "Lateral wall of oropharynx",
+    "C10.3": "Posterior wall of oropharynx",
+    "C10.8": "Overlapping lesion of oropharynx",
+    "C10.9": "Oropharynx, unspecified",
+    "C11": "Malignant neoplasm of nasopharynx",
+    "C11.0": "Superior wall of nasopharynx",
+    "C11.1": "Posterior wall of nasopharynx",
+    "C11.2": "Lateral wall of nasopharynx",
+    "C11.3": "Anterior wall of nasopharynx",
+    "C11.8": "Overlapping lesion of nasopharynx",
+    "C11.9": "Nasopharynx, unspecified",
+    "C12": "Malignant neoplasm of pyriform sinus",
+    "C13": "Malignant neoplasm of hypopharynx",
+    "C13.0": "Postcricoid region",
+    "C13.1": "Aryepiglottic fold",
+    "C13.2": "Posterior wall of hypopharynx",
+    "C13.8": "Overlapping lesion of hypopharynx",
+    "C13.9": "Hypopharynx, unspecified",
+    "C14": "Malignant neoplasm of other and ill-defined sites in the lip, oral cavity and pharynx",
+    "C14.0": "Pharynx, unspecified",
+    "C14.2": "Waldeyer ring",
+    "C14.8": "Overlapping lesion of lip, oral cavity and pharynx",
+    "C30": "Malignant neoplasm of nasal cavity and middle ear",
+    "C30.0": "Nasal cavity",
+    "C30.1": "Middle ear",
+    "C31": "Malignant neoplasm of accessory sinuses",
+    "C31.0": "Maxillary sinus",
+    "C31.1": "Ethmoidal sinus",
+    "C31.2": "Frontal sinus",
+    "C31.3": "Sphenoid sinus",
+    "C31.8": "Overlapping lesion of accessory sinuses",
+    "C31.9": "Accessory sinus, unspecified",
+    "C32": "Malignant neoplasm of larynx",
+    "C32.0": "Glottis",
+    "C32.1": "Supraglottis",
+    "C32.2": "Subglottis",
+    "C32.3": "Laryngeal cartilage",
+    "C32.8": "Overlapping lesion of larynx",
+    "C32.9": "Larynx, unspecified",
+}
+
+# Site-level groupings for C00-C14, C30-C32
+SITE_NAMES = {
+    'C00': 'Lip (C00)',
+    'C01': 'Base of tongue (C01)',
+    'C02': 'Other tongue (C02)',
+    'C03': 'Gum (C03)',
+    'C04': 'Floor of mouth (C04)',
+    'C05': 'Palate (C05)',
+    'C06': 'Other mouth (C06)',
+    'C07': 'Parotid gland (C07)',
+    'C08': 'Other salivary glands (C08)',
+    'C09': 'Tonsil (C09)',
+    'C10': 'Oropharynx (C10)',
+    'C11': 'Nasopharynx (C11)',
+    'C12': 'Piriform sinus (C12)',
+    'C13': 'Hypopharynx (C13)',
+    'C14': 'Other pharynx (C14)',
+    'C30': 'Nasal cavity/middle ear (C30)',
+    'C31': 'Accessory sinuses (C31)',
+    'C32': 'Larynx (C32)',
+}
+
+# Color palette for the 18 sites
+SITE_COLORS = {
+    'C00': '#e41a1c', 'C01': '#377eb8', 'C02': '#4daf4a', 'C03': '#984ea3',
+    'C04': '#ff7f00', 'C05': '#a65628', 'C06': '#f781bf', 'C07': '#999999',
+    'C08': '#66c2a5', 'C09': '#fc8d62', 'C10': '#8da0cb', 'C11': '#e78ac3',
+    'C12': '#fb8072', 'C13': '#80b1d3', 'C14': '#fdb462', 'C30': '#b3de69',
+    'C31': '#fccde5', 'C32': '#bebada',
+}
+
+# Data paths
+data_base = Path(data_path)
+egresos_path = data_base / "EGRESOS"
+pop_file_path = data_base / "censo_proyecciones_ano_edad_genero.parquet"
+comunas_shp = data_base / "shapefiles" / "comunas.shp"
+regional_shp = data_base / "shapefiles" / "Regional.shp"
+
+PARQUET_TO_STANDARD_REGION = {
+    # Parquet (INE) names
+    'Arica y Parinacota': 'Arica y Parinacota',
+    'Tarapacá': 'Tarapacá',
+    'Antofagasta': 'Antofagasta',
+    'Atacama': 'Atacama',
+    'Coquimbo': 'Coquimbo',
+    'Valparaíso': 'Valparaíso',
+    'Metropolitana de Santiago': 'Metropolitana',
+    "Libertador General Bernardo O'Higgins": "O'Higgins",
+    'Maule': 'Maule',
+    'Ñuble': 'Ñuble',
+    'Biobío': 'Biobío',
+    'La Araucanía': 'La Araucanía',
+    'Los Ríos': 'Los Ríos',
+    'Los Lagos': 'Los Lagos',
+    'Aysén del General Carlos Ibáñez del Campo': 'Aysén',
+    'Magallanes y de la Antártica Chilena': 'Magallanes',
+    # DEIS (EGRESOS) names
+    'De Arica y Parinacota': 'Arica y Parinacota',
+    'De Tarapacá': 'Tarapacá',
+    'De Antofagasta': 'Antofagasta',
+    'De Atacama': 'Atacama',
+    'De Coquimbo': 'Coquimbo',
+    'De Valparaíso': 'Valparaíso',
+    "Del Libertador B. O'Higgins": "O'Higgins",
+    'Del Maule': 'Maule',
+    'De Ñuble': 'Ñuble',
+    'Del Bíobío': 'Biobío',
+    'De La Araucanía': 'La Araucanía',
+    'De Los Ríos': 'Los Ríos',
+    'De Los Lagos': 'Los Lagos',
+    'De Aisén del Gral. C. Ibáñez del Campo': 'Aysén',
+    'De Magallanes y de La Antártica Chilena': 'Magallanes',
+}
+```
+
+```{python}
+#| label: functions
+#| include: false
+
+def assign_age_group(age):
+    if pd.isna(age) or age is None:
+        return None
+    try:
+        age = int(float(age))
+    except (ValueError, TypeError):
+        return None
+    if age < 0:
+        return None
+    if age >= 80:
+        return '80+'
+    for start, end in AGE_GROUPS_TUPLES:
+        if start <= age <= end:
+            return f"{start}-{end}"
+    return None
+
+
+def categorize_head_neck_site(code):
+    """Categorize ICD-10 code into site-level head and neck neoplasm group (C00-C14, C30-C32)."""
+    if not isinstance(code, str) or not code.startswith('C'):
+        return None
+    code_upper = code.upper().strip()
+    # Extract the two-digit numeric part
+    try:
+        num = int(code_upper[1:3])
+    except (ValueError, IndexError):
+        return None
+    # Check if it's in head and neck ranges
+    if (0 <= num <= 14) or (30 <= num <= 32):
+        if num == 0:
+            return 'C00'
+        elif num == 1:
+            return 'C01'
+        elif num == 2:
+            return 'C02'
+        elif num == 3:
+            return 'C03'
+        elif num == 4:
+            return 'C04'
+        elif num == 5:
+            return 'C05'
+        elif num == 6:
+            return 'C06'
+        elif num == 7:
+            return 'C07'
+        elif num == 8:
+            return 'C08'
+        elif num == 9:
+            return 'C09'
+        elif num == 10:
+            return 'C10'
+        elif num == 11:
+            return 'C11'
+        elif num == 12:
+            return 'C12'
+        elif num == 13:
+            return 'C13'
+        elif num == 14:
+            return 'C14'
+        elif num == 30:
+            return 'C30'
+        elif num == 31:
+            return 'C31'
+        elif num == 32:
+            return 'C32'
+    return None
+
+
+def _normalize_txt(x):
+    if pd.isna(x):
+        return None
+    s = str(x).strip().lower()
+    repl = str.maketrans({'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u', 'ñ': 'n'})
+    return s.translate(repl)
+
+
+def _standardize_sex(x):
+    if pd.isna(x):
+        return None
+    v = _normalize_txt(x)
+    if v is None:
+        return None
+    v = v.replace('.', '').replace('-', ' ').replace('_', ' ').strip()
+    if v in {'1', 'm', 'male', 'masculino', 'hombre', 'hombres', 'varon', 'varones'}:
+        return 'Male'
+    if v in {'2', 'f', 'female', 'femenino', 'mujer', 'mujeres'}:
+        return 'Female'
+    return None
+
+
+def normalize_region_to_standard(region_name):
+    if pd.isna(region_name):
+        return None
+    name = str(region_name).strip()
+    return PARQUET_TO_STANDARD_REGION.get(name, name)
+
+
+def load_population_data(years=YEARS):
+    candidate_paths = [
+        str(data_base / 'censo_proyecciones_ano_edad_genero.parquet'),
+        str(data_base / 'censo_proyecciones_año_edad_genero.parquet'),
+    ]
+    pop_file = None
+    for p in candidate_paths:
+        if os.path.exists(p):
+            pop_file = p
+            break
+    if pop_file is None:
+        matches = glob.glob(str(data_base / '**' / 'censo_proyecciones*edad_genero*.parquet'), recursive=True)
+        pop_file = matches[0] if matches else None
+    if pop_file is None:
+        raise FileNotFoundError("Population projections file not found.")
+
+    df = pd.read_parquet(pop_file, engine="pyarrow")
+    df.columns = [str(c).strip() for c in df.columns]
+    cols_norm = {_normalize_txt(c): c for c in df.columns}
+
+    year_col = cols_norm.get('ano') or cols_norm.get('anio') or cols_norm.get('year')
+    age_col = cols_norm.get('edad') or cols_norm.get('age')
+    sex_col = cols_norm.get('genero') or cols_norm.get('sexo') or cols_norm.get('sex')
+    pop_col = cols_norm.get('poblacion') or cols_norm.get('population')
+    region_col = cols_norm.get('region')
+    comuna_col = cols_norm.get('comuna')
+
+    keep_cols = [year_col, age_col, sex_col, pop_col]
+    if region_col:
+        keep_cols.append(region_col)
+    if comuna_col:
+        keep_cols.append(comuna_col)
+
+    pop = df[keep_cols].copy()
+    rename_map = {year_col: 'year', age_col: 'age', sex_col: 'sex', pop_col: 'population'}
+    if region_col:
+        rename_map[region_col] = 'region'
+    if comuna_col:
+        rename_map[comuna_col] = 'comuna'
+    pop.rename(columns=rename_map, inplace=True)
+
+    pop['year'] = pd.to_numeric(pop['year'], errors='coerce').astype('Int64')
+    pop = pop[pop['year'].isin(years)]
+    pop['population'] = pd.to_numeric(pop['population'], errors='coerce')
+    pop['sex'] = pop['sex'].apply(_standardize_sex)
+    pop['age_group'] = pop['age'].apply(assign_age_group)
+    pop = pop.dropna(subset=['year', 'sex', 'age_group', 'population'])
+    pop = pop[pop['population'] > 0]
+
+    if 'region' in pop.columns:
+        pop['region'] = pop['region'].apply(normalize_region_to_standard)
+
+    group_cols = [c for c in ['region', 'comuna', 'year', 'age_group', 'sex'] if c in pop.columns]
+    pop_agg = pop.groupby(group_cols, as_index=False)['population'].sum()
+    return pop_agg
+
+
+def calculate_asr_by_sex(hosp, pop, per=100000):
+    who_weights = pd.DataFrame([
+        {'age_group': k, 'who_weight': v} for k, v in WHO_STANDARD_POPULATION.items()
+    ])
+    hosp_agg = hosp.groupby(['year', 'age_group', 'sex'])['hospitalizations'].sum().reset_index()
+    pop_agg = pop.groupby(['year', 'age_group', 'sex'])['population'].sum().reset_index()
+    merged = hosp_agg.merge(pop_agg, on=['year', 'age_group', 'sex'], how='left')
+    merged = merged.dropna(subset=['population'])
+    merged = merged[merged['population'] > 0]
+    merged['age_specific_rate'] = (merged['hospitalizations'] / merged['population']) * per
+    merged = merged.merge(who_weights, on='age_group', how='left')
+    merged['weighted_rate'] = merged['age_specific_rate'] * merged['who_weight']
+    result = merged.groupby(['year', 'sex']).agg({
+        'hospitalizations': 'sum',
+        'population': 'sum',
+        'weighted_rate': 'sum'
+    }).reset_index()
+    result['crude_rate'] = ((result['hospitalizations'] / result['population']) * per).round(2)
+    result['asr'] = (result['weighted_rate'] / TOTAL_WHO_WEIGHT).round(2)
+    result.drop(columns=['weighted_rate'], inplace=True)
+    return result[['year', 'sex', 'hospitalizations', 'population', 'crude_rate', 'asr']]
+
+
+def calculate_asr_sex_columns(hosp, pop, per=100000):
+    who_weights = pd.DataFrame([
+        {'age_group': k, 'who_weight': v} for k, v in WHO_STANDARD_POPULATION.items()
+    ])
+    hosp_agg = hosp.groupby(['year', 'age_group', 'sex'])['hospitalizations'].sum().reset_index()
+    pop_agg = pop.groupby(['year', 'age_group', 'sex'])['population'].sum().reset_index()
+    merged = hosp_agg.merge(pop_agg, on=['year', 'age_group', 'sex'], how='left')
+    merged = merged.dropna(subset=['population'])
+    merged = merged[merged['population'] > 0]
+    merged['age_specific_rate'] = (merged['hospitalizations'] / merged['population']) * per
+    merged = merged.merge(who_weights, on='age_group', how='left')
+    merged['weighted_rate'] = merged['age_specific_rate'] * merged['who_weight']
+
+    by_sex = merged.groupby(['year', 'sex']).agg({
+        'hospitalizations': 'sum', 'population': 'sum', 'weighted_rate': 'sum'
+    }).reset_index()
+    by_sex['crude_rate'] = ((by_sex['hospitalizations'] / by_sex['population']) * per).round(2)
+    by_sex['asr'] = (by_sex['weighted_rate'] / TOTAL_WHO_WEIGHT).round(2)
+
+    hosp_total = hosp.groupby(['year', 'age_group'])['hospitalizations'].sum().reset_index()
+    pop_total = pop.groupby(['year', 'age_group'])['population'].sum().reset_index()
+    merged_total = hosp_total.merge(pop_total, on=['year', 'age_group'], how='left')
+    merged_total = merged_total.dropna(subset=['population'])
+    merged_total = merged_total[merged_total['population'] > 0]
+    merged_total['age_specific_rate'] = (merged_total['hospitalizations'] / merged_total['population']) * per
+    merged_total = merged_total.merge(who_weights, on='age_group', how='left')
+    merged_total['weighted_rate'] = merged_total['age_specific_rate'] * merged_total['who_weight']
+    total_agg = merged_total.groupby('year').agg({
+        'hospitalizations': 'sum', 'population': 'sum', 'weighted_rate': 'sum'
+    }).reset_index()
+    total_agg['crude_rate'] = ((total_agg['hospitalizations'] / total_agg['population']) * per).round(2)
+    total_agg['asr'] = (total_agg['weighted_rate'] / TOTAL_WHO_WEIGHT).round(2)
+
+    male = by_sex[by_sex['sex'] == 'Male'][['year', 'hospitalizations', 'population', 'crude_rate', 'asr']].copy()
+    male.columns = ['year', 'hosp_male', 'pop_male', 'crude_rate_male', 'asr_male']
+    female = by_sex[by_sex['sex'] == 'Female'][['year', 'hospitalizations', 'population', 'crude_rate', 'asr']].copy()
+    female.columns = ['year', 'hosp_female', 'pop_female', 'crude_rate_female', 'asr_female']
+    total = total_agg[['year', 'hospitalizations', 'population', 'crude_rate', 'asr']].copy()
+    total.columns = ['year', 'hosp_total', 'pop_total', 'crude_rate_total', 'asr_total']
+
+    result = male.merge(female, on='year', how='outer').merge(total, on='year', how='outer')
+    result.sort_values('year', inplace=True)
+    result.reset_index(drop=True, inplace=True)
+    return result
+
+
+def calculate_asr_by_site(hosp, pop, per=100000):
+    who_weights = pd.DataFrame([
+        {'age_group': k, 'who_weight': v} for k, v in WHO_STANDARD_POPULATION.items()
+    ])
+    hosp_agg = hosp.groupby(['year', 'age_group', 'icd_category'])['hospitalizations'].sum().reset_index()
+    pop_agg = pop.groupby(['year', 'age_group'])['population'].sum().reset_index()
+    merged = hosp_agg.merge(pop_agg, on=['year', 'age_group'], how='left')
+    merged = merged.dropna(subset=['population'])
+    merged = merged[merged['population'] > 0]
+    merged['age_specific_rate'] = (merged['hospitalizations'] / merged['population']) * per
+    merged = merged.merge(who_weights, on='age_group', how='left')
+    merged['weighted_rate'] = merged['age_specific_rate'] * merged['who_weight']
+
+    total_agg = merged.groupby(['year', 'icd_category']).agg({
+        'hospitalizations': 'sum', 'weighted_rate': 'sum'
+    }).reset_index()
+    total_agg['asr'] = (total_agg['weighted_rate'] / TOTAL_WHO_WEIGHT).round(2)
+    return total_agg[['year', 'icd_category', 'hospitalizations', 'asr']]
+
+
+def save_figure(fig, filename):
+    filepath = os.path.join(figures_path, filename)
+    fig.savefig(filepath, dpi=150, bbox_inches='tight', facecolor='white')
+```
+
+```{python}
+#| label: load-egresos
+#| include: false
+
+csv_files = sorted(glob.glob(str(egresos_path / "*.csv")))
+
+all_egresos = []
+for filepath in csv_files:
+    try:
+        df = pd.read_csv(filepath, sep=";", encoding="latin1", low_memory=False)
+        required_cols = ['SEXO', 'GRUPO_EDAD', 'ANO_EGRESO', 'DIAG1',
+                         'COMUNA_RESIDENCIA', 'GLOSA_COMUNA_RESIDENCIA',
+                         'REGION_RESIDENCIA', 'GLOSA_REGION_RESIDENCIA']
+        df = df[[c for c in required_cols if c in df.columns]]
+        df['SEXO'] = df['SEXO'].apply(lambda x:
+            'Male' if str(x).strip().upper() in ['HOMBRE', 'H', '1', 'M']
+            else ('Female' if str(x).strip().upper() in ['MUJER', 'M', '2', 'F']
+                  else None))
+        df = df[df['DIAG1'].notna()]
+        df['DIAG1'] = df['DIAG1'].astype(str).str.strip().str.upper()
+        df = df[df['DIAG1'].str.startswith('C')]
+        df = df[df['DIAG1'].str[1:3].str.isnumeric()]
+        df['code_num'] = df['DIAG1'].str[1:3].astype(int)
+        # Filter for head and neck codes (C00-C14 and C30-C32)
+        df = df[((df['code_num'] >= 0) & (df['code_num'] <= 14)) | ((df['code_num'] >= 30) & (df['code_num'] <= 32))]
+        df = df.drop(columns=['code_num'])
+        df['icd_category'] = df['DIAG1'].apply(categorize_head_neck_site)
+        df = df[df['icd_category'].notna()]
+        df.rename(columns={
+            'ANO_EGRESO': 'year',
+            'GLOSA_REGION_RESIDENCIA': 'region',
+            'GLOSA_COMUNA_RESIDENCIA': 'comuna'
+        }, inplace=True)
+        all_egresos.append(df)
+    except Exception:
+        pass
+
+egresos_df = pd.concat(all_egresos, ignore_index=True)
+egresos_df = egresos_df.dropna(subset=['year', 'SEXO', 'GRUPO_EDAD', 'region'])
+egresos_df['region'] = egresos_df['region'].apply(normalize_region_to_standard)
+egresos_df['year'] = pd.to_numeric(egresos_df['year'], errors='coerce').astype('Int64')
+```
+
+```{python}
+#| label: load-population
+#| include: false
+
+pop_data = load_population_data(YEARS)
+pop_5year = pop_data.groupby(['year', 'age_group', 'sex'])['population'].sum().reset_index()
+```
+
+```{python}
+#| label: redistribute-age-groups
+#| include: false
+
+# EGRESOS 10-year age bands -> 5-year WHO bands (proportional redistribution)
+grupo_edad_mapping = {
+    'MENOR DE UN AÑO': [('0-4', [0, 0.2])],
+    '1 A 9': [('0-4', [0.25, 0.5]), ('5-9', [0.5, 0.75])],
+    '10 A 19': [('10-14', [0.5, 0.75]), ('15-19', [0.75, 1.0])],
+    '20 A 29': [('20-24', [0.5, 0.75]), ('25-29', [0.75, 1.0])],
+    '30 A 39': [('30-34', [0.5, 0.75]), ('35-39', [0.75, 1.0])],
+    '40 A 49': [('40-44', [0.5, 0.75]), ('45-49', [0.75, 1.0])],
+    '50 A 59': [('50-54', [0.5, 0.75]), ('55-59', [0.75, 1.0])],
+    '60 A 69': [('60-64', [0.5, 0.75]), ('65-69', [0.75, 1.0])],
+    '70 A 79': [('70-74', [0.5, 0.75]), ('75-79', [0.75, 1.0])],
+    '80 Y MAS': [('80+', [1.0, 1.0])],
+    '80 Y MÁS': [('80+', [1.0, 1.0])],
+    '80 A 89': [('80+', [1.0, 1.0])],
+    '90 Y MAS': [('80+', [1.0, 1.0])],
+    '90 Y MÁS': [('80+', [1.0, 1.0])],
+    'MENOR A 7 DÍAS': [('0-4', [0, 0.2])],
+    '7 A 27 DIAS': [('0-4', [0, 0.2])],
+    '28 DIAS A 2 MES': [('0-4', [0, 0.2])],
+    '2 MESES A MENOS DE 1 AÑO': [('0-4', [0, 0.2])],
+    '1 A 4 AÑOS': [('0-4', [1.0, 1.0])],
+    '5 A 9 AÑOS': [('5-9', [1.0, 1.0])],
+    '10 A 14 AÑOS': [('10-14', [1.0, 1.0])],
+    '15 A 19 AÑOS': [('15-19', [1.0, 1.0])],
+    '20 A 24 AÑOS': [('20-24', [1.0, 1.0])],
+    '25 A 29 AÑOS': [('25-29', [1.0, 1.0])],
+    '30 A 34 AÑOS': [('30-34', [1.0, 1.0])],
+    '35 A 39 AÑOS': [('35-39', [1.0, 1.0])],
+    '40 A 44 AÑOS': [('40-44', [1.0, 1.0])],
+    '45 A 49 AÑOS': [('45-49', [1.0, 1.0])],
+    '50 A 54 AÑOS': [('50-54', [1.0, 1.0])],
+    '55 A 59 AÑOS': [('55-59', [1.0, 1.0])],
+    '60 A 64 AÑOS': [('60-64', [1.0, 1.0])],
+    '65 A 69 AÑOS': [('65-69', [1.0, 1.0])],
+    '70 A 74 AÑOS': [('70-74', [1.0, 1.0])],
+    '75 A 79 AÑOS': [('75-79', [1.0, 1.0])],
+    '80 A 84 AÑOS': [('80+', [1.0, 1.0])],
+    '85 A MAS': [('80+', [1.0, 1.0])],
+}
+
+egresos_df['GRUPO_EDAD'] = egresos_df['GRUPO_EDAD'].astype(str).str.strip().str.upper()
+
+hosp_5year_list = []
+for year in YEARS:
+    year_egresos = egresos_df[egresos_df['year'] == year].copy()
+    year_pop = pop_5year[pop_5year['year'] == year]
+    for _, row in year_egresos.iterrows():
+        sex = row['SEXO']
+        grupo = row['GRUPO_EDAD']
+        icd_cat = row['icd_category']
+        age_groups_list = grupo_edad_mapping.get(grupo, [])
+        if not age_groups_list:
+            continue
+        sex_year_pop = year_pop[year_pop['sex'] == sex]
+        # Compute total population across all 5-year subgroups for this band
+        total_pop_band = sum([
+            sex_year_pop[sex_year_pop['age_group'] == ag]['population'].sum()
+            for ag, _ in age_groups_list
+        ])
+        if total_pop_band <= 0:
+            continue
+        for age_5yr, _ in age_groups_list:
+            subpop = sex_year_pop[sex_year_pop['age_group'] == age_5yr]['population'].sum()
+            if subpop > 0:
+                # Fraction of hospitalization assigned to this 5-year subgroup
+                frac = subpop / total_pop_band
+                hosp_5year_list.append({
+                    'year': year,
+                    'age_group': age_5yr,
+                    'sex': sex,
+                    'icd_category': icd_cat,
+                    'region': row['region'],
+                    'comuna': row.get('comuna', None),
+                    'hospitalizations': frac
+                })
+
+hosp_5year = pd.DataFrame(hosp_5year_list)
+hosp_by_site = hosp_5year.groupby(['year', 'age_group', 'sex', 'icd_category']).agg(
+    {'hospitalizations': 'sum'}).reset_index()
+hosp_overall = hosp_5year.groupby(['year', 'age_group', 'sex']).agg(
+    {'hospitalizations': 'sum'}).reset_index()
+hosp_regional = hosp_5year.groupby(['year', 'region', 'age_group', 'sex']).agg(
+    {'hospitalizations': 'sum'}).reset_index()
+```
+
+```{python}
+#| label: compute-asr
+#| include: false
+
+population = pop_data.groupby(['year', 'age_group', 'sex'])['population'].sum().reset_index()
+
+asr_by_sex = calculate_asr_by_sex(hosp_overall, population)
+asr_sex_cols = calculate_asr_sex_columns(hosp_overall, population)
+asr_by_site = calculate_asr_by_site(hosp_by_site, population)
+
+# Save outputs
+asr_by_sex.to_csv(os.path.join(output_path, 'asr_by_sex_head_neck.csv'), index=False)
+asr_sex_cols.to_csv(os.path.join(output_path, 'asr_sex_columns_head_neck.csv'), index=False)
+asr_by_site.to_csv(os.path.join(output_path, 'asr_by_site_head_neck.csv'), index=False)
+```
+
+# Results
+
+## Age-Standardized Rates (ASR)
+
+### ASR by sex and year
+
+```{python}
+#| label: tbl-asr-by-sex
+#| tbl-cap: "Age-standardized hospitalization rates for head and neck neoplasms by sex (per 100,000 pop.)"
+#| tbl-cap-location: bottom
+
+asr_by_sex.style.format({
+    'hospitalizations': '{:,.0f}',
+    'population': '{:,.0f}',
+    'crude_rate': '{:.2f}',
+    'asr': '{:.2f}'
+}).hide(axis="index")
+```
+
+```{python}
+#| label: tbl-asr-sex-columns
+#| tbl-cap: "Hospitalizations and ASR by sex — Head and neck neoplasms (columnar format, per 100,000 pop.)"
+#| tbl-cap-location: bottom
+
+display_cols = asr_sex_cols.copy()
+display_cols.columns = ['Year', 'Hosp. Males', 'Pop. Males', 'Crude Rate M', 'ASR M',
+                         'Hosp. Females', 'Pop. Females', 'Crude Rate F', 'ASR F',
+                         'Hosp. Total', 'Pop. Total', 'Crude Rate Total', 'ASR Total']
+
+display_cols.style.format({
+    'Hosp. Males': '{:,.0f}', 'Pop. Males': '{:,.0f}', 'Crude Rate M': '{:.2f}', 'ASR M': '{:.2f}',
+    'Hosp. Females': '{:,.0f}', 'Pop. Females': '{:,.0f}', 'Crude Rate F': '{:.2f}', 'ASR F': '{:.2f}',
+    'Hosp. Total': '{:,.0f}', 'Pop. Total': '{:,.0f}', 'Crude Rate Total': '{:.2f}', 'ASR Total': '{:.2f}'
+}).hide(axis="index")
+```
+
+### Time series of ASR
+
+```{python}
+#| label: fig-asr-time-series
+#| fig-cap: "Age-standardized rate trends — Malignant neoplasms of head and neck (C00-C14, C30-C32), 2010–2024"
+#| fig-width: 16
+#| fig-height: 5
+
+fig, axes = plt.subplots(1, 3, figsize=(16, 5))
+
+ax1 = axes[0]
+ax1.plot(asr_sex_cols['year'], asr_sex_cols['asr_male'], marker='o', linewidth=2, markersize=7,
+         label='Males', color='steelblue')
+ax1.plot(asr_sex_cols['year'], asr_sex_cols['asr_female'], marker='s', linewidth=2, markersize=7,
+         label='Females', color='coral')
+ax1.plot(asr_sex_cols['year'], asr_sex_cols['asr_total'], marker='^', linewidth=2, markersize=7,
+         label='Total', color='forestgreen', linestyle='--')
+ax1.set_xlabel('Year')
+ax1.set_ylabel('ASR (per 100,000)')
+ax1.set_title('Age-Standardized Rate', fontweight='bold')
+ax1.legend()
+ax1.grid(True, alpha=0.3)
+
+ax2 = axes[1]
+ax2.plot(asr_sex_cols['year'], asr_sex_cols['crude_rate_male'], marker='o', linewidth=2, markersize=7,
+         label='Males', color='steelblue')
+ax2.plot(asr_sex_cols['year'], asr_sex_cols['crude_rate_female'], marker='s', linewidth=2, markersize=7,
+         label='Females', color='coral')
+ax2.plot(asr_sex_cols['year'], asr_sex_cols['crude_rate_total'], marker='^', linewidth=2, markersize=7,
+         label='Total', color='forestgreen', linestyle='--')
+ax2.set_xlabel('Year')
+ax2.set_ylabel('Crude rate (per 100,000)')
+ax2.set_title('Crude Rate', fontweight='bold')
+ax2.legend()
+ax2.grid(True, alpha=0.3)
+
+ax3 = axes[2]
+ax3.plot(asr_sex_cols['year'], asr_sex_cols['hosp_male'], marker='o', linewidth=2, markersize=7,
+         label='Males', color='steelblue')
+ax3.plot(asr_sex_cols['year'], asr_sex_cols['hosp_female'], marker='s', linewidth=2, markersize=7,
+         label='Females', color='coral')
+ax3.plot(asr_sex_cols['year'], asr_sex_cols['hosp_total'], marker='^', linewidth=2, markersize=7,
+         label='Total', color='forestgreen', linestyle='--')
+ax3.set_xlabel('Year')
+ax3.set_ylabel('Hospitalizations (N)')
+ax3.set_title('Total Hospitalizations', fontweight='bold')
+ax3.legend()
+ax3.grid(True, alpha=0.3)
+
+plt.tight_layout()
+save_figure(fig, 'asr_time_series_head_neck.png')
+plt.savefig(_FIG / "fig-asr-time-series.png", dpi=300, bbox_inches="tight")
+plt.show()
+```
+
+\newpage
+
+## Analysis by Anatomical Site
+
+### ASR by site location
+
+```{python}
+#| label: tbl-asr-by-site
+#| tbl-cap: "Age-standardized rates by site — Latest available year (per 100,000 pop.)"
+#| tbl-cap-location: bottom
+
+latest_year = asr_by_site['year'].max()
+asr_latest = asr_by_site[asr_by_site['year'] == latest_year].copy()
+asr_latest['site_name'] = asr_latest['icd_category'].map(SITE_NAMES)
+
+asr_latest[['icd_category', 'site_name', 'hospitalizations', 'asr']].style.format({
+    'hospitalizations': '{:,.0f}',
+    'asr': '{:.2f}'
+}).hide(axis="index")
+```
+
+```{python}
+#| label: tbl-site-summary
+#| tbl-cap: "Summary of hospitalizations and mean ASR by site (2010–2024)"
+#| tbl-cap-location: bottom
+
+site_summary = asr_by_site.groupby('icd_category').agg({
+    'hospitalizations': 'sum',
+    'asr': 'mean'
+}).reset_index()
+site_summary['asr'] = site_summary['asr'].round(2)
+site_summary['site_name'] = site_summary['icd_category'].map(SITE_NAMES)
+site_summary = site_summary.sort_values('hospitalizations', ascending=False)
+
+site_summary[['icd_category', 'site_name', 'hospitalizations', 'asr']].style.format({
+    'hospitalizations': '{:,.0f}',
+    'asr': '{:.2f}'
+}).hide(axis="index")
+```
+
+```{python}
+#| label: fig-site-distribution
+#| fig-cap: "Distribution of hospitalizations by site — Head and neck neoplasms (2010–2024)"
+#| fig-width: 16
+#| fig-height: 7
+
+fig, axes = plt.subplots(1, 2, figsize=(16, 7))
+
+# Pie chart
+ax1 = axes[0]
+colors = [SITE_COLORS.get(s, '#cccccc') for s in site_summary['icd_category']]
+wedges, texts, autotexts = ax1.pie(
+    site_summary['hospitalizations'], labels=site_summary['icd_category'],
+    autopct='%1.1f%%', colors=colors, startangle=90)
+ax1.set_title('Percentage distribution', fontsize=12, fontweight='bold')
+for autotext in autotexts:
+    autotext.set_fontsize(8)
+
+# Horizontal bar
+ax2 = axes[1]
+site_sorted = site_summary.sort_values('hospitalizations', ascending=True)
+bar_colors = [SITE_COLORS.get(s, '#cccccc') for s in site_sorted['icd_category']]
+ax2.barh(site_sorted['icd_category'], site_sorted['hospitalizations'], color=bar_colors)
+ax2.set_xlabel('Total Hospitalizations', fontsize=11, fontweight='bold')
+ax2.set_title('Hospitalization burden by site', fontsize=12, fontweight='bold')
+ax2.grid(axis='x', alpha=0.3)
+
+plt.tight_layout()
+save_figure(fig, 'site_distribution_head_neck.png')
+plt.savefig(_FIG / "fig-site-distribution.png", dpi=300, bbox_inches="tight")
+plt.show()
+```
+
+```{python}
+#| label: fig-asr-trends-site
+#| fig-cap: "ASR trends by site — Total, Male, and Female (2010–2024)"
+#| fig-width: 18
+#| fig-height: 16
+
+# Compute ASR by site for each sex separately
+who_weights_df = pd.DataFrame([
+    {'age_group': k, 'who_weight': v} for k, v in WHO_STANDARD_POPULATION.items()
+])
+
+def _asr_by_site_sex(hosp_df, pop_df, sex_filter=None, per=100000):
+    if sex_filter:
+        h = hosp_df[hosp_df['sex'] == sex_filter].groupby(
+            ['year', 'age_group', 'icd_category'])['hospitalizations'].sum().reset_index()
+        p = pop_df[pop_df['sex'] == sex_filter].groupby(
+            ['year', 'age_group'])['population'].sum().reset_index()
+    else:
+        h = hosp_df.groupby(
+            ['year', 'age_group', 'icd_category'])['hospitalizations'].sum().reset_index()
+        p = pop_df.groupby(
+            ['year', 'age_group'])['population'].sum().reset_index()
+    m = h.merge(p, on=['year', 'age_group'], how='left').dropna(subset=['population'])
+    m = m[m['population'] > 0]
+    m['rate'] = (m['hospitalizations'] / m['population']) * per
+    m = m.merge(who_weights_df, on='age_group', how='left')
+    m['wr'] = m['rate'] * m['who_weight']
+    agg = m.groupby(['year', 'icd_category']).agg(
+        hospitalizations=('hospitalizations', 'sum'), weighted_rate=('wr', 'sum')
+    ).reset_index()
+    agg['asr'] = (agg['weighted_rate'] / TOTAL_WHO_WEIGHT).round(2)
+    return agg[['year', 'icd_category', 'hospitalizations', 'asr']]
+
+asr_site_total = _asr_by_site_sex(hosp_by_site, population, sex_filter=None)
+asr_site_male  = _asr_by_site_sex(hosp_by_site, population, sex_filter='Male')
+asr_site_female = _asr_by_site_sex(hosp_by_site, population, sex_filter='Female')
+
+sites_list = site_summary['icd_category'].tolist()
+
+fig, axes = plt.subplots(3, 1, figsize=(18, 16), sharex=True)
+panel_data = [
+    (axes[0], asr_site_total, 'Total (Both Sexes)'),
+    (axes[1], asr_site_male, 'Male'),
+    (axes[2], asr_site_female, 'Female'),
+]
+
+for ax, data, title in panel_data:
+    for site in sites_list:
+        sd = data[data['icd_category'] == site]
+        ax.plot(sd['year'], sd['asr'], marker='o', linewidth=2.5,
+                label=SITE_NAMES.get(site, site), markersize=6,
+                color=SITE_COLORS.get(site, None))
+    ax.set_ylabel('ASR (per 100,000)', fontsize=11, fontweight='bold')
+    ax.set_title(f'ASR Trends by Site — {title}', fontsize=12, fontweight='bold')
+    ax.legend(fontsize=8, loc='best', ncol=2)
+    ax.grid(True, alpha=0.3)
+
+axes[2].set_xlabel('Year', fontsize=11, fontweight='bold')
+plt.suptitle('ASR Trends by Site — Head and Neck Neoplasms (C00-C14, C30-C32), 2010–2024',
+             fontsize=14, fontweight='bold', y=1.01)
+plt.tight_layout()
+save_figure(fig, 'asr_trends_by_site_head_neck.png')
+plt.savefig(_FIG / "fig-asr-trends-site.png", dpi=300, bbox_inches="tight")
+plt.show()
+```
+
+```{python}
+#| label: fig-heatmap-asr-site
+#| fig-cap: "Heatmap of ASR by site and year"
+#| fig-width: 16
+#| fig-height: 10
+
+heatmap_data = asr_by_site.pivot_table(index='icd_category', columns='year', values='asr', aggfunc='first')
+
+fig, ax = plt.subplots(figsize=(16, 10))
+sns.heatmap(heatmap_data, annot=True, fmt='.1f', cmap='YlOrRd',
+            cbar_kws={'label': 'ASR (per 100,000)'}, ax=ax)
+ax.set_title('ASR Heatmap — Head and neck neoplasms (C00-C14, C30-C32) by site and year', fontweight='bold', fontsize=14)
+ax.set_xlabel('Year')
+ax.set_ylabel('Site')
+plt.tight_layout()
+save_figure(fig, 'asr_heatmap_site_head_neck.png')
+plt.savefig(_FIG / "fig-heatmap-asr-site.png", dpi=300, bbox_inches="tight")
+plt.show()
+```
+
+\newpage
+
+## Sex Ratio
+
+```{python}
+#| label: sex-ratio-calc
+#| include: false
+
+sex_ratio = asr_sex_cols.copy()
+sex_ratio['sex_ratio_n'] = sex_ratio['hosp_male'] / sex_ratio['hosp_female'].replace(0, np.nan)
+sex_ratio['sex_ratio_asr'] = sex_ratio['asr_male'] / sex_ratio['asr_female'].replace(0, np.nan)
+```
+
+```{python}
+#| label: tbl-sex-ratio
+#| tbl-cap: "Male:female ratio by year — Head and neck neoplasms"
+#| tbl-cap-location: bottom
+
+sr_display = sex_ratio[['year', 'hosp_male', 'hosp_female', 'sex_ratio_n',
+                         'asr_male', 'asr_female', 'sex_ratio_asr']].copy()
+sr_display.columns = ['Year', 'Hosp. Males', 'Hosp. Females', 'Ratio M:F (N)',
+                       'ASR Males', 'ASR Females', 'Ratio M:F (ASR)']
+
+sr_display.style.format({
+    'Hosp. Males': '{:,.0f}',
+    'Hosp. Females': '{:,.0f}',
+    'Ratio M:F (N)': '{:.2f}',
+    'ASR Males': '{:.2f}',
+    'ASR Females': '{:.2f}',
+    'Ratio M:F (ASR)': '{:.2f}'
+}).hide(axis="index")
+```
+
+```{python}
+#| label: fig-sex-ratio
+#| fig-cap: "Analysis of sex ratio in hospitalizations for head and neck neoplasms"
+#| fig-width: 14
+#| fig-height: 6
+
+fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+
+ax1 = axes[0]
+ax1.bar(sex_ratio['year'], sex_ratio['sex_ratio_n'], color='purple', alpha=0.7, label='Hospitalizations')
+ax1.plot(sex_ratio['year'], sex_ratio['sex_ratio_asr'], marker='o', linewidth=2, color='darkred', label='ASR')
+ax1.axhline(y=1, color='gray', linestyle='--', linewidth=2, label='Ratio = 1')
+ax1.set_xlabel('Year')
+ax1.set_ylabel('Male:Female Ratio')
+ax1.set_title('Sex ratio over time', fontweight='bold')
+ax1.legend()
+ax1.grid(True, alpha=0.3, axis='y')
+
+ax2 = axes[1]
+latest = sex_ratio[sex_ratio['year'] == sex_ratio['year'].max()].iloc[0]
+categories = ['Males', 'Females']
+values = [latest['asr_male'], latest['asr_female']]
+bars = ax2.bar(categories, values, color=['steelblue', 'coral'], edgecolor='black', linewidth=1.2)
+ax2.set_ylabel('ASR (per 100,000)')
+ax2.set_title(f'ASR by sex — Year {int(latest["year"])}', fontweight='bold')
+ax2.grid(axis='y', alpha=0.3)
+for bar, val in zip(bars, values):
+    ax2.text(bar.get_x() + bar.get_width()/2, val + 0.5, f'{val:.1f}',
+             ha='center', fontsize=12, fontweight='bold')
+
+plt.tight_layout()
+save_figure(fig, 'sex_ratio_head_neck.png')
+plt.savefig(_FIG / "fig-sex-ratio.png", dpi=300, bbox_inches="tight")
+plt.show()
+```
+
+```{python}
+#| label: fig-sex-ratio-by-site
+#| fig-cap: "Male:female ASR ratio by site — Head and neck neoplasms (latest year)"
+#| fig-width: 14
+#| fig-height: 8
+
+# Compute sex-specific ASR by site for the latest year
+hosp_sex_site = hosp_5year.groupby(['year', 'age_group', 'sex', 'icd_category']).agg(
+    {'hospitalizations': 'sum'}).reset_index()
+who_weights = pd.DataFrame([{'age_group': k, 'who_weight': v} for k, v in WHO_STANDARD_POPULATION.items()])
+pop_agg = population.copy()
+
+site_sex_list = []
+for site in site_summary['icd_category'].tolist():
+    for sex in ['Male', 'Female']:
+        site_sex_data = hosp_sex_site[
+            (hosp_sex_site['year'] == latest_year) &
+            (hosp_sex_site['icd_category'] == site) &
+            (hosp_sex_site['sex'] == sex)
+        ]
+        sex_pop = pop_agg[(pop_agg['year'] == latest_year) & (pop_agg['sex'] == sex)]
+        merged = site_sex_data.merge(sex_pop[['age_group', 'population']], on='age_group', how='left')
+        merged = merged[merged['population'] > 0].dropna(subset=['population'])
+        merged['age_specific_rate'] = (merged['hospitalizations'] / merged['population']) * 100000
+        merged = merged.merge(who_weights, on='age_group', how='left')
+        merged['weighted_rate'] = merged['age_specific_rate'] * merged['who_weight']
+        asr_val = merged['weighted_rate'].sum() / TOTAL_WHO_WEIGHT
+        site_sex_list.append({'icd_category': site, 'sex': sex, 'asr': round(asr_val, 2)})
+
+site_sex_df = pd.DataFrame(site_sex_list)
+site_sex_pivot = site_sex_df.pivot(index='icd_category', columns='sex', values='asr').fillna(0)
+site_sex_pivot['ratio'] = (site_sex_pivot['Male'] / site_sex_pivot['Female'].replace(0, np.nan)).round(2)
+
+fig, axes = plt.subplots(1, 2, figsize=(14, 8))
+
+ax1 = axes[0]
+x = np.arange(len(site_sex_pivot))
+width = 0.35
+ax1.barh(x - width/2, site_sex_pivot['Male'], width, label='Males', color='steelblue')
+ax1.barh(x + width/2, site_sex_pivot['Female'], width, label='Females', color='coral')
+ax1.set_yticks(x)
+ax1.set_yticklabels([SITE_NAMES.get(s, s) for s in site_sex_pivot.index], fontsize=9)
+ax1.set_xlabel('ASR (per 100,000)')
+ax1.set_title(f'ASR by sex and site — {int(latest_year)}', fontweight='bold')
+ax1.legend()
+ax1.grid(axis='x', alpha=0.3)
+
+ax2 = axes[1]
+ratio_sorted = site_sex_pivot.sort_values('ratio', ascending=True)
+colors_ratio = ['coral' if r < 1 else 'steelblue' for r in ratio_sorted['ratio']]
+ax2.barh([SITE_NAMES.get(s, s) for s in ratio_sorted.index],
+         ratio_sorted['ratio'], color=colors_ratio)
+ax2.axvline(x=1, color='gray', linestyle='--', linewidth=2)
+ax2.set_xlabel('Male:Female ASR Ratio')
+ax2.set_title('Sex ratio by site', fontweight='bold')
+ax2.grid(axis='x', alpha=0.3)
+
+plt.tight_layout()
+save_figure(fig, 'sex_ratio_by_site_head_neck.png')
+plt.savefig(_FIG / "fig-sex-ratio-by-site.png", dpi=300, bbox_inches="tight")
+plt.show()
+```
+
+\newpage
+
+## Age Distribution
+
+```{python}
+#| label: fig-age-distribution
+#| fig-cap: "Age distribution of hospitalizations for head and neck neoplasms"
+#| fig-width: 16
+#| fig-height: 10
+
+age_hosp = hosp_overall.groupby('age_group')['hospitalizations'].sum()
+age_hosp = age_hosp.reindex([a for a in AGE_ORDER if a in age_hosp.index])
+
+age_sex = hosp_overall.groupby(['age_group', 'sex'])['hospitalizations'].sum().unstack(fill_value=0)
+age_sex = age_sex.reindex([a for a in AGE_ORDER if a in age_sex.index])
+
+fig, axes = plt.subplots(2, 2, figsize=(16, 10))
+
+# Overall age distribution
+ax1 = axes[0, 0]
+ax1.bar(age_hosp.index, age_hosp.values, color='teal', alpha=0.7)
+ax1.set_xlabel('Age Group')
+ax1.set_ylabel('Hospitalizations')
+ax1.set_title('Overall distribution', fontweight='bold')
+ax1.tick_params(axis='x', rotation=45)
+ax1.grid(True, alpha=0.3, axis='y')
+
+# By sex
+ax2 = axes[0, 1]
+age_sex.plot(kind='bar', ax=ax2, color=['steelblue', 'coral'], width=0.8)
+ax2.set_xlabel('Age Group')
+ax2.set_ylabel('Hospitalizations')
+ax2.set_title('By sex', fontweight='bold')
+ax2.tick_params(axis='x', rotation=45)
+ax2.legend(title='Sex')
+ax2.grid(True, alpha=0.3, axis='y')
+
+# By site and age (top 6 sites)
+ax3 = axes[1, 0]
+top6 = site_summary.head(6)['icd_category'].tolist()
+age_site = hosp_by_site[hosp_by_site['icd_category'].isin(top6)].groupby(
+    ['age_group', 'icd_category'])['hospitalizations'].sum().unstack(fill_value=0)
+age_site = age_site.reindex([a for a in AGE_ORDER if a in age_site.index])
+age_site.plot(kind='bar', ax=ax3, width=0.8, stacked=True,
+              color=[SITE_COLORS.get(s, '#ccc') for s in age_site.columns])
+ax3.set_xlabel('Age Group')
+ax3.set_ylabel('Hospitalizations')
+ax3.set_title('By site — top 6 (stacked)', fontweight='bold')
+ax3.tick_params(axis='x', rotation=45)
+ax3.legend(title='Site', bbox_to_anchor=(1.02, 1), loc='upper left', fontsize=8)
+ax3.grid(True, alpha=0.3, axis='y')
+
+# Elderly focus (60+)
+ax4 = axes[1, 1]
+elderly_groups = ['60-64', '65-69', '70-74', '75-79', '80+']
+elderly = hosp_overall[hosp_overall['age_group'].isin(elderly_groups)]
+eld_by_sex = elderly.groupby(['age_group', 'sex'])['hospitalizations'].sum().unstack(fill_value=0)
+eld_by_sex = eld_by_sex.reindex([a for a in elderly_groups if a in eld_by_sex.index])
+eld_by_sex.plot(kind='bar', ax=ax4, color=['steelblue', 'coral'], width=0.8)
+ax4.set_xlabel('Age Group')
+ax4.set_ylabel('Hospitalizations')
+ax4.set_title('Older adult population (≥60 years)', fontweight='bold')
+ax4.tick_params(axis='x', rotation=45)
+ax4.legend(title='Sex')
+ax4.grid(True, alpha=0.3, axis='y')
+
+plt.suptitle('Age patterns — Head and neck neoplasms (C00-C14, C30-C32)', fontsize=14, fontweight='bold', y=1.02)
+plt.tight_layout()
+save_figure(fig, 'age_distribution_head_neck.png')
+plt.savefig(_FIG / "fig-age-distribution.png", dpi=300, bbox_inches="tight")
+plt.show()
+```
+
+```{python}
+#| label: tbl-age-summary
+#| tbl-cap: "Summary of hospitalizations by age group — Head and neck neoplasms"
+#| tbl-cap-location: bottom
+
+age_summary = hosp_overall.groupby('age_group')['hospitalizations'].sum().reset_index()
+total_h = age_summary['hospitalizations'].sum()
+age_summary['percentage'] = (age_summary['hospitalizations'] / total_h * 100).round(2)
+age_summary['age_order'] = age_summary['age_group'].apply(lambda x: AGE_ORDER.index(x) if x in AGE_ORDER else 99)
+age_summary = age_summary.sort_values('age_order').drop(columns='age_order')
+age_summary.columns = ['Age Group', 'Hospitalizations', 'Percentage (%)']
+
+age_summary.style.format({
+    'Hospitalizations': '{:,.0f}',
+    'Percentage (%)': '{:.2f}'
+}).hide(axis="index")
+```
+
+\newpage
+
+## Detailed Analysis by Individual Diagnostic Code
+
+```{python}
+#| label: detail-helper
+#| include: false
+
+def plot_site_detail(site_code, color_primary='darkred'):
+    """Generate a 2×2 panel with trend, sex breakdown, age distribution, and ASR for a site."""
+    site_hosp = hosp_by_site[hosp_by_site['icd_category'] == site_code]
+    if len(site_hosp) == 0:
+        return None
+
+    fig, axes = plt.subplots(2, 2, figsize=(16, 10))
+
+    # Trend
+    ax1 = axes[0, 0]
+    yearly = site_hosp.groupby('year')['hospitalizations'].sum()
+    ax1.plot(yearly.index, yearly.values, marker='o', linewidth=2, color=color_primary)
+    ax1.fill_between(yearly.index, yearly.values, alpha=0.3, color=color_primary)
+    ax1.set_xlabel('Year')
+    ax1.set_ylabel('Hospitalizations')
+    ax1.set_title('Temporal trend', fontweight='bold')
+    ax1.grid(True, alpha=0.3)
+
+    # By sex
+    ax2 = axes[0, 1]
+    by_sex = site_hosp.groupby('sex')['hospitalizations'].sum()
+    if len(by_sex) > 0:
+        ax2.pie(by_sex.values, labels=by_sex.index, autopct='%1.1f%%',
+                colors=['steelblue', 'coral'], startangle=90)
+    ax2.set_title('Distribution by sex', fontweight='bold')
+
+    # By age
+    ax3 = axes[1, 0]
+    by_age = site_hosp.groupby('age_group')['hospitalizations'].sum()
+    by_age = by_age.reindex([a for a in AGE_ORDER if a in by_age.index])
+    ax3.bar(by_age.index, by_age.values, color=color_primary, alpha=0.7)
+    ax3.set_xlabel('Age Group')
+    ax3.set_ylabel('Hospitalizations')
+    ax3.set_title('Age distribution', fontweight='bold')
+    ax3.tick_params(axis='x', rotation=45)
+    ax3.grid(True, alpha=0.3, axis='y')
+
+    # ASR trend
+    ax4 = axes[1, 1]
+    site_asr = asr_by_site[asr_by_site['icd_category'] == site_code]
+    ax4.plot(site_asr['year'], site_asr['asr'], marker='s', linewidth=2, color='darkgreen')
+    ax4.fill_between(site_asr['year'], site_asr['asr'], alpha=0.2, color='green')
+    ax4.set_xlabel('Year')
+    ax4.set_ylabel('ASR (per 100,000)')
+    ax4.set_title('ASR trend', fontweight='bold')
+    ax4.grid(True, alpha=0.3)
+
+    plt.suptitle(f'{SITE_NAMES.get(site_code, site_code)} — Comprehensive analysis',
+                 fontsize=14, fontweight='bold', y=1.02)
+    plt.tight_layout()
+    return fig
+```
+
+### Lip (C00)
+
+```{python}
+#| label: fig-detail-c00
+#| fig-cap: "Detailed analysis — Lip (C00)"
+#| fig-width: 16
+#| fig-height: 10
+
+fig = plot_site_detail('C00', SITE_COLORS['C00'])
+if fig is not None:
+    save_figure(fig, 'detail_C00.png')
+    plt.savefig(_FIG / "fig-detail-c00.png", dpi=300, bbox_inches="tight")
+    plt.show()
+```
+
+\newpage
+
+### Base of tongue (C01)
+
+```{python}
+#| label: fig-detail-c01
+#| fig-cap: "Detailed analysis — Base of tongue (C01)"
+#| fig-width: 16
+#| fig-height: 10
+
+fig = plot_site_detail('C01', SITE_COLORS['C01'])
+if fig is not None:
+    save_figure(fig, 'detail_C01.png')
+    plt.savefig(_FIG / "fig-detail-c01.png", dpi=300, bbox_inches="tight")
+    plt.show()
+```
+
+\newpage
+
+### Other tongue (C02)
+
+```{python}
+#| label: fig-detail-c02
+#| fig-cap: "Detailed analysis — Other tongue (C02)"
+#| fig-width: 16
+#| fig-height: 10
+
+fig = plot_site_detail('C02', SITE_COLORS['C02'])
+if fig is not None:
+    save_figure(fig, 'detail_C02.png')
+    plt.savefig(_FIG / "fig-detail-c02.png", dpi=300, bbox_inches="tight")
+    plt.show()
+```
+
+\newpage
+
+### Gum (C03)
+
+```{python}
+#| label: fig-detail-c03
+#| fig-cap: "Detailed analysis — Gum (C03)"
+#| fig-width: 16
+#| fig-height: 10
+
+fig = plot_site_detail('C03', SITE_COLORS['C03'])
+if fig is not None:
+    save_figure(fig, 'detail_C03.png')
+    plt.savefig(_FIG / "fig-detail-c03.png", dpi=300, bbox_inches="tight")
+    plt.show()
+```
+
+\newpage
+
+### Floor of mouth (C04)
+
+```{python}
+#| label: fig-detail-c04
+#| fig-cap: "Detailed analysis — Floor of mouth (C04)"
+#| fig-width: 16
+#| fig-height: 10
+
+fig = plot_site_detail('C04', SITE_COLORS['C04'])
+if fig is not None:
+    save_figure(fig, 'detail_C04.png')
+    plt.savefig(_FIG / "fig-detail-c04.png", dpi=300, bbox_inches="tight")
+    plt.show()
+```
+
+\newpage
+
+### Palate (C05)
+
+```{python}
+#| label: fig-detail-c05
+#| fig-cap: "Detailed analysis — Palate (C05)"
+#| fig-width: 16
+#| fig-height: 10
+
+fig = plot_site_detail('C05', SITE_COLORS['C05'])
+if fig is not None:
+    save_figure(fig, 'detail_C05.png')
+    plt.savefig(_FIG / "fig-detail-c05.png", dpi=300, bbox_inches="tight")
+    plt.show()
+```
+
+\newpage
+
+### Other mouth (C06)
+
+```{python}
+#| label: fig-detail-c06
+#| fig-cap: "Detailed analysis — Other mouth (C06)"
+#| fig-width: 16
+#| fig-height: 10
+
+fig = plot_site_detail('C06', SITE_COLORS['C06'])
+if fig is not None:
+    save_figure(fig, 'detail_C06.png')
+    plt.savefig(_FIG / "fig-detail-c06.png", dpi=300, bbox_inches="tight")
+    plt.show()
+```
+
+\newpage
+
+### Parotid gland (C07)
+
+```{python}
+#| label: fig-detail-c07
+#| fig-cap: "Detailed analysis — Parotid gland (C07)"
+#| fig-width: 16
+#| fig-height: 10
+
+fig = plot_site_detail('C07', SITE_COLORS['C07'])
+if fig is not None:
+    save_figure(fig, 'detail_C07.png')
+    plt.savefig(_FIG / "fig-detail-c07.png", dpi=300, bbox_inches="tight")
+    plt.show()
+```
+
+\newpage
+
+### Other salivary glands (C08)
+
+```{python}
+#| label: fig-detail-c08
+#| fig-cap: "Detailed analysis — Other salivary glands (C08)"
+#| fig-width: 16
+#| fig-height: 10
+
+fig = plot_site_detail('C08', SITE_COLORS['C08'])
+if fig is not None:
+    save_figure(fig, 'detail_C08.png')
+    plt.savefig(_FIG / "fig-detail-c08.png", dpi=300, bbox_inches="tight")
+    plt.show()
+```
+
+\newpage
+
+### Tonsil (C09)
+
+```{python}
+#| label: fig-detail-c09
+#| fig-cap: "Detailed analysis — Tonsil (C09)"
+#| fig-width: 16
+#| fig-height: 10
+
+fig = plot_site_detail('C09', SITE_COLORS['C09'])
+if fig is not None:
+    save_figure(fig, 'detail_C09.png')
+    plt.savefig(_FIG / "fig-detail-c09.png", dpi=300, bbox_inches="tight")
+    plt.show()
+```
+
+\newpage
+
+### Oropharynx (C10)
+
+```{python}
+#| label: fig-detail-c10
+#| fig-cap: "Detailed analysis — Oropharynx (C10)"
+#| fig-width: 16
+#| fig-height: 10
+
+fig = plot_site_detail('C10', SITE_COLORS['C10'])
+if fig is not None:
+    save_figure(fig, 'detail_C10.png')
+    plt.savefig(_FIG / "fig-detail-c10.png", dpi=300, bbox_inches="tight")
+    plt.show()
+```
+
+\newpage
+
+### Nasopharynx (C11)
+
+```{python}
+#| label: fig-detail-c11
+#| fig-cap: "Detailed analysis — Nasopharynx (C11)"
+#| fig-width: 16
+#| fig-height: 10
+
+fig = plot_site_detail('C11', SITE_COLORS['C11'])
+if fig is not None:
+    save_figure(fig, 'detail_C11.png')
+    plt.savefig(_FIG / "fig-detail-c11.png", dpi=300, bbox_inches="tight")
+    plt.show()
+```
+
+\newpage
+
+### Piriform sinus (C12)
+
+```{python}
+#| label: fig-detail-c12
+#| fig-cap: "Detailed analysis — Piriform sinus (C12)"
+#| fig-width: 16
+#| fig-height: 10
+
+fig = plot_site_detail('C12', SITE_COLORS['C12'])
+if fig is not None:
+    save_figure(fig, 'detail_C12.png')
+    plt.savefig(_FIG / "fig-detail-c12.png", dpi=300, bbox_inches="tight")
+    plt.show()
+```
+
+\newpage
+
+### Hypopharynx (C13)
+
+```{python}
+#| label: fig-detail-c13
+#| fig-cap: "Detailed analysis — Hypopharynx (C13)"
+#| fig-width: 16
+#| fig-height: 10
+
+fig = plot_site_detail('C13', SITE_COLORS['C13'])
+if fig is not None:
+    save_figure(fig, 'detail_C13.png')
+    plt.savefig(_FIG / "fig-detail-c13.png", dpi=300, bbox_inches="tight")
+    plt.show()
+```
+
+\newpage
+
+### Other pharynx (C14)
+
+```{python}
+#| label: fig-detail-c14
+#| fig-cap: "Detailed analysis — Other pharynx (C14)"
+#| fig-width: 16
+#| fig-height: 10
+
+fig = plot_site_detail('C14', SITE_COLORS['C14'])
+if fig is not None:
+    save_figure(fig, 'detail_C14.png')
+    plt.savefig(_FIG / "fig-detail-c14.png", dpi=300, bbox_inches="tight")
+    plt.show()
+```
+
+\newpage
+
+### Nasal cavity and middle ear (C30)
+
+```{python}
+#| label: fig-detail-c30
+#| fig-cap: "Detailed analysis — Nasal cavity and middle ear (C30)"
+#| fig-width: 16
+#| fig-height: 10
+
+fig = plot_site_detail('C30', SITE_COLORS['C30'])
+if fig is not None:
+    save_figure(fig, 'detail_C30.png')
+    plt.savefig(_FIG / "fig-detail-c30.png", dpi=300, bbox_inches="tight")
+    plt.show()
+```
+
+\newpage
+
+### Accessory sinuses (C31)
+
+```{python}
+#| label: fig-detail-c31
+#| fig-cap: "Detailed analysis — Accessory sinuses (C31)"
+#| fig-width: 16
+#| fig-height: 10
+
+fig = plot_site_detail('C31', SITE_COLORS['C31'])
+if fig is not None:
+    save_figure(fig, 'detail_C31.png')
+    plt.savefig(_FIG / "fig-detail-c31.png", dpi=300, bbox_inches="tight")
+    plt.show()
+```
+
+\newpage
+
+### Larynx (C32)
+
+```{python}
+#| label: fig-detail-c32
+#| fig-cap: "Detailed analysis — Larynx (C32)"
+#| fig-width: 16
+#| fig-height: 10
+
+fig = plot_site_detail('C32', SITE_COLORS['C32'])
+if fig is not None:
+    save_figure(fig, 'detail_C32.png')
+    plt.savefig(_FIG / "fig-detail-c32.png", dpi=300, bbox_inches="tight")
+    plt.show()
+```
+
+\newpage
+
+## Regional Analysis
+
+```{python}
+#| label: regional-calc
+#| include: false
+
+# Regional crude rates
+regional_count = egresos_df.groupby(['year', 'region']).size().reset_index(name='hospitalizations')
+
+if 'region' in pop_data.columns:
+    regional_pop = pop_data.groupby(['year', 'region'])['population'].sum().reset_index()
+else:
+    regional_pop = population.groupby('year')['population'].sum().reset_index()
+
+regional_merged = regional_count.merge(regional_pop, on=['year', 'region'], how='left')
+regional_merged = regional_merged.dropna(subset=['population'])
+regional_merged = regional_merged[regional_merged['population'] > 0]
+regional_merged['crude_rate'] = ((regional_merged['hospitalizations'] / regional_merged['population']) * 100000).round(2)
+
+regional_summary = regional_merged.groupby('region').agg({
+    'hospitalizations': 'sum',
+    'population': 'mean',
+    'crude_rate': 'mean'
+}).reset_index()
+regional_summary['crude_rate'] = regional_summary['crude_rate'].round(2)
+regional_summary = regional_summary.sort_values('crude_rate', ascending=False)
+```
+
+```{python}
+#| label: tbl-regional
+#| tbl-cap: "Summary of hospitalizations by region — Head and neck neoplasms (2010–2024)"
+#| tbl-cap-location: bottom
+
+reg_display = regional_summary.copy()
+reg_display.columns = ['Region', 'Hospitalizations', 'Mean population', 'Mean crude rate']
+
+reg_display.style.format({
+    'Hospitalizations': '{:,.0f}',
+    'Mean population': '{:,.0f}',
+    'Mean crude rate': '{:.2f}'
+}).hide(axis="index")
+```
+
+```{python}
+#| label: fig-regional-heatmap
+#| fig-cap: "Heatmap of crude hospitalization rates by region and year — Head and neck neoplasms (2010–2024)"
+#| fig-width: 16
+#| fig-height: 10
+
+regional_pivot = regional_merged.pivot_table(
+    values='crude_rate', index='region', columns='year', aggfunc='first')
+
+if 2024 in regional_pivot.columns:
+    regional_pivot = regional_pivot.loc[regional_pivot[2024].sort_values(ascending=False).index]
+
+fig, ax = plt.subplots(figsize=(16, 10))
+sns.heatmap(regional_pivot, annot=False, cmap='YlOrRd', ax=ax,
+            cbar_kws={'label': 'Crude rate (per 100,000)'})
+ax.set_title('Crude hospitalization rates by region and year\nHead and neck neoplasms (C00-C14, C30-C32)',
+             fontsize=13, fontweight='bold')
+ax.set_xlabel('Year', fontsize=11, fontweight='bold')
+ax.set_ylabel('Region', fontsize=11, fontweight='bold')
+plt.xticks(rotation=0)
+plt.yticks(rotation=0, fontsize=9)
+plt.tight_layout()
+save_figure(fig, 'regional_heatmap_head_neck.png')
+plt.savefig(_FIG / "fig-regional-heatmap.png", dpi=300, bbox_inches="tight")
+plt.show()
+```
+
+```{python}
+#| label: fig-regional-bars
+#| fig-cap: "Top regions by mean crude hospitalization rate — Head and neck neoplasms"
+#| fig-width: 14
+#| fig-height: 8
+
+top_regions = regional_summary.head(10)
+
+fig, ax = plt.subplots(figsize=(14, 8))
+colors = plt.cm.YlOrRd(np.linspace(0.3, 0.9, len(top_regions)))
+bars = ax.barh(top_regions['region'], top_regions['crude_rate'], color=colors)
+ax.set_xlabel('Mean crude rate (per 100,000)', fontsize=11, fontweight='bold')
+ax.set_title('Top 10 Regions — Head and neck neoplasms (C00-C14, C30-C32), 2010–2024',
+             fontsize=12, fontweight='bold')
+ax.grid(axis='x', alpha=0.3)
+for bar, val in zip(bars, top_regions['crude_rate']):
+    ax.text(val + 0.2, bar.get_y() + bar.get_height()/2, f'{val:.1f}',
+            va='center', fontsize=10)
+plt.tight_layout()
+save_figure(fig, 'top_regions_head_neck.png')
+plt.savefig(_FIG / "fig-regional-bars.png", dpi=300, bbox_inches="tight")
+plt.show()
+```
+
+```{python}
+#| label: fig-regional-site-composition
+#| fig-cap: "Regional composition by site — Top 10 regions (2010–2024)"
+#| fig-width: 16
+#| fig-height: 10
+
+top10_regions = regional_summary.head(10)['region'].tolist()
+reg_site_data = egresos_df[egresos_df['region'].isin(top10_regions)].groupby(
+    ['region', 'icd_category']).size().reset_index(name='count')
+reg_site_pivot = reg_site_data.pivot_table(index='region', columns='icd_category', values='count', fill_value=0)
+reg_site_pivot = reg_site_pivot.loc[top10_regions]
+
+fig, ax = plt.subplots(figsize=(16, 10))
+reg_site_pivot.plot(kind='barh', stacked=True, ax=ax,
+                    color=[SITE_COLORS.get(c, '#ccc') for c in reg_site_pivot.columns])
+ax.set_xlabel('Hospitalizations', fontsize=11, fontweight='bold')
+ax.set_title('Composition by site — Top 10 regions', fontsize=13, fontweight='bold')
+ax.legend(title='Site', bbox_to_anchor=(1.02, 1), loc='upper left', fontsize=8)
+ax.grid(axis='x', alpha=0.3)
+plt.tight_layout()
+save_figure(fig, 'regional_site_composition_head_neck.png')
+plt.savefig(_FIG / "fig-regional-site-composition.png", dpi=300, bbox_inches="tight")
+plt.show()
+```
+
+\newpage
+
+## Geospatial Analysis — Comunal ASR
+
+```{python}
+#| label: geospatial-calc
+#| include: false
+
+from esda.moran import Moran_Local
+from matplotlib.patches import Patch
+import io, contextlib
+
+# --- Compute mean ASR by comuna (total) ---
+# Build comunal-level ASR using WHO standardization
+who_weights_df = pd.DataFrame([{'age_group': k, 'who_weight': v} for k, v in WHO_STANDARD_POPULATION.items()])
+
+if 'comuna' in pop_data.columns:
+    hosp_comuna = hosp_5year.groupby(['comuna', 'age_group']).agg({'hospitalizations': 'sum'}).reset_index()
+    pop_comuna = pop_data.groupby(['comuna', 'age_group'])['population'].sum().reset_index()
+    merged_c = hosp_comuna.merge(pop_comuna, on=['comuna', 'age_group'], how='left')
+    merged_c = merged_c.dropna(subset=['population'])
+    merged_c = merged_c[merged_c['population'] > 0]
+    merged_c['age_specific_rate'] = (merged_c['hospitalizations'] / merged_c['population']) * 100000
+    merged_c = merged_c.merge(who_weights_df, on='age_group', how='left')
+    merged_c['weighted_rate'] = merged_c['age_specific_rate'] * merged_c['who_weight']
+    comuna_asr = merged_c.groupby('comuna').agg({'weighted_rate': 'sum', 'hospitalizations': 'sum'}).reset_index()
+    comuna_asr['asr'] = (comuna_asr['weighted_rate'] / TOTAL_WHO_WEIGHT).round(2)
+    comuna_asr = comuna_asr.sort_values('asr', ascending=False)
+else:
+    comuna_asr = pd.DataFrame()
+
+# --- Compute mean ASR by comuna per site ---
+comuna_asr_by_site = {}
+if 'comuna' in pop_data.columns:
+    for site_code in site_summary['icd_category'].tolist():
+        hosp_site_com = hosp_5year[hosp_5year['icd_category'] == site_code].groupby(
+            ['comuna', 'age_group']).agg({'hospitalizations': 'sum'}).reset_index()
+        m = hosp_site_com.merge(pop_comuna, on=['comuna', 'age_group'], how='left')
+        m = m.dropna(subset=['population'])
+        m = m[m['population'] > 0]
+        m['age_specific_rate'] = (m['hospitalizations'] / m['population']) * 100000
+        m = m.merge(who_weights_df, on='age_group', how='left')
+        m['weighted_rate'] = m['age_specific_rate'] * m['who_weight']
+        asr_s = m.groupby('comuna').agg({'weighted_rate': 'sum', 'hospitalizations': 'sum'}).reset_index()
+        asr_s['asr'] = (asr_s['weighted_rate'] / TOTAL_WHO_WEIGHT).round(2)
+        if asr_s['asr'].sum() > 0:
+            comuna_asr_by_site[site_code] = asr_s
+
+# --- Excluded comunas (islands / Antarctica) ---
+def is_excluded_comuna(name):
+    if pd.isna(name):
+        return True
+    s = str(name).upper()
+    excluded = ['ISLA DE PASCUA', 'JUAN FERNANDEZ', 'ANTARTICA', 'CABO DE HORNOS', 'ANTARTICA CHILENA']
+    return any(e in s for e in excluded)
+
+# --- Normalize comuna name for matching ---
+def normalize_comuna_spatial(x):
+    if pd.isna(x):
+        return None
+    s = str(x).upper().strip()
+    repl = {'Á': 'A', 'É': 'E', 'Í': 'I', 'Ó': 'O', 'Ú': 'U', 'Ñ': 'N'}
+    for old, new in repl.items():
+        s = s.replace(old, new)
+    s = ''.join(c for c in s if c.isalnum() or c == ' ')
+    return s.strip()
+
+# --- Load shapefile and build spatial GeoDataFrames ---
+has_spatial_data = False
+gdf_chile = None
+gdf_continental = None
+gdf_total = None
+pesos = None
+COMUNA_COL = None
+REGION_CODE_COL = None
+
+shp_candidates = [
+    str(comunas_shp),
+    str(data_base / 'shapefiles' / 'division_comunal.shp'),
+    str(data_base / 'comunas_chile.shp'),
+]
+shp_path = None
+for candidate in shp_candidates:
+    if os.path.exists(candidate):
+        shp_path = candidate
+        break
+
+if shp_path:
+    gdf_chile = gpd.read_file(shp_path)
+
+    for col in ['Comuna', 'COMUNA', 'NOM_COMUNA', 'nom_comuna', 'NAME', 'NOM_COM']:
+        if col in gdf_chile.columns:
+            COMUNA_COL = col
+            break
+    if COMUNA_COL is None:
+        COMUNA_COL = gdf_chile.columns[0]
+
+    for col in ['codregion', 'CODREGION', 'COD_REGION', 'Region', 'REGION']:
+        if col in gdf_chile.columns:
+            REGION_CODE_COL = col
+            break
+
+    gdf_chile['comuna_norm'] = gdf_chile[COMUNA_COL].apply(normalize_comuna_spatial)
+
+    if REGION_CODE_COL:
+        gdf_chile[REGION_CODE_COL] = pd.to_numeric(gdf_chile[REGION_CODE_COL], errors='coerce')
+
+    gdf_continental = gdf_chile[~gdf_chile[COMUNA_COL].apply(is_excluded_comuna)].copy()
+
+    # Merge total ASR
+    if not comuna_asr.empty:
+        ca_copy = comuna_asr.copy()
+        ca_copy['comuna_norm'] = ca_copy['comuna'].apply(normalize_comuna_spatial)
+        gdf_total = gdf_continental.merge(
+            ca_copy[['comuna_norm', 'asr']], on='comuna_norm', how='left'
+        ).rename(columns={'asr': 'asr_total'})
+        gdf_total['asr_total'] = gdf_total['asr_total'].fillna(0)
+        has_spatial_data = True
+
+        # Build spatial weights (suppress island warnings)
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            try:
+                pesos = Queen.from_dataframe(gdf_total, silence_warnings=True)
+            except TypeError:
+                pesos = Queen.from_dataframe(gdf_total)
+
+    # Merge per-site ASR
+    gdf_by_site = {}
+    for site_code, asr_s in comuna_asr_by_site.items():
+        asr_s_copy = asr_s.copy()
+        asr_s_copy['comuna_norm'] = asr_s_copy['comuna'].apply(normalize_comuna_spatial)
+        gdf_s = gdf_continental.merge(
+            asr_s_copy[['comuna_norm', 'asr']], on='comuna_norm', how='left'
+        )
+        gdf_s['asr'] = gdf_s['asr'].fillna(0)
+        if gdf_s['asr'].sum() > 0:
+            gdf_by_site[site_code] = gdf_s
+```
+
+```{python}
+#| label: tbl-top-comunas
+#| tbl-cap: "Top 20 municipalities by mean ASR — Head and neck neoplasms"
+#| tbl-cap-location: bottom
+
+if not comuna_asr.empty:
+    top_comunas = comuna_asr.head(20)[['comuna', 'hospitalizations', 'asr']].copy()
+    top_comunas.columns = ['Municipality', 'Total hospitalizations', 'ASR (per 100,000)']
+    top_comunas.style.format({
+        'Total hospitalizations': '{:,.0f}',
+        'ASR (per 100,000)': '{:.2f}'
+    }).hide(axis="index")
+```
+
+### Choropleth Map — Total Head and Neck Neoplasms ASR
+
+```{python}
+#| label: fig-choropleth-total
+#| fig-cap: "ASR distribution — All head and neck neoplasms (C00-C14, C30-C32) by municipality, Chile Continental"
+#| fig-width: 10
+#| fig-height: 14
+
+if has_spatial_data:
+    fig, ax = plt.subplots(figsize=(10, 14))
+    gdf_total.plot(column='asr_total', cmap='YlOrRd', linewidth=0.3, ax=ax, edgecolor='0.7',
+                   legend=True, legend_kwds={'label': 'ASR (per 100,000)', 'shrink': 0.5})
+    ax.set_title('Head and Neck Neoplasms (C00-C14, C30-C32) — ASR by Municipality\nChile Continental, 2010–2024',
+                 fontweight='bold', fontsize=12)
+    ax.set_axis_off()
+    plt.tight_layout()
+    save_figure(fig, 'choropleth_asr_total_head_neck.png')
+    plt.savefig(_FIG / "fig-choropleth-total.png", dpi=300, bbox_inches="tight")
+    plt.show()
+```
+
+\newpage
+
+### Choropleth Maps by Individual Neoplasm
+
+```{python}
+#| label: fig-choropleth-by-site
+#| fig-cap: "ASR distribution by site — Chile Continental (2010–2024)"
+#| fig-width: 18
+#| fig-height: 24
+
+if has_spatial_data and len(gdf_by_site) > 0:
+    site_cmaps = {
+        'C00': 'Reds', 'C01': 'Blues', 'C02': 'Greens', 'C03': 'Purples',
+        'C04': 'Oranges', 'C05': 'YlOrBr', 'C06': 'RdPu', 'C07': 'Greys',
+        'C08': 'BuGn', 'C09': 'OrRd', 'C10': 'GnBu', 'C11': 'RdPu',
+        'C12': 'YlGn', 'C13': 'PuBu', 'C14': 'BuPu', 'C30': 'YlOrRd',
+        'C31': 'RdYlGn', 'C32': 'PuRd',
+    }
+
+    sites_with_data = [s for s in site_summary['icd_category'].tolist() if s in gdf_by_site]
+    n_sites = len(sites_with_data)
+    ncols = 3
+    nrows = max(1, (n_sites + ncols - 1) // ncols)
+
+    fig, axes = plt.subplots(nrows, ncols, figsize=(18, 6 * nrows))
+    axes = axes.flatten() if n_sites > 1 else [axes]
+
+    for idx, site_code in enumerate(sites_with_data):
+        ax = axes[idx]
+        gdf = gdf_by_site[site_code]
+        cmap = site_cmaps.get(site_code, 'viridis')
+        gdf.plot(column='asr', cmap=cmap, linewidth=0.2, ax=ax, edgecolor='0.7',
+                 legend=True, legend_kwds={'label': 'ASR', 'shrink': 0.4, 'pad': 0.01})
+        ax.set_title(f'{SITE_NAMES.get(site_code, site_code)}', fontweight='bold', fontsize=10)
+        ax.set_axis_off()
+
+    for idx in range(len(sites_with_data), len(axes)):
+        axes[idx].set_visible(False)
+
+    plt.suptitle('Site-Specific ASR Distribution by Municipality — Chile Continental (2010–2024)',
+                 fontsize=14, fontweight='bold', y=1.01)
+    plt.tight_layout()
+    save_figure(fig, 'choropleth_asr_by_site_head_neck.png')
+    plt.savefig(_FIG / "fig-choropleth-by-site.png", dpi=300, bbox_inches="tight")
+    plt.show()
+```
+
+\newpage
+
+### Global Moran's I — Spatial Autocorrelation
+
+```{python}
+#| label: spatial-moran-global
+#| include: false
+
+moran_total = None
+moran_by_site = {}
+
+if has_spatial_data and pesos is not None:
+    if gdf_total['asr_total'].var() > 0:
+        try:
+            moran_total = Moran(gdf_total['asr_total'], pesos)
+        except:
+            moran_total = None
+
+    for site_code in gdf_by_site:
+        gdf = gdf_by_site[site_code]
+        if gdf['asr'].var() > 0:
+            try:
+                moran_by_site[site_code] = Moran(gdf['asr'], pesos)
+            except:
+                pass
+```
+
+```{python}
+#| label: tbl-moran-global
+#| tbl-cap: "Global Moran's I — Spatial autocorrelation test (Chile Continental)"
+#| tbl-cap-location: bottom
+
+moran_results = []
+
+if moran_total is not None:
+    moran_results.append({
+        'Variable': 'Total C00-C14, C30-C32',
+        "Moran's I": round(moran_total.I, 4),
+        'E[I]': round(moran_total.EI, 4),
+        'Z-score': round(moran_total.z_norm, 4),
+        'P-value': round(moran_total.p_norm, 4),
+        'Interpretation': 'Clustered' if moran_total.I > 0 and moran_total.p_norm < 0.05 else (
+            'Dispersed' if moran_total.I < 0 and moran_total.p_norm < 0.05 else 'Random')
+    })
+
+for site_code in moran_by_site:
+    m = moran_by_site[site_code]
+    moran_results.append({
+        'Variable': SITE_NAMES.get(site_code, site_code),
+        "Moran's I": round(m.I, 4),
+        'E[I]': round(m.EI, 4),
+        'Z-score': round(m.z_norm, 4),
+        'P-value': round(m.p_norm, 4),
+        'Interpretation': 'Clustered' if m.I > 0 and m.p_norm < 0.05 else (
+            'Dispersed' if m.I < 0 and m.p_norm < 0.05 else 'Random')
+    })
+
+if moran_results:
+    moran_df = pd.DataFrame(moran_results)
+    display(moran_df.style.format({
+        "Moran's I": '{:.4f}', 'E[I]': '{:.4f}', 'Z-score': '{:.4f}', 'P-value': '{:.4f}'
+    }).hide(axis="index"))
+else:
+    display(pd.DataFrame({'Message': ['Insufficient data for Moran analysis']}).style.hide(axis="index"))
+
+# Auto-saved table (tbl-moran-global)
+_save_table(moran_df, "tbl-moran-global")
+```
+
+```{python}
+#| label: fig-moran-scatterplot
+#| fig-cap: "Moran scatterplot — Spatial autocorrelation (Chile Continental)"
+#| fig-width: 8
+#| fig-height: 6
+
+fig, ax = plt.subplots(figsize=(8, 6))
+
+if moran_total is not None:
+    from splot.esda import moran_scatterplot
+    moran_scatterplot(moran_total, zstandard=True, ax=ax)
+    ax.set_title(f"Total C00-C14, C30-C32 — Moran's I = {moran_total.I:.4f} (p = {moran_total.p_norm:.4f})", fontweight='bold')
+else:
+    ax.text(0.5, 0.5, 'Insufficient data for Moran analysis', ha='center', va='center', transform=ax.transAxes, fontsize=12)
+
+plt.suptitle("Global Moran's I — Head and Neck Neoplasms (Chile Continental)", fontsize=14, fontweight='bold', y=1.02)
+plt.tight_layout()
+save_figure(fig, 'moran_scatterplot_head_neck.png')
+plt.savefig(_FIG / "fig-moran-scatterplot.png", dpi=300, bbox_inches="tight")
+plt.show()
+```
+
+\newpage
+
+### LISA — Local Indicators of Spatial Association
+
+```{python}
+#| label: lisa-calculation
+#| include: false
+
+def classify_lisa(lisa_obj, data):
+    sig = lisa_obj.p_sim < 0.05
+    q = lisa_obj.q
+    labels = ['Not significant'] * len(data)
+    for i in range(len(data)):
+        if sig[i]:
+            if q[i] == 1:
+                labels[i] = 'High-High (Hot Spot)'
+            elif q[i] == 2:
+                labels[i] = 'Low-High'
+            elif q[i] == 3:
+                labels[i] = 'Low-Low (Cold Spot)'
+            elif q[i] == 4:
+                labels[i] = 'High-Low'
+    return labels
+
+lisa_total = None
+lisa_by_site = {}
+
+if has_spatial_data and pesos is not None:
+    if gdf_total['asr_total'].var() > 0:
+        try:
+            lisa_total = Moran_Local(gdf_total['asr_total'], pesos)
+            gdf_total['cluster'] = classify_lisa(lisa_total, gdf_total)
+            gdf_total['lisa_p'] = lisa_total.p_sim
+        except:
+            gdf_total['cluster'] = 'No data'
+            gdf_total['lisa_p'] = 1.0
+    else:
+        gdf_total['cluster'] = 'No data'
+
+    for site_code in gdf_by_site:
+        gdf = gdf_by_site[site_code]
+        if gdf['asr'].var() > 0:
+            try:
+                lisa_s = Moran_Local(gdf['asr'], pesos)
+                gdf_by_site[site_code]['cluster'] = classify_lisa(lisa_s, gdf)
+                gdf_by_site[site_code]['lisa_p'] = lisa_s.p_sim
+                lisa_by_site[site_code] = lisa_s
+            except:
+                gdf_by_site[site_code]['cluster'] = 'No data'
+```
+
+```{python}
+#| label: tbl-lisa-clusters-total
+#| tbl-cap: "LISA clusters — Total head and neck neoplasms (C00-C14, C30-C32), Chile Continental"
+#| tbl-cap-location: bottom
+
+if has_spatial_data and 'cluster' in gdf_total.columns:
+    cl = gdf_total.groupby('cluster').size().reset_index(name='N Comunas')
+    cl.columns = ['Cluster', 'N Comunas']
+    cl = cl.sort_values('N Comunas', ascending=False)
+    display(cl.style.hide(axis="index"))
+```
+
+```{python}
+#| label: fig-lisa-map-total
+#| fig-cap: "LISA cluster map — Total head and neck neoplasms (C00-C14, C30-C32), Chile Continental"
+#| fig-width: 10
+#| fig-height: 14
+
+colors_dict = {
+    'High-High (Hot Spot)': '#d73027',
+    'Low-Low (Cold Spot)': '#4575b4',
+    'High-Low': '#fdae61',
+    'Low-High': '#abd9e9',
+    'Not significant': '#f0f0f0',
+    'No data': '#d9d9d9'
+}
+
+if has_spatial_data and 'cluster' in gdf_total.columns:
+    fig, ax = plt.subplots(figsize=(10, 14))
+    gdf_total.plot(ax=ax, color=gdf_total['cluster'].map(colors_dict), edgecolor='gray', linewidth=0.3)
+    ax.set_title('LISA Clusters — Total Head and Neck Neoplasms (C00-C14, C30-C32)\nChile Continental', fontsize=12, fontweight='bold')
+    ax.set_axis_off()
+
+    legend_elements = [Patch(facecolor=color, edgecolor='black', label=label)
+                       for label, color in colors_dict.items() if label != 'No data']
+    fig.legend(handles=legend_elements, loc='lower center', ncol=5, fontsize=9,
+               frameon=True, bbox_to_anchor=(0.5, 0.02))
+    plt.tight_layout()
+    save_figure(fig, 'lisa_clusters_total_head_neck.png')
+    plt.savefig(_FIG / "fig-lisa-map-total.png", dpi=300, bbox_inches="tight")
+    plt.show()
+```
+
+\newpage
+
+### LISA Clusters by Individual Neoplasm
+
+```{python}
+#| label: fig-lisa-by-site
+#| fig-cap: "LISA cluster maps by site — Chile Continental"
+#| fig-width: 18
+#| fig-height: 24
+
+sites_with_lisa = [s for s in site_summary['icd_category'].tolist()
+                   if s in gdf_by_site and 'cluster' in gdf_by_site[s].columns]
+
+if has_spatial_data and len(sites_with_lisa) > 0:
+    n = len(sites_with_lisa)
+    ncols = 3
+    nrows = max(1, (n + ncols - 1) // ncols)
+
+    fig, axes = plt.subplots(nrows, ncols, figsize=(18, 6 * nrows))
+    axes = axes.flatten() if n > 1 else [axes]
+
+    for idx, site_code in enumerate(sites_with_lisa):
+        ax = axes[idx]
+        gdf = gdf_by_site[site_code]
+        gdf.plot(ax=ax, color=gdf['cluster'].map(colors_dict), edgecolor='gray', linewidth=0.2)
+        ax.set_title(SITE_NAMES.get(site_code, site_code), fontweight='bold', fontsize=10)
+        ax.set_axis_off()
+
+    for idx in range(n, len(axes)):
+        axes[idx].set_visible(False)
+
+    legend_elements = [Patch(facecolor=color, edgecolor='black', label=label)
+                       for label, color in colors_dict.items() if label != 'No data']
+    fig.legend(handles=legend_elements, loc='lower center', ncol=5, fontsize=9,
+               frameon=True, bbox_to_anchor=(0.5, 0.01))
+    plt.suptitle('LISA Clusters by Site — Chile Continental (2010–2024)',
+                 fontsize=14, fontweight='bold', y=1.01)
+    plt.tight_layout()
+    save_figure(fig, 'lisa_clusters_by_site_head_neck.png')
+    plt.savefig(_FIG / "fig-lisa-by-site.png", dpi=300, bbox_inches="tight")
+    plt.show()
+```
+
+### Spatial Analysis Summary
+
+```{python}
+#| label: tbl-spatial-summary
+#| tbl-cap: "Spatial analysis summary by site"
+#| tbl-cap-location: bottom
+
+if has_spatial_data:
+    spatial_rows = []
+    # Total
+    spatial_rows.append({
+        'Site': 'Total C00-C14, C30-C32',
+        'Comunas with data': int((gdf_total['asr_total'] > 0).sum()),
+        "Moran's I": round(moran_total.I, 4) if moran_total else None,
+        'P-value': round(moran_total.p_norm, 4) if moran_total else None,
+        'Pattern': 'Clustered' if moran_total and moran_total.I > 0 and moran_total.p_norm < 0.05 else 'Random',
+        'Hot Spots': int((gdf_total['cluster'] == 'High-High (Hot Spot)').sum()) if 'cluster' in gdf_total.columns else 0,
+        'Cold Spots': int((gdf_total['cluster'] == 'Low-Low (Cold Spot)').sum()) if 'cluster' in gdf_total.columns else 0,
+    })
+    # Per site
+    for site_code in site_summary['icd_category'].tolist():
+        m = moran_by_site.get(site_code)
+        gdf = gdf_by_site.get(site_code)
+        has_cluster = gdf is not None and 'cluster' in gdf.columns
+        spatial_rows.append({
+            'Site': SITE_NAMES.get(site_code, site_code),
+            'Comunas with data': int((gdf['asr'] > 0).sum()) if gdf is not None else 0,
+            "Moran's I": round(m.I, 4) if m else None,
+            'P-value': round(m.p_norm, 4) if m else None,
+            'Pattern': 'Clustered' if m and m.I > 0 and m.p_norm < 0.05 else ('Dispersed' if m and m.I < 0 and m.p_norm < 0.05 else 'Random'),
+            'Hot Spots': int((gdf['cluster'] == 'High-High (Hot Spot)').sum()) if has_cluster else 0,
+            'Cold Spots': int((gdf['cluster'] == 'Low-Low (Cold Spot)').sum()) if has_cluster else 0,
+        })
+
+    spatial_df = pd.DataFrame(spatial_rows)
+    display(spatial_df.style.format({
+        "Moran's I": '{:.4f}', 'P-value': '{:.4f}'
+    }).hide(axis="index"))
+
+# Auto-saved table (tbl-spatial-summary)
+_save_table(spatial_df, "tbl-spatial-summary")
+```
+
+\newpage
+
+## Summary Dashboard
+
+```{python}
+#| label: fig-summary-dashboard
+#| fig-cap: "Summary dashboard — Head and neck neoplasms (C00-C14, C30-C32) in Chile, 2010–2024"
+#| fig-width: 16
+#| fig-height: 12
+
+fig, axes = plt.subplots(2, 3, figsize=(16, 12))
+
+# 1. Total trend
+ax1 = axes[0, 0]
+yearly_total = hosp_overall.groupby('year')['hospitalizations'].sum()
+ax1.plot(yearly_total.index, yearly_total.values, marker='o', linewidth=3, color='darkgreen')
+ax1.fill_between(yearly_total.index, yearly_total.values, alpha=0.3, color='green')
+ax1.set_xlabel('Year')
+ax1.set_ylabel('Hospitalizations')
+ax1.set_title('Overall trend', fontweight='bold')
+ax1.grid(True, alpha=0.3)
+
+# 2. Site distribution pie
+ax2 = axes[0, 1]
+site_totals = hosp_by_site.groupby('icd_category')['hospitalizations'].sum().sort_values(ascending=False)
+pie_colors = [SITE_COLORS.get(s, '#cccccc') for s in site_totals.index]
+ax2.pie(site_totals.values, labels=site_totals.index, autopct='%1.1f%%',
+        colors=pie_colors, textprops={'fontsize': 7})
+ax2.set_title('Distribution by site', fontweight='bold')
+
+# 3. Sex distribution
+ax3 = axes[0, 2]
+sex_totals = hosp_overall.groupby('sex')['hospitalizations'].sum()
+ax3.bar(sex_totals.index, sex_totals.values, color=['steelblue', 'coral'])
+ax3.set_ylabel('Hospitalizations')
+ax3.set_title('By sex', fontweight='bold')
+ax3.grid(True, alpha=0.3, axis='y')
+
+# 4. Age distribution
+ax4 = axes[1, 0]
+age_dist = hosp_overall.groupby('age_group')['hospitalizations'].sum()
+age_dist = age_dist.reindex([a for a in AGE_ORDER if a in age_dist.index])
+ax4.bar(age_dist.index, age_dist.values, color='teal', alpha=0.7)
+ax4.set_xlabel('Age Group')
+ax4.set_ylabel('Hospitalizations')
+ax4.set_title('Age distribution', fontweight='bold')
+ax4.tick_params(axis='x', rotation=45)
+ax4.grid(True, alpha=0.3, axis='y')
+
+# 5. Top sites bar
+ax5 = axes[1, 1]
+site_totals_sorted = site_totals.sort_values(ascending=True)
+bar_c = [SITE_COLORS.get(s, '#cccccc') for s in site_totals_sorted.index]
+ax5.barh(site_totals_sorted.index, site_totals_sorted.values, color=bar_c)
+ax5.set_xlabel('Hospitalizations')
+ax5.set_title('Burden by site', fontweight='bold')
+ax5.grid(True, alpha=0.3, axis='x')
+
+# 6. ASR comparison Male vs Female
+ax6 = axes[1, 2]
+width = 0.35
+x = np.arange(len(asr_sex_cols))
+ax6.bar(x - width/2, asr_sex_cols['asr_male'], width, label='Males', color='steelblue')
+ax6.bar(x + width/2, asr_sex_cols['asr_female'], width, label='Females', color='coral')
+ax6.set_xlabel('Year')
+ax6.set_ylabel('ASR (per 100,000)')
+ax6.set_title('ASR comparison by sex', fontweight='bold')
+ax6.set_xticks(x[::2])
+ax6.set_xticklabels(asr_sex_cols['year'].values[::2].astype(int))
+ax6.legend()
+ax6.grid(True, alpha=0.3, axis='y')
+
+plt.suptitle('Head and Neck Neoplasms (C00-C14, C30-C32) in Chile — Dashboard 2010–2024',
+             fontsize=16, fontweight='bold', y=1.02)
+plt.tight_layout()
+save_figure(fig, 'summary_dashboard_head_neck.png')
+plt.savefig(_FIG / "fig-summary-dashboard.png", dpi=300, bbox_inches="tight")
+plt.show()
+```
+
+```{python}
+#| label: tbl-summary-stats
+#| tbl-cap: "Overall summary statistics — Head and neck neoplasms (C00-C14, C30-C32)"
+#| tbl-cap-location: bottom
+
+total_hosp = hosp_overall['hospitalizations'].sum()
+n_years = len(YEARS)
+sex_totals_df = hosp_overall.groupby('sex')['hospitalizations'].sum()
+male_total = sex_totals_df.get('Male', 0)
+female_total = sex_totals_df.get('Female', 0)
+top_site = hosp_by_site.groupby('icd_category')['hospitalizations'].sum().idxmax()
+
+summary_df = pd.DataFrame({
+    'Indicator': [
+        'Total hospitalizations',
+        'Period analyzed',
+        'Anatomical sites evaluated',
+        'Hospitalizations males',
+        'Hospitalizations females',
+        'M:F Ratio',
+        'Most frequent site',
+        'Mean annual hospitalizations'
+    ],
+    'Value': [
+        f'{total_hosp:,.0f}',
+        f'{min(YEARS)}–{max(YEARS)} ({n_years} years)',
+        f'{hosp_by_site["icd_category"].nunique()} categories',
+        f'{male_total:,.0f}',
+        f'{female_total:,.0f}',
+        f'{male_total/female_total:.2f}' if female_total > 0 else 'N/A',
+        f'{top_site} ({SITE_NAMES.get(top_site, top_site)})',
+        f'{total_hosp/n_years:,.0f}'
+    ]
+})
+
+summary_df.style.hide(axis="index")
+
+# Auto-saved table (tbl-summary-stats)
+_save_table(summary_df, "tbl-summary-stats")
+```
+
+\newpage
+
+## ICD-10 Code Reference
+
+```{python}
+#| label: tbl-icd-reference
+#| tbl-cap: "ICD-10 codes for malignant neoplasms of head and neck (C00-C14, C30-C32)"
+#| tbl-cap-location: bottom
+
+icd_ref = pd.DataFrame([
+    {'ICD-10 Code': k, 'Description': v} for k, v in ICD10_CODES.items()
+])
+
+def get_organ_group(code):
+    if code.startswith('C00'):
+        return 'Lip'
+    elif code == 'C01':
+        return 'Base of tongue'
+    elif code.startswith('C02'):
+        return 'Other tongue'
+    elif code.startswith('C03'):
+        return 'Gum'
+    elif code.startswith('C04'):
+        return 'Floor of mouth'
+    elif code.startswith('C05'):
+        return 'Palate'
+    elif code.startswith('C06'):
+        return 'Other mouth'
+    elif code == 'C07':
+        return 'Parotid gland'
+    elif code.startswith('C08'):
+        return 'Other salivary'
+    elif code.startswith('C09'):
+        return 'Tonsil'
+    elif code.startswith('C10'):
+        return 'Oropharynx'
+    elif code.startswith('C11'):
+        return 'Nasopharynx'
+    elif code == 'C12':
+        return 'Piriform sinus'
+    elif code.startswith('C13'):
+        return 'Hypopharynx'
+    elif code.startswith('C14'):
+        return 'Other pharynx'
+    elif code.startswith('C30'):
+        return 'Nasal/middle ear'
+    elif code.startswith('C31'):
+        return 'Accessory sinuses'
+    elif code.startswith('C32'):
+        return 'Larynx'
+    return 'Other'
+
+icd_ref['Site'] = icd_ref['ICD-10 Code'].apply(get_organ_group)
+icd_ref = icd_ref[['Site', 'ICD-10 Code', 'Description']]
+
+icd_ref.style.hide(axis="index")
+
+# Auto-saved table (tbl-icd-reference)
+_save_table(icd_ref, "tbl-icd-reference")
+```

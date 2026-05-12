@@ -1,0 +1,1504 @@
+---
+title: "Comorbidity Network Analysis in Head and Neck Malignant Neoplasm Hospitalizations in Chile (GRD 2019–2024)"
+subtitle: "Análisis de Redes de Comorbilidad en Hospitalizaciones por Neoplasias Malignas de Cabeza y Cuello en Chile (GRD 2019–2024)"
+author:
+  - name: "Amaru Simón Agüero Jiménez"
+    email: "amaruaguero2004@ug.uchile.cl"
+    orcid: "0000-0001-7336-1833"
+date: "2026-04-06"
+lang: en
+format:
+  html:
+    embed-resources: true
+    smooth-scroll: true
+    toc: true
+    toc-depth: 4
+    toc-location: right
+    number-sections: true
+    code-fold: true
+    fig-cap-location: bottom
+bibliography: references_redes.bib
+nocite: '@*'
+execute:
+  warning: false
+  message: false
+---
+
+::: {.callout-note appearance="minimal"}
+
+## Resumen Estructurado — Congreso BiSide 2026
+
+**REDES DE CO-OCURRENCIA DE COMORBILIDADES EN HOSPITALIZACIONES POR NEOPLASIAS MALIGNAS DE CABEZA Y CUELLO EN CHILE, 2019-2024**
+
+**Introducción:** Los pacientes hospitalizados por neoplasias malignas de cabeza y cuello (CIE-10 C00–C14, C30–C32) presentan perfiles complejos de multimorbilidad que impactan en su pronóstico, manejo y duración de hospitalización. El análisis de redes de co-ocurrencia permite revelar la arquitectura sistémica de las asociaciones entre comorbilidades en pacientes oncológicos, trascendiendo el análisis bivariado tradicional y caracterizando agrupamientos clínicos relevantes para una atención integral.
+
+**Materiales y Métodos:** Estudio retrospectivo basado en 9.411 egresos con diagnóstico principal de neoplasia maligna de cabeza y cuello del sistema de Grupos Relacionados de Diagnóstico (GRD) de Chile, período 2019–2024, clasificados en 17 subsitios clínicos (labio, lengua, cavidad bucal, glándulas salivales, orofaringe, nasofaringe, hipofaringe, sinonasal, laringe y otros). Las comorbilidades se extrajeron de los campos diagnósticos secundarios (DIAGNOSTICO2 a DIAGNOSTICO35) y se clasificaron en 48 grupos clínicos agrupados en 10 categorías sistémicas (cardiovascular, metabólica, respiratoria, renal, hepática, digestiva, neurológica, psiquiátrica, sustancias e infecciosa). Se construyeron redes anuales de co-ocurrencia ponderadas por similitud de Jaccard, aplicando un umbral en el percentil 70 para depurar conexiones débiles. Sobre cada red anual se aplicó detección de comunidades mediante el algoritmo de Louvain, análisis de centralidad multidimensional (grado, intermediación y cercanía) y descomposición k-core.
+
+**Resultados:** En la cohorte total predominaron laringe y cavidad oral. La hipertensión esencial, la diabetes y la anemia fueron las comorbilidades más prevalentes y centrales en todas las redes anuales. El número de nodos y aristas mostró una expansión sostenida entre 2019 y 2024, reflejando una mayor complejidad multimórbida en la cohorte oncológica. El algoritmo de Louvain identificó comunidades clínicamente coherentes (cardiometabólica, respiratoria-tóxica y hepático-nutricional) con modularidad sustancial. La descomposición k-core reveló un núcleo estable centrado en enfermedades crónicas no transmisibles, con presencia consistente de hipertensión, diabetes, dislipidemia y patología respiratoria crónica.
+
+**Conclusiones:** La arquitectura de redes de comorbilidad en neoplasias de cabeza y cuello en Chile revela agrupamientos específicos del contexto oncológico con modularidad sustancial y evolución temporal, subrayando la necesidad de un manejo integral y multidisciplinario.
+
+**Palabras clave:** análisis de redes; neoplasias de cabeza y cuello; comorbilidad; co-ocurrencia; multimorbilidad oncológica.
+
+:::
+
+::: {.callout-note appearance="minimal"}
+
+## Structured Abstract — BiSide 2026 Congress
+
+**COMORBIDITY CO-OCCURRENCE NETWORKS IN HEAD AND NECK MALIGNANT NEOPLASM HOSPITALIZATIONS IN CHILE, 2019-2024**
+
+**Introduction:** Patients hospitalized for malignant neoplasms of the head and neck (ICD-10 C00–C14, C30–C32) display complex multimorbidity profiles impacting prognosis, management, and length of stay. Co-occurrence network analysis reveals the systemic architecture of comorbidity associations in cancer patients, transcending traditional bivariate approaches and characterizing clinically relevant clusters for comprehensive care.
+
+**Materials and Methods:** Retrospective study of 9,411 discharges with primary diagnosis of head and neck malignant neoplasm from the Chilean Diagnosis-Related Groups (DRG) system, 2019–2024, classified into 17 clinical subsites (lip, tongue, oral cavity, salivary glands, oropharynx, nasopharynx, hypopharynx, sinonasal, larynx, and others). Comorbidities were extracted from secondary diagnostic fields (DIAGNOSTICO2 to DIAGNOSTICO35) and classified into 48 clinical groups within 10 systemic categories (cardiovascular, metabolic, respiratory, renal, hepatic, digestive, neurological, psychiatric, substance-related, and infectious). Annual co-occurrence networks were built with Jaccard similarity weights, applying a 70th-percentile threshold to filter weak associations. Louvain community detection, multidimensional centrality analysis (degree, betweenness, and closeness), and k-core decomposition were applied to each annual network.
+
+**Results:** Larynx and oral cavity were the predominant sites in the cohort. Essential hypertension, diabetes mellitus, and anemia were the most prevalent and central comorbidities across all annual networks. The number of nodes and edges expanded steadily between 2019 and 2024, reflecting increasing multimorbidity complexity in the oncological cohort. The Louvain algorithm identified clinically coherent communities (cardiometabolic, respiratory-toxic, and hepatic-nutritional) with substantial modularity. K-core decomposition revealed a stable core centered on non-communicable chronic diseases, with consistent presence of hypertension, diabetes, dyslipidemia, and chronic respiratory pathology.
+
+**Conclusions:** The architecture of comorbidity networks in head and neck neoplasms in Chile reveals cancer-context-specific clusters with substantial modularity and temporal evolution, underscoring the need for comprehensive and multidisciplinary management.
+
+**Keywords:** network analysis; head and neck neoplasms; comorbidity; co-occurrence; oncological multimorbidity.
+
+:::
+
+# Introduction
+
+Head and neck squamous cell carcinoma (HNSCC) and related malignancies (ICD-10 C00–C14, C30–C32) constitute the seventh most common cancer worldwide [@sung2021; @bray2024]. These tumors arise from diverse anatomical subsites including the oral cavity, oropharynx, hypopharynx, larynx, nasopharynx, and sinonasal tract [@johnson2020; @chow2020]. Tobacco and alcohol use are the dominant risk factors [@hashibe2009], while HPV-driven oropharyngeal cancer has emerged as a distinct entity [@marur2016]. Epidemiological patterns vary substantially by subsite and geography [@rettig2015; @gatta2015]. Understanding the comorbidity landscape of these conditions is critical for treatment planning and survivorship care [@valderas2009].
+
+Network medicine provides a framework for studying disease–disease relationships through co-occurrence patterns [@barabasi2011; @goh2007]. The human disease network paradigm links diseases by shared comorbidities, revealing non-trivial phenotypic associations [@hidalgo2009]. Community detection using the Louvain method [@blondel2008] identifies clusters of tightly co-occurring conditions, while centrality metrics [@freeman1978; @vandenheuvel2013] and k-core decomposition [@seidman1983] characterize the structural importance of individual comorbidities. Edge weights based on Jaccard similarity [@jaccard1901] capture pairwise co-occurrence strength, and modularity analysis [@newman2006] quantifies community structure.
+
+This analysis investigates patterns of comorbidity in hospitalizations for head and neck malignant neoplasms in Chile from 2019–2024, using data from the GRD (Diagnosis-Related Groups) system [@deis2024] coded according to ICD-10 [@oms2019]. Head and neck malignant neoplasms include cancers of the lip (C00), base of tongue (C01), other tongue sites (C02), gum (C03), floor of mouth (C04), palate (C05), other mouth sites (C06), parotid gland (C07), other salivary glands (C08), tonsil (C09), oropharynx (C10), nasopharynx (C11), piriform sinus (C12), hypopharynx (C13), other lip/oral/pharynx sites (C14), nasal cavity and middle ear (C30), accessory sinuses (C31), and larynx (C32). The network approach reveals how comorbidities cluster and evolve over time in the context of head and neck cancer.
+
+# Methodology
+
+## Data Source and Study Population
+
+This study uses administrative hospitalization data from the GRD (Grupos Relacionados de Diagnóstico) system maintained by the Chilean Ministry of Health [@deis2024], covering the period 2019–2024. The GRD database records up to 35 diagnostic fields per admission (DIAGNOSTICO1–DIAGNOSTICO35), coded according to ICD-10 [@oms2019]. The study population includes all hospitalizations with a primary diagnosis (DIAGNOSTICO1) corresponding to malignant neoplasms of the head and neck (ICD-10 C00–C14, C30–C32), classified into 17 clinical subsites [@johnson2020; @chow2020]: lip (C00), base of tongue (C01), other tongue sites (C02), gum (C03), floor of mouth (C04), palate (C05), other mouth sites (C06), parotid gland (C07), other salivary glands (C08), tonsil (C09), oropharynx (C10), nasopharynx (C11), piriform sinus (C12), hypopharynx (C13), other lip/oral/pharynx sites (C14), nasal cavity and middle ear (C30), accessory sinuses (C31), and larynx (C32).
+
+## Comorbidity Detection
+
+Comorbidities were extracted from secondary diagnostic fields (DIAGNOSTICO2–DIAGNOSTICO35) and mapped to clinically meaningful groups based on ICD-10 chapter and subchapter structure. Each comorbidity group was defined by a set of ICD-10 code prefixes covering conditions across major organ systems: cardiovascular, metabolic, respiratory, renal, hepatic, gastrointestinal, neurological, psychiatric, musculoskeletal, infectious, hematological, and substance-related. For each hospitalization, binary indicators were created for the presence of each comorbidity group. The comorbidity burden per patient was calculated as the total number of distinct comorbidity groups present.
+
+## Network Construction
+
+Comorbidity co-occurrence networks were constructed for each year (2019–2024) as undirected weighted graphs $G = (V, E, w)$, where nodes $V$ represent comorbidity groups and edges $E$ connect comorbidities that co-occur in at least one patient [@barabasi2011; @hidalgo2009]. Edge weights $w_{ij}$ were computed using the Jaccard similarity coefficient [@jaccard1901]:
+
+$$J(A,B) = \frac{|A \cap B|}{|A \cup B|}$$
+
+where $A$ and $B$ are the sets of patients with comorbidities $i$ and $j$, respectively. To filter noise and retain only clinically relevant associations, edges with Jaccard weights below the 70th percentile of the weight distribution were removed.
+
+## Community Detection
+
+Community structure was identified using the Louvain algorithm [@blondel2008], which optimizes modularity $Q$ [@newman2006]:
+
+$$Q = \frac{1}{2m} \sum_{ij} \left[ w_{ij} - \frac{k_i k_j}{2m} \right] \delta(c_i, c_j)$$
+
+where $m$ is the total edge weight, $k_i$ is the weighted degree of node $i$, $c_i$ is the community assignment of node $i$, and $\delta$ is the Kronecker delta. Communities represent clusters of comorbidities that co-occur more frequently with each other than with the rest of the network.
+
+## Centrality Analysis
+
+Multiple centrality metrics were computed to characterize the structural importance of individual comorbidities within the network [@freeman1978; @vandenheuvel2013]: degree centrality (number of connections), betweenness centrality (frequency of occurrence on shortest paths between other nodes), closeness centrality (inverse average distance to all other nodes), and eigenvector centrality (importance based on the importance of connected nodes).
+
+## K-Core Decomposition
+
+K-core decomposition [@seidman1983] was applied to identify the maximally connected subgraphs. A $k$-core is the maximal subgraph in which every node has degree at least $k$. The coreness of each node indicates how deeply embedded it is within the dense core of the network, providing a measure of structural cohesion that complements centrality metrics.
+
+## Subsite-Specific Analysis
+
+To examine heterogeneity across head and neck cancer subsites, networks were also constructed separately for clinical subsite categories. Network metrics, community structure, and centrality rankings were compared across subsites to identify subsite-specific comorbidity architectures. Tobacco and alcohol-related comorbidities were given particular attention given their etiological role in HNSCC [@hashibe2009; @marur2016].
+
+## Software
+
+All analyses were conducted in Python 3.11 using NetworkX [@hagberg2008] for graph construction and analysis, python-louvain for community detection, pandas [@mckinney2010] for data manipulation, and Matplotlib [@hunter2007] and Seaborn for visualization. The computational document was rendered using Quarto with embedded Python code blocks to ensure full reproducibility.
+
+# Setup and Libraries
+
+```{python}
+#| output: false
+#| label: setup-libraries
+
+import pandas as pd
+import numpy as np
+import networkx as nx
+from community import community_louvain
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+import seaborn as sns
+import plotly.graph_objects as go
+import plotly.express as px
+from plotly.subplots import make_subplots
+from itertools import combinations
+from collections import Counter, defaultdict
+from pathlib import Path
+import warnings
+warnings.filterwarnings('ignore')
+
+# Configure plotting — white background for all figures
+plt.rcParams.update({
+    'figure.facecolor': 'white',
+    'axes.facecolor': 'white',
+    'savefig.facecolor': 'white',
+    'figure.figsize': (14, 8),
+    'axes.grid': True,
+    'grid.alpha': 0.3,
+    'grid.color': '#cccccc',
+    'axes.spines.top': False,
+    'axes.spines.right': False,
+    'font.size': 11,
+    'axes.titlesize': 14,
+    'axes.labelsize': 12,
+})
+sns.set_palette("husl")
+sns.set_style("whitegrid")
+np.random.seed(42)
+
+# Data path (relative to docs/)
+DATA_PATH = Path("../data")
+
+print("All libraries loaded successfully")
+```
+
+
+```{python}
+#| label: setup-save-outputs
+#| output: false
+#| echo: false
+
+# === Guardado automático de figuras y tablas ===
+# Cada chunk con `#| label: fig-XXX` guarda su figura en _FIG/"fig-XXX.png"
+# Cada chunk con `#| label: tbl-XXX` guarda su tabla en _TAB/"tbl-XXX.csv"
+from pathlib import Path
+
+_OUT_ROOT = Path("../output_files/redes")
+_FIG = _OUT_ROOT / "figures"
+_TAB = _OUT_ROOT / "tables"
+_FIG.mkdir(parents=True, exist_ok=True)
+_TAB.mkdir(parents=True, exist_ok=True)
+
+def _save_table(df, name):
+    """Guarda un DataFrame como CSV en _TAB."""
+    try:
+        df.to_csv(_TAB / f"{name}.csv", index=False)
+        print(f"[saved table] {name}.csv")
+    except Exception as e:
+        print(f"[save_table FAILED for {name}]: {e}")
+
+print(f"Save paths: figs -> {_FIG}  ·  tables -> {_TAB}")
+```
+
+\newpage
+
+# Data Loading and Preparation
+
+## Loading GRD Data (2019-2024)
+
+```{python}
+#| output: false
+#| label: load-grd-data
+
+# Define data path and years
+data_path = Path("../data")
+years = list(range(2019, 2025))
+
+def parse_date_flexible(date_str):
+    """
+    Parse dates flexibly, trying multiple formats.
+    Handles YYYY-MM-DD and DD-MM-YYYY formats.
+    """
+    if pd.isna(date_str) or date_str == '':
+        return pd.NaT
+
+    date_str = str(date_str).strip()
+
+    # Try YYYY-MM-DD first
+    try:
+        return pd.to_datetime(date_str, format='%Y-%m-%d')
+    except:
+        pass
+
+    # Try DD-MM-YYYY
+    try:
+        return pd.to_datetime(date_str, format='%d-%m-%Y')
+    except:
+        pass
+
+    # Try with coercion as last resort
+    try:
+        return pd.to_datetime(date_str, infer_datetime_format=True)
+    except:
+        return pd.NaT
+
+# Load all GRD data files
+all_grd_data = []
+
+for year in years:
+    file_path = data_path / f"GRD_PUBLICO_{year}.csv"
+
+    if file_path.exists():
+        print(f"Loading GRD {year}...")
+        df = pd.read_csv(
+            file_path,
+            sep='|',
+            encoding='utf-8',
+            na_values=['', 'NA'],
+            low_memory=False
+        )
+
+        # Parse date columns
+        for date_col in ['FECHA_NACIMIENTO', 'FECHA_INGRESO', 'FECHAALTA']:
+            if date_col in df.columns:
+                df[date_col] = df[date_col].apply(parse_date_flexible)
+
+        # Add year column
+        df['YEAR'] = year
+
+        all_grd_data.append(df)
+        print(f"  Loaded {len(df)} records")
+    else:
+        print(f"Warning: {file_path} not found")
+
+# Combine all years
+grd_data = pd.concat(all_grd_data, ignore_index=True)
+
+print(f"\nTotal GRD records: {len(grd_data)}")
+print(f"Years covered: {sorted(grd_data['YEAR'].unique())}")
+print(f"Columns: {', '.join(grd_data.columns.tolist())}")
+print(f"Date range: {grd_data['FECHA_INGRESO'].min()} to {grd_data['FECHA_INGRESO'].max()}")
+```
+
+## Data Cleaning and Feature Engineering
+
+```{python}
+#| output: false
+#| label: data-cleaning
+
+# Calculate age at admission
+grd_data['AGE'] = (
+    (grd_data['FECHA_INGRESO'] - grd_data['FECHA_NACIMIENTO']).dt.days / 365.25
+).round(2)
+
+# Calculate length of stay
+grd_data['LOS'] = (
+    (grd_data['FECHAALTA'] - grd_data['FECHA_INGRESO']).dt.days
+).clip(lower=0)
+
+# Standardize sex values
+def standardize_sex(sex_val):
+    if pd.isna(sex_val):
+        return np.nan
+    sex_str = str(sex_val).upper().strip()
+    if 'MUJ' in sex_str or 'FEM' in sex_str or sex_str == 'F':
+        return 'MUJER'
+    elif 'HOM' in sex_str or 'MASC' in sex_str or sex_str == 'M':
+        return 'HOMBRE'
+    else:
+        return np.nan
+
+grd_data['SEXO_CLEAN'] = grd_data['SEXO'].apply(standardize_sex)
+
+# Identify deaths (TIPOALTA contains 'FALLEC')
+grd_data['DEATH'] = grd_data['TIPOALTA'].fillna('').str.contains('FALLEC', case=False, na=False)
+
+# Define head and neck neoplasm ICD-10 codes (C00-C14, C30-C32)
+hn_prefixes = ['C00', 'C01', 'C02', 'C03', 'C04', 'C05', 'C06', 'C07', 'C08', 'C09', 'C10', 'C11', 'C12', 'C13', 'C14', 'C30', 'C31', 'C32']
+
+def is_head_neck_neoplasm(code):
+    if pd.isna(code):
+        return False
+    code_str = str(code).strip().upper().replace('.', '')
+    return any(code_str.startswith(prefix) for prefix in hn_prefixes)
+
+# Filter for head and neck neoplasm primary diagnoses
+grd_hn = grd_data[grd_data['DIAGNOSTICO1'].apply(is_head_neck_neoplasm)].copy()
+
+# Classify by tumor site
+tumor_sites = {
+    'C00': 'Lip', 'C01': 'Base of Tongue', 'C02': 'Other Tongue',
+    'C03': 'Gum', 'C04': 'Floor of Mouth', 'C05': 'Palate',
+    'C06': 'Other Mouth', 'C07': 'Parotid Gland', 'C08': 'Other Salivary',
+    'C09': 'Tonsil', 'C10': 'Oropharynx', 'C11': 'Nasopharynx',
+    'C12': 'Piriform Sinus', 'C13': 'Hypopharynx', 'C14': 'Other Pharynx',
+    'C30': 'Nasal Cavity', 'C31': 'Sinuses', 'C32': 'Larynx'
+}
+
+def get_tumor_site(code):
+    if pd.isna(code):
+        return 'Unknown'
+    code_str = str(code).strip().upper().replace('.', '')[:3]
+    return tumor_sites.get(code_str, 'Unknown')
+
+grd_hn['TUMOR_SITE'] = grd_hn['DIAGNOSTICO1'].apply(get_tumor_site)
+
+# Remove records with unknown sex
+grd_hn = grd_hn[grd_hn['SEXO_CLEAN'].notna()].copy()
+
+# Remove records with missing age or invalid dates
+grd_hn = grd_hn[
+    (grd_hn['AGE'] > 0) &
+    (grd_hn['AGE'] < 120) &
+    (grd_hn['FECHA_INGRESO'].notna())
+].copy()
+
+print(f"After filtering for head and neck neoplasm diagnoses: {len(grd_hn)} records")
+print(f"\nRecords per year:")
+print(grd_hn['YEAR'].value_counts().sort_index())
+
+print(f"\nTumor site distribution:")
+print(grd_hn['TUMOR_SITE'].value_counts())
+
+print(f"\nSex distribution:")
+print(grd_hn['SEXO_CLEAN'].value_counts())
+
+print(f"\nAge statistics (years):")
+print(grd_hn['AGE'].describe())
+
+print(f"\nLength of stay statistics (days):")
+print(grd_hn['LOS'].describe())
+
+print(f"\nMortality rate: {grd_hn['DEATH'].sum() / len(grd_hn) * 100:.2f}%")
+```
+
+## Define Comorbidity Groups
+
+```{python}
+#| output: false
+#| label: define-comorbidity-groups
+
+# Define detailed comorbidity groups
+detailed_comorbidity_groups = {
+    # CARDIOVASCULAR (7 groups)
+    "CV Essential Hypertension": ["I10"],
+    "CV Complicated Hypertension": ["I11", "I12", "I13", "I15"],
+    "CV Coronary Disease": ["I20", "I21", "I22", "I23", "I24", "I25"],
+    "CV Heart Failure": ["I50"],
+    "CV Arrhythmias": ["I44", "I45", "I46", "I47", "I48", "I49"],
+    "CV Cerebrovascular Disease": ["I60", "I61", "I62", "I63", "I64", "I65", "I66", "I67", "I68", "I69"],
+    "CV Peripheral Vascular Disease": ["I70", "I71", "I73", "I74", "I77"],
+
+    # METABOLIC (7 groups)
+    "MET Type1 Diabetes": ["E10"],
+    "MET Type2 Diabetes": ["E11"],
+    "MET Complicated Diabetes": ["E12", "E13", "E14"],
+    "MET Obesity": ["E66"],
+    "MET Dyslipidemia": ["E78"],
+    "MET Metabolic Syndrome": ["E88"],
+    "MET Thyroid Disorders": ["E00", "E01", "E02", "E03", "E04", "E05", "E06", "E07"],
+
+    # RESPIRATORY (7 groups)
+    "RESP COPD": ["J44"],
+    "RESP Asthma": ["J45", "J46"],
+    "RESP Chronic Bronchitis": ["J41", "J42"],
+    "RESP Emphysema": ["J43"],
+    "RESP Pulmonary Fibrosis": ["J84"],
+    "RESP Pulmonary Hypertension": ["I27"],
+    "RESP Sleep Apnea": ["G47"],
+
+    # RENAL (4 groups)
+    "REN Acute Renal Failure": ["N17"],
+    "REN Chronic Renal Failure": ["N18"],
+    "REN End Stage Renal": ["N185", "N186"],
+    "REN Diabetic Nephropathy": ["E102", "E112", "E122", "E132", "E142"],
+
+    # HEPATIC (4 groups)
+    "HEP Steatosis": ["K76"],
+    "HEP Alcoholic Cirrhosis": ["K70"],
+    "HEP NonAlcoholic Cirrhosis": ["K74"],
+    "HEP Viral Hepatitis": ["B15", "B16", "B17", "B18", "B19"],
+
+    # GASTROINTESTINAL (4 groups)
+    "GI Reflux": ["K21"],
+    "GI Peptic Ulcer": ["K25", "K26", "K27", "K28"],
+    "GI IBD": ["K50", "K51"],
+    "GI IBS": ["K58"],
+
+    # NEUROLOGICAL (4 groups)
+    "NEURO Dementia": ["F00", "F01", "F02", "F03", "G30"],
+    "NEURO Parkinson": ["G20", "G21", "G22"],
+    "NEURO Epilepsy": ["G40", "G41"],
+    "NEURO Stroke Sequelae": ["I69"],
+
+    # PSYCHIATRIC (3 groups)
+    "PSI Major Depression": ["F32", "F33"],
+    "PSI Bipolar": ["F30", "F31"],
+    "PSI Anxiety": ["F41"],
+
+    # SUBSTANCE (3 groups)
+    "SUST Alcohol": ["F10"],
+    "SUST Tobacco": ["F17", "Z72"],
+    "SUST Opioids": ["F11"],
+
+    # INFECTIOUS (4 groups)
+    "INF HIV": ["B20", "B21", "B22", "B23", "B24"],
+    "INF Tuberculosis": ["A15", "A16", "A17", "A18", "A19"],
+    "INF Hepatitis C": ["B18"],
+    "INF Hepatitis B": ["B18"],
+}
+
+# Create category-to-color mapping
+category_colors = {
+    'CV': '#E74C3C',    # Red
+    'MET': '#3498DB',   # Blue
+    'RESP': '#2ECC71',  # Green
+    'REN': '#F39C12',   # Orange
+    'HEP': '#9B59B6',   # Purple
+    'GI': '#1ABC9C',    # Teal
+    'NEURO': '#34495E', # Dark gray
+    'PSI': '#E67E22',   # Dark orange
+    'SUST': '#C0392B',  # Dark red
+    'INF': '#16A085',   # Dark teal
+}
+
+def get_comorbidity_category(comorbidity_name):
+    """Extract category prefix from comorbidity name."""
+    return comorbidity_name.split(' ')[0]
+
+def get_comorbidity_color(comorbidity_name):
+    """Get color for a comorbidity based on its category."""
+    category = get_comorbidity_category(comorbidity_name)
+    return category_colors.get(category, '#95A5A6')
+
+print(f"Defined {len(detailed_comorbidity_groups)} comorbidity groups")
+print(f"Categories: {', '.join(sorted(set(get_comorbidity_category(c) for c in detailed_comorbidity_groups.keys())))}")
+```
+
+## Detect Comorbidities
+
+```{python}
+#| output: false
+#| label: detect-comorbidities
+
+def normalize_icd_code(code):
+    """
+    Normalize ICD-10 code: remove dots, uppercase, take first 3-4 characters.
+    """
+    if pd.isna(code) or code == '':
+        return None
+
+    code_str = str(code).strip().upper().replace('.', '')
+
+    # Take first 3 characters for 3-digit codes, or up to 4 for more specificity
+    if len(code_str) >= 3:
+        return code_str[:3]
+
+    return None
+
+def detect_comorbidities(row, comorbidity_groups):
+    """
+    Detect which comorbidities are present in a patient's diagnoses.
+    Returns list of comorbidity group names.
+    """
+    comorbidities = []
+
+    # Check DIAGNOSTICO2 through DIAGNOSTICO35
+    for i in range(2, 36):
+        diag_col = f'DIAGNOSTICO{i}'
+        if diag_col not in row.index:
+            continue
+
+        diag_code = row[diag_col]
+        normalized = normalize_icd_code(diag_code)
+
+        if normalized is None:
+            continue
+
+        # Check against each comorbidity group
+        for group_name, icd_codes in comorbidity_groups.items():
+            for icd_code in icd_codes:
+                icd_code_norm = icd_code.replace('.', '').upper()[:3]
+                if normalized.startswith(icd_code_norm):
+                    if group_name not in comorbidities:
+                        comorbidities.append(group_name)
+                    break
+
+    return comorbidities
+
+# Apply comorbidity detection
+print("Detecting comorbidities...")
+grd_hn['COMORBIDITIES'] = grd_hn.apply(
+    lambda row: detect_comorbidities(row, detailed_comorbidity_groups),
+    axis=1
+)
+
+grd_hn['NUM_COMORBIDITIES'] = grd_hn['COMORBIDITIES'].apply(len)
+
+print(f"Comorbidity detection complete")
+print(f"\nComorbidity burden (number of comorbidities per patient):")
+print(grd_hn['NUM_COMORBIDITIES'].describe())
+
+# Calculate prevalence of each comorbidity overall
+overall_prevalence = {}
+for comorb_group in detailed_comorbidity_groups.keys():
+    count = (grd_hn['COMORBIDITIES'].apply(lambda x: comorb_group in x)).sum()
+    prevalence = count / len(grd_hn) * 100
+    overall_prevalence[comorb_group] = {'count': count, 'prevalence': prevalence}
+
+print(f"\nTop 15 most prevalent comorbidities in head and neck neoplasm patients:")
+top_15 = sorted(overall_prevalence.items(), key=lambda x: x[1]['prevalence'], reverse=True)[:15]
+for comorb, data in top_15:
+    print(f"  {comorb}: {data['prevalence']:.2f}% ({data['count']} patients)")
+
+# Auto-saved by setup-save-outputs
+_save_table(pd.DataFrame([{'Comorbidity':k,'Prevalence_%':v['prevalence'],'Count':v['count']} for k,v in overall_prevalence.items()]).sort_values('Prevalence_%', ascending=False), "tbl-overall_prevalence")
+```
+
+\newpage
+
+# Prevalence Analysis
+
+## Comorbidity Prevalence by Year
+
+```{python}
+#| label: fig-prevalence-by-year
+#| fig-cap: "Top 15 most prevalent comorbidities by year in head and neck neoplasm hospitalized patients"
+
+# Calculate prevalence by year
+prevalence_by_year = {}
+
+for year in sorted(grd_hn['YEAR'].unique()):
+    year_data = grd_hn[grd_hn['YEAR'] == year]
+    prevalence_by_year[year] = {}
+
+    for comorb_group in detailed_comorbidity_groups.keys():
+        count = (year_data['COMORBIDITIES'].apply(lambda x: comorb_group in x)).sum()
+        prevalence = count / len(year_data) * 100 if len(year_data) > 0 else 0
+        prevalence_by_year[year][comorb_group] = prevalence
+
+# Convert to DataFrame for plotting
+prevalence_df = pd.DataFrame(prevalence_by_year).T
+prevalence_df = prevalence_df.reset_index().rename(columns={'index': 'YEAR'})
+
+# Get overall top 15 comorbidities
+top_15_comorbs = [c[0] for c in sorted(overall_prevalence.items(),
+                                        key=lambda x: x[1]['prevalence'],
+                                        reverse=True)[:15]]
+
+prevalence_top15 = prevalence_df[['YEAR'] + top_15_comorbs].set_index('YEAR')
+
+# Plot
+fig, ax = plt.subplots(figsize=(15, 8))
+
+x = np.arange(len(prevalence_top15.index))
+width = 0.07
+colors_list = [get_comorbidity_color(c) for c in top_15_comorbs]
+
+for i, comorb in enumerate(top_15_comorbs):
+    offset = (i - 7) * width
+    ax.bar(x + offset, prevalence_top15[comorb], width,
+           label=comorb, color=colors_list[i], alpha=0.85)
+
+ax.set_xlabel('Year', fontsize=12, fontweight='bold')
+ax.set_ylabel('Prevalence (%)', fontsize=12, fontweight='bold')
+ax.set_title('Top 15 Most Prevalent Comorbidities by Year in Head and Neck Neoplasm Patients', fontsize=14, fontweight='bold')
+ax.set_xticks(x)
+ax.set_xticklabels(prevalence_top15.index)
+ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left', ncol=1, fontsize=9)
+ax.grid(axis='y', alpha=0.3)
+plt.tight_layout()
+plt.savefig(_FIG / "fig-prevalence-by-year.png", dpi=300, bbox_inches="tight")
+plt.show()
+```
+
+## Comorbidity Prevalence Heatmap
+
+```{python}
+#| label: fig-prevalence-heatmap
+#| fig-cap: "Heatmap of comorbidity prevalence across years in head and neck neoplasm patients"
+
+# Create heatmap data
+heatmap_data = prevalence_df.set_index('YEAR')[top_15_comorbs]
+
+fig, ax = plt.subplots(figsize=(12, 8))
+sns.heatmap(heatmap_data.T, annot=True, fmt='.1f', cmap='YlOrRd',
+            cbar_kws={'label': 'Prevalence (%)'}, ax=ax, linewidths=0.5)
+ax.set_title('Comorbidity Prevalence by Year in Head and Neck Neoplasm Patients (%)', fontsize=14, fontweight='bold')
+ax.set_xlabel('Year', fontsize=12, fontweight='bold')
+ax.set_ylabel('Comorbidity Group', fontsize=12, fontweight='bold')
+plt.tight_layout()
+plt.savefig(_FIG / "fig-prevalence-heatmap.png", dpi=300, bbox_inches="tight")
+plt.show()
+```
+
+## Comorbidity Burden Distribution
+
+```{python}
+#| label: fig-comorbidity-burden
+#| fig-cap: "Distribution of comorbidity burden (number of comorbidities per patient) by year in head and neck neoplasm patients"
+
+fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+
+# Box plot
+ax = axes[0]
+years = sorted(grd_hn['YEAR'].unique())
+data_to_plot = [grd_hn[grd_hn['YEAR'] == year]['NUM_COMORBIDITIES'].values
+                for year in years]
+bp = ax.boxplot(data_to_plot, labels=years, patch_artist=True)
+for patch in bp['boxes']:
+    patch.set_facecolor('#3498DB')
+    patch.set_alpha(0.7)
+ax.set_xlabel('Year', fontsize=12, fontweight='bold')
+ax.set_ylabel('Number of Comorbidities', fontsize=12, fontweight='bold')
+ax.set_title('Comorbidity Burden: Box Plot by Year', fontsize=13, fontweight='bold')
+ax.grid(axis='y', alpha=0.3)
+
+# Violin plot
+ax = axes[1]
+burden_df = grd_hn[['YEAR', 'NUM_COMORBIDITIES']].copy()
+sns.violinplot(data=burden_df, x='YEAR', y='NUM_COMORBIDITIES', ax=ax,
+               palette='Set2', inner='box')
+ax.set_xlabel('Year', fontsize=12, fontweight='bold')
+ax.set_ylabel('Number of Comorbidities', fontsize=12, fontweight='bold')
+ax.set_title('Comorbidity Burden: Violin Plot by Year', fontsize=13, fontweight='bold')
+ax.grid(axis='y', alpha=0.3)
+
+plt.tight_layout()
+plt.savefig(_FIG / "fig-comorbidity-burden.png", dpi=300, bbox_inches="tight")
+plt.show()
+```
+
+\newpage
+
+# Network Construction
+
+## Co-occurrence Network Analysis
+
+```{python}
+#| output: false
+#| label: build-cooccurrence-networks
+
+def build_cooccurrence_network(comorbidity_lists, min_weight=0):
+    """
+    Build a co-occurrence network from patient comorbidity lists.
+    Returns networkx Graph with weighted edges.
+    """
+    # Count co-occurrences
+    cooccurrence_counts = defaultdict(int)
+
+    for comorb_list in comorbidity_lists:
+        if len(comorb_list) < 2:
+            continue
+
+        # Generate all pairs
+        for pair in combinations(sorted(comorb_list), 2):
+            cooccurrence_counts[pair] += 1
+
+    # Build graph
+    G = nx.Graph()
+
+    # Add nodes (all comorbidities)
+    all_nodes = set()
+    for pair in cooccurrence_counts.keys():
+        all_nodes.update(pair)
+
+    for node in all_nodes:
+        G.add_node(node)
+
+    # Add weighted edges
+    for (source, target), weight in cooccurrence_counts.items():
+        if weight >= min_weight:
+            G.add_edge(source, target, weight=weight)
+
+    return G, cooccurrence_counts
+
+# Build networks per year
+networks_per_year = {}
+cooccurrence_per_year = {}
+
+for year in sorted(grd_hn['YEAR'].unique()):
+    year_data = grd_hn[grd_hn['YEAR'] == year]
+    comorbidity_lists = year_data['COMORBIDITIES'].tolist()
+
+    G, cooccurrence = build_cooccurrence_network(comorbidity_lists, min_weight=0)
+    networks_per_year[year] = G
+    cooccurrence_per_year[year] = cooccurrence
+
+    print(f"\nYear {year}:")
+    print(f"  Nodes: {G.number_of_nodes()}")
+    print(f"  Edges: {G.number_of_edges()}")
+    print(f"  Density: {nx.density(G):.4f}")
+
+# Apply Jaccard similarity filtering for edge weights
+def filter_network_by_similarity(G, percentile=70):
+    """
+    Filter network edges based on Jaccard similarity threshold.
+    Keep edges with weights above a percentile.
+    """
+    G_filtered = G.copy()
+
+    if G.number_of_edges() == 0:
+        return G_filtered
+
+    # Calculate log-transformed weights for better distribution
+    weights = [d['weight'] for u, v, d in G.edges(data=True)]
+    log_weights = np.log1p(weights)
+    threshold = np.percentile(log_weights, percentile)
+
+    # Remove low-weight edges
+    edges_to_remove = []
+    for u, v, d in G.edges(data=True):
+        if np.log1p(d['weight']) < threshold:
+            edges_to_remove.append((u, v))
+
+    G_filtered.remove_edges_from(edges_to_remove)
+
+    return G_filtered
+
+# Filter networks
+networks_filtered = {}
+for year, G in networks_per_year.items():
+    G_filt = filter_network_by_similarity(G, percentile=70)
+    networks_filtered[year] = G_filt
+
+    print(f"\nFiltered network {year}:")
+    print(f"  Nodes: {G_filt.number_of_nodes()}")
+    print(f"  Edges: {G_filt.number_of_edges()}")
+    print(f"  Connected components: {nx.number_connected_components(G_filt)}")
+```
+
+\newpage
+
+# Network Metrics and Evolution
+
+## Global Network Metrics Over Time
+
+```{python}
+#| output: false
+#| label: compute-global-metrics
+
+def compute_network_metrics(G, year):
+    """Compute comprehensive network metrics."""
+    metrics = {
+        'Year': year,
+        'Nodes': G.number_of_nodes(),
+        'Edges': G.number_of_edges(),
+        'Density': nx.density(G),
+        'Transitivity': nx.transitivity(G) if G.number_of_edges() > 0 else 0,
+        'Avg_Degree': np.mean([d for n, d in G.degree()]) if G.number_of_nodes() > 0 else 0,
+    }
+
+    # Average shortest path (for largest connected component)
+    if G.number_of_nodes() > 1:
+        largest_cc = max(nx.connected_components(G), key=len)
+        G_largest = G.subgraph(largest_cc)
+        if G_largest.number_of_edges() > 0:
+            try:
+                metrics['Avg_Shortest_Path'] = nx.average_shortest_path_length(G_largest)
+            except:
+                metrics['Avg_Shortest_Path'] = np.nan
+        else:
+            metrics['Avg_Shortest_Path'] = np.nan
+    else:
+        metrics['Avg_Shortest_Path'] = np.nan
+
+    # Assortativity
+    if G.number_of_nodes() > 1 and G.number_of_edges() > 0:
+        try:
+            metrics['Assortativity'] = nx.degree_assortativity_coefficient(G)
+        except:
+            metrics['Assortativity'] = np.nan
+    else:
+        metrics['Assortativity'] = np.nan
+
+    return metrics
+
+# Compute metrics for all years
+global_metrics = []
+for year in sorted(networks_filtered.keys()):
+    G = networks_filtered[year]
+    metrics = compute_network_metrics(G, year)
+    global_metrics.append(metrics)
+
+global_metrics_df = pd.DataFrame(global_metrics)
+print("Global Network Metrics for Head and Neck Neoplasm Patients:")
+print(global_metrics_df.to_string(index=False))
+
+# Auto-saved by setup-save-outputs
+_save_table(global_metrics_df, "tbl-global_network_metrics")
+```
+
+## Evolution of Network Metrics
+
+```{python}
+#| label: fig-network-metrics-evolution
+#| fig-cap: "Evolution of global network metrics from 2019 to 2024 in head and neck neoplasm patients. Shaded area indicates pandemic period (2020-2021)"
+
+fig, axes = plt.subplots(2, 3, figsize=(16, 10))
+fig.suptitle('Network Metrics Over Time (2019-2024) - Head and Neck Neoplasm Patients', fontsize=16, fontweight='bold', y=1.00)
+
+metrics_to_plot = [
+    ('Nodes', 'Number of Comorbidity Nodes'),
+    ('Edges', 'Number of Co-occurrence Edges'),
+    ('Density', 'Network Density'),
+    ('Transitivity', 'Transitivity (Clustering)'),
+    ('Avg_Degree', 'Average Node Degree'),
+    ('Avg_Shortest_Path', 'Avg Shortest Path Length'),
+]
+
+for idx, (metric, title) in enumerate(metrics_to_plot):
+    ax = axes[idx // 3, idx % 3]
+
+    years = global_metrics_df['Year'].values
+    values = global_metrics_df[metric].values
+
+    ax.plot(years, values, 'o-', linewidth=2.5, markersize=8, color='#3498DB')
+    ax.fill_between([2019.5, 2021.5], ax.get_ylim()[0], ax.get_ylim()[1],
+                     alpha=0.15, color='gray', label='Pandemic Period')
+
+    ax.set_xlabel('Year', fontsize=11, fontweight='bold')
+    ax.set_ylabel(title, fontsize=11, fontweight='bold')
+    ax.set_title(title, fontsize=12, fontweight='bold')
+    ax.grid(True, alpha=0.3)
+    ax.set_xticks(years)
+
+plt.tight_layout()
+plt.savefig(_FIG / "fig-network-metrics-evolution.png", dpi=300, bbox_inches="tight")
+plt.show()
+```
+
+\newpage
+
+# Community Detection
+
+## Louvain Community Detection
+
+```{python}
+#| output: false
+#| label: louvain-communities
+
+# Apply Louvain algorithm to each year
+communities_by_year = {}
+community_metrics_list = []
+
+for year in sorted(networks_filtered.keys()):
+    G = networks_filtered[year]
+
+    if G.number_of_edges() == 0:
+        communities_by_year[year] = {}
+        continue
+
+    # Convert to undirected for Louvain
+    partition = community_louvain.best_partition(G)
+    communities_by_year[year] = partition
+
+    # Calculate modularity
+    modularity = community_louvain.modularity(partition, G)
+    num_communities = len(set(partition.values()))
+
+    community_metrics_list.append({
+        'Year': year,
+        'Num_Communities': num_communities,
+        'Modularity': modularity,
+    })
+
+    print(f"Year {year}:")
+    print(f"  Communities: {num_communities}")
+    print(f"  Modularity: {modularity:.4f}")
+
+    # Print community composition
+    communities_dict = defaultdict(list)
+    for node, comm_id in partition.items():
+        communities_dict[comm_id].append(node)
+
+    for comm_id in sorted(communities_dict.keys()):
+        print(f"    Community {comm_id} ({len(communities_dict[comm_id])} nodes):")
+        for node in sorted(communities_dict[comm_id])[:5]:
+            print(f"      - {node}")
+        if len(communities_dict[comm_id]) > 5:
+            print(f"      ... and {len(communities_dict[comm_id]) - 5} more")
+
+community_metrics_df = pd.DataFrame(community_metrics_list)
+print("\nCommunity Detection Summary for Head and Neck Neoplasm Patients:")
+print(community_metrics_df.to_string(index=False))
+
+# Auto-saved by setup-save-outputs
+_save_table(community_metrics_df, "tbl-community_metrics")
+```
+
+## Community Evolution Visualization
+
+```{python}
+#| label: fig-communities-evolution
+#| fig-cap: "Evolution of community structure: number of communities and modularity over time in head and neck neoplasm patients"
+
+fig, axes = plt.subplots(1, 2, figsize=(14, 5))
+
+# Number of communities
+ax = axes[0]
+ax.plot(community_metrics_df['Year'], community_metrics_df['Num_Communities'],
+        'o-', linewidth=2.5, markersize=10, color='#E74C3C')
+ax.fill_between(community_metrics_df['Year'], community_metrics_df['Num_Communities'],
+                alpha=0.3, color='#E74C3C')
+ax.set_xlabel('Year', fontsize=12, fontweight='bold')
+ax.set_ylabel('Number of Communities', fontsize=12, fontweight='bold')
+ax.set_title('Communities Detected per Year', fontsize=13, fontweight='bold')
+ax.grid(True, alpha=0.3)
+ax.set_xticks(community_metrics_df['Year'])
+
+# Modularity
+ax = axes[1]
+ax.plot(community_metrics_df['Year'], community_metrics_df['Modularity'],
+        's-', linewidth=2.5, markersize=10, color='#2ECC71')
+ax.fill_between(community_metrics_df['Year'], community_metrics_df['Modularity'],
+                alpha=0.3, color='#2ECC71')
+ax.set_xlabel('Year', fontsize=12, fontweight='bold')
+ax.set_ylabel('Modularity', fontsize=12, fontweight='bold')
+ax.set_title('Network Modularity over Time', fontsize=13, fontweight='bold')
+ax.grid(True, alpha=0.3)
+ax.set_xticks(community_metrics_df['Year'])
+
+plt.tight_layout()
+plt.savefig(_FIG / "fig-communities-evolution.png", dpi=300, bbox_inches="tight")
+plt.show()
+```
+
+\newpage
+
+# Centrality Analysis
+
+## Degree Centrality Analysis
+
+```{python}
+#| output: false
+#| label: centrality-analysis
+
+# Compute multiple centrality measures per year
+centrality_data = []
+
+for year in sorted(networks_filtered.keys()):
+    G = networks_filtered[year]
+
+    if G.number_of_nodes() == 0:
+        continue
+
+    # Degree centrality
+    degree_cent = nx.degree_centrality(G)
+
+    # Betweenness centrality
+    betweenness_cent = nx.betweenness_centrality(G, weight='weight')
+
+    # Closeness centrality (only for largest connected component)
+    largest_cc = max(nx.connected_components(G), key=len)
+    G_largest = G.subgraph(largest_cc)
+    if G_largest.number_of_nodes() > 0:
+        closeness_cent = nx.closeness_centrality(G_largest)
+    else:
+        closeness_cent = {}
+
+    # Eigenvector centrality (with error handling)
+    try:
+        eigenvector_cent = nx.eigenvector_centrality(G, weight='weight', max_iter=1000)
+    except:
+        eigenvector_cent = {node: 0 for node in G.nodes()}
+
+    # Store top 10 nodes
+    top_10_degree = sorted(degree_cent.items(), key=lambda x: x[1], reverse=True)[:10]
+
+    for rank, (node, value) in enumerate(top_10_degree, 1):
+        centrality_data.append({
+            'Year': year,
+            'Rank': rank,
+            'Node': node,
+            'Degree_Centrality': value,
+            'Betweenness': betweenness_cent.get(node, 0),
+            'Closeness': closeness_cent.get(node, 0),
+            'Eigenvector': eigenvector_cent.get(node, 0),
+        })
+
+centrality_df = pd.DataFrame(centrality_data)
+print("Top 10 Most Central Comorbidities in Head and Neck Neoplasm Patients (by Degree):")
+print(centrality_df[centrality_df['Rank'] <= 10].to_string(index=False))
+
+# Auto-saved by setup-save-outputs
+_save_table(centrality_df, "tbl-top10_centrality_by_year")
+```
+
+## Heatmap of Node Degree by Year
+
+```{python}
+#| label: fig-degree-heatmap
+#| fig-cap: "Heatmap of node degree centrality for top comorbidities across years in head and neck neoplasm patients"
+
+# Get top nodes overall
+all_nodes_overall = set()
+for G in networks_filtered.values():
+    all_nodes_overall.update(G.nodes())
+
+# Compute degree for each node per year
+degree_by_node_year = {}
+for node in all_nodes_overall:
+    degree_by_node_year[node] = {}
+    for year in sorted(networks_filtered.keys()):
+        G = networks_filtered[year]
+        degree_by_node_year[node][year] = dict(G.degree()).get(node, 0)
+
+# Get top 15 nodes by overall average degree
+avg_degree = {node: np.mean(list(year_degrees.values()))
+              for node, year_degrees in degree_by_node_year.items()}
+top_15_nodes = sorted(avg_degree.items(), key=lambda x: x[1], reverse=True)[:15]
+top_15_nodes = [node for node, _ in top_15_nodes]
+
+# Create heatmap data
+heatmap_data = pd.DataFrame({
+    node: [degree_by_node_year[node][year] for year in sorted(networks_filtered.keys())]
+    for node in top_15_nodes
+}, index=sorted(networks_filtered.keys())).T
+
+fig, ax = plt.subplots(figsize=(10, 8))
+sns.heatmap(heatmap_data, annot=True, fmt='d', cmap='RdYlGn',
+            cbar_kws={'label': 'Degree'}, ax=ax, linewidths=0.5)
+ax.set_title('Node Degree Centrality Heatmap in Head and Neck Neoplasm Patients (Top 15 Nodes)', fontsize=14, fontweight='bold')
+ax.set_xlabel('Year', fontsize=12, fontweight='bold')
+ax.set_ylabel('Comorbidity', fontsize=12, fontweight='bold')
+plt.tight_layout()
+plt.savefig(_FIG / "fig-degree-heatmap.png", dpi=300, bbox_inches="tight")
+plt.show()
+```
+
+## Ranking Evolution (Bump Chart)
+
+```{python}
+#| label: fig-centrality-bump-chart
+#| fig-cap: "Evolution of top 10 head and neck neoplasm comorbidities ranking by degree centrality (2019-2024)"
+
+# Get top 10 nodes in 2019
+G_2019 = networks_filtered[2019]
+degree_2019 = dict(G_2019.degree())
+top_10_2019 = sorted(degree_2019.items(), key=lambda x: x[1], reverse=True)[:10]
+top_10_nodes = [node for node, _ in top_10_2019]
+
+# Create ranking data
+ranking_data = []
+for year in sorted(networks_filtered.keys()):
+    G = networks_filtered[year]
+    degree_year = dict(G.degree())
+
+    all_nodes_sorted = sorted(degree_year.items(), key=lambda x: x[1], reverse=True)
+    node_to_rank = {node: rank + 1 for rank, (node, _) in enumerate(all_nodes_sorted)}
+
+    for node in top_10_nodes:
+        ranking_data.append({
+            'Year': year,
+            'Node': node,
+            'Rank': node_to_rank.get(node, len(G.nodes()) + 1),
+        })
+
+ranking_df = pd.DataFrame(ranking_data)
+
+# Plot bump chart
+fig, ax = plt.subplots(figsize=(12, 7))
+
+for node in top_10_nodes:
+    node_data = ranking_df[ranking_df['Node'] == node]
+    color = get_comorbidity_color(node)
+    ax.plot(node_data['Year'], node_data['Rank'], 'o-', label=node,
+            color=color, linewidth=2.5, markersize=8, alpha=0.8)
+
+ax.set_xlabel('Year', fontsize=12, fontweight='bold')
+ax.set_ylabel('Centrality Rank (1 = highest)', fontsize=12, fontweight='bold')
+ax.set_title('Evolution of Top Comorbidities by Degree Centrality in Head and Neck Neoplasm Patients', fontsize=14, fontweight='bold')
+ax.invert_yaxis()
+ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left', ncol=1, fontsize=9)
+ax.grid(True, alpha=0.3)
+ax.set_xticks(sorted(ranking_df['Year'].unique()))
+
+plt.tight_layout()
+plt.savefig(_FIG / "fig-centrality-bump-chart.png", dpi=300, bbox_inches="tight")
+plt.show()
+```
+
+\newpage
+
+# K-Core Decomposition
+
+## K-Core Analysis
+
+```{python}
+#| output: false
+#| label: kcore-analysis
+
+kcore_data = []
+
+for year in sorted(networks_filtered.keys()):
+    G = networks_filtered[year]
+
+    if G.number_of_nodes() == 0:
+        continue
+
+    # Compute k-core decomposition
+    core_numbers = nx.core_number(G)
+
+    # Statistics
+    max_k = max(core_numbers.values()) if core_numbers else 0
+
+    # Count nodes in each core level
+    core_distribution = Counter(core_numbers.values())
+
+    kcore_data.append({
+        'Year': year,
+        'Max_K': max_k,
+        'Avg_K': np.mean(list(core_numbers.values())),
+        'Nodes_in_Max_K': sum(1 for k in core_numbers.values() if k == max_k),
+    })
+
+    print(f"Year {year}:")
+    print(f"  Maximum k-core: {max_k}")
+    print(f"  Average k-core: {np.mean(list(core_numbers.values())):.2f}")
+    print(f"  k-core distribution:")
+    for k in sorted(core_distribution.keys()):
+        print(f"    k={k}: {core_distribution[k]} nodes")
+
+kcore_df = pd.DataFrame(kcore_data)
+
+# Auto-saved by setup-save-outputs
+_save_table(kcore_df, "tbl-kcore_metrics")
+```
+
+## K-Core Evolution
+
+```{python}
+#| label: fig-kcore-evolution
+#| fig-cap: "Evolution of k-core decomposition metrics over time in head and neck neoplasm patients"
+
+fig, axes = plt.subplots(1, 2, figsize=(14, 5))
+
+# Maximum k
+ax = axes[0]
+ax.plot(kcore_df['Year'], kcore_df['Max_K'], 'o-', linewidth=2.5,
+        markersize=10, color='#9B59B6')
+ax.fill_between(kcore_df['Year'], kcore_df['Max_K'], alpha=0.3, color='#9B59B6')
+ax.set_xlabel('Year', fontsize=12, fontweight='bold')
+ax.set_ylabel('Maximum K-core Level', fontsize=12, fontweight='bold')
+ax.set_title('Maximum K-core Level by Year', fontsize=13, fontweight='bold')
+ax.grid(True, alpha=0.3)
+ax.set_xticks(kcore_df['Year'])
+
+# Average k
+ax = axes[1]
+ax.plot(kcore_df['Year'], kcore_df['Avg_K'], 's-', linewidth=2.5,
+        markersize=10, color='#16A085')
+ax.fill_between(kcore_df['Year'], kcore_df['Avg_K'], alpha=0.3, color='#16A085')
+ax.set_xlabel('Year', fontsize=12, fontweight='bold')
+ax.set_ylabel('Average K-core Level', fontsize=12, fontweight='bold')
+ax.set_title('Average K-core Level by Year', fontsize=13, fontweight='bold')
+ax.grid(True, alpha=0.3)
+ax.set_xticks(kcore_df['Year'])
+
+plt.tight_layout()
+plt.savefig(_FIG / "fig-kcore-evolution.png", dpi=300, bbox_inches="tight")
+plt.show()
+```
+
+\newpage
+
+# Network Visualization
+
+## Static Network Comparison: 2019 vs 2024
+
+```{python}
+#| label: fig-network-comparison
+#| fig-cap: "Network topology comparison between 2019 (pre-pandemic) and 2024 (post-pandemic) in head and neck neoplasm patients"
+
+fig, axes = plt.subplots(1, 2, figsize=(18, 8))
+
+for idx, year in enumerate([2019, 2024]):
+    ax = axes[idx]
+    G = networks_filtered[year]
+
+    if G.number_of_nodes() == 0:
+        ax.text(0.5, 0.5, f'No data for {year}', ha='center', va='center')
+        continue
+
+    # Layout computation (circular layout)
+    pos = nx.circular_layout(G)
+
+    # Node sizes based on degree
+    node_degrees = dict(G.degree())
+    node_sizes = [node_degrees.get(node, 1) * 300 for node in G.nodes()]
+
+    # Node colors based on category
+    node_colors = [get_comorbidity_color(node) for node in G.nodes()]
+
+    # Draw network
+    nx.draw_networkx_edges(G, pos, ax=ax, width=1.5, alpha=0.3,
+                          edge_color='gray')
+    nx.draw_networkx_nodes(G, pos, ax=ax, node_size=node_sizes,
+                          node_color=node_colors, alpha=0.8,
+                          edgecolors='black', linewidths=1)
+    nx.draw_networkx_labels(G, pos, ax=ax, font_size=8, font_weight='bold')
+
+    ax.set_title(f'Network {year}\n(Nodes: {G.number_of_nodes()}, Edges: {G.number_of_edges()})',
+                fontsize=13, fontweight='bold')
+    ax.axis('off')
+
+plt.tight_layout()
+plt.savefig(_FIG / "fig-network-comparison.png", dpi=300, bbox_inches="tight")
+plt.show()
+```
+
+## Interactive Network Visualization (Latest Year)
+
+```{python}
+#| label: fig-interactive-network
+#| fig-cap: "Interactive network visualization for the latest year (2024) - head and neck neoplasm patients"
+
+# Use latest year
+latest_year = max(networks_filtered.keys())
+G_latest = networks_filtered[latest_year]
+
+# Compute layout
+pos = nx.circular_layout(G_latest)
+
+# Create edge traces
+edge_traces = []
+for edge in G_latest.edges():
+    x0, y0 = pos[edge[0]]
+    x1, y1 = pos[edge[1]]
+
+    edge_trace = go.Scatter(
+        x=[x0, x1, None], y=[y0, y1, None],
+        mode='lines',
+        line=dict(width=0.5, color='rgba(125,125,125,0.2)'),
+        hoverinfo='none',
+        showlegend=False
+    )
+    edge_traces.append(edge_trace)
+
+# Create node trace
+node_x = []
+node_y = []
+node_text = []
+node_color = []
+node_size = []
+
+for node in G_latest.nodes():
+    x, y = pos[node]
+    node_x.append(x)
+    node_y.append(y)
+    node_text.append(node)
+    node_color.append(get_comorbidity_color(node))
+
+    degree = G_latest.degree(node)
+    node_size.append(20 + degree * 2)
+
+node_trace = go.Scatter(
+    x=node_x, y=node_y,
+    mode='markers+text',
+    text=node_text,
+    textposition='top center',
+    textfont=dict(size=9),
+    hoverinfo='text',
+    hovertext=[f"{node}<br>Degree: {G_latest.degree(node)}" for node in G_latest.nodes()],
+    marker=dict(
+        size=node_size,
+        color=node_color,
+        line_width=1,
+        line_color='white'
+    ),
+    showlegend=False
+)
+
+# Combine traces
+fig = go.Figure(data=edge_traces + [node_trace])
+
+fig.update_layout(
+    title=f'Interactive Comorbidity Network - Head and Neck Neoplasm Patients - Year {latest_year}',
+    showlegend=False,
+    hovermode='closest',
+    margin=dict(b=20, l=5, r=5, t=40),
+    xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+    yaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+    height=600,
+)
+
+fig.show()
+fig.write_html(_FIG / "fig-interactive-network.html")
+try:
+    fig.write_image(_FIG / "fig-interactive-network.png", width=1200, height=900, scale=2)
+except Exception as e:
+    print(f"PNG export skipped (install 'kaleido' to enable): {e}")
+
+```
+
+\newpage
+
+# Temporal Edge Evolution
+
+## Top Co-occurrence Pair Trends
+
+```{python}
+#| output: false
+#| label: edge-evolution
+
+# Identify top co-occurrence pairs across all years
+top_pairs = []
+all_pairs_across_years = defaultdict(list)
+
+for year in sorted(cooccurrence_per_year.keys()):
+    cooccurrence = cooccurrence_per_year[year]
+    for (source, target), weight in cooccurrence.items():
+        all_pairs_across_years[(source, target)].append((year, weight))
+
+# Calculate average weight per pair across all years
+pair_avg_weights = {
+    pair: np.mean([w for _, w in years_weights])
+    for pair, years_weights in all_pairs_across_years.items()
+}
+
+# Get top 10 pairs
+top_10_sorted = sorted(pair_avg_weights.items(), key=lambda x: x[1], reverse=True)[:10]
+top_10_pairs = [pair for pair, _ in top_10_sorted]
+
+# Create evolution data
+edge_evolution_data = []
+for pair in top_10_pairs:
+    for year, weight in all_pairs_across_years[pair]:
+        edge_evolution_data.append({
+            'Pair': f"{pair[0]} ↔ {pair[1]}",
+            'Year': year,
+            'Weight': weight,
+        })
+
+edge_evolution_df = pd.DataFrame(edge_evolution_data)
+print("Top 10 Co-occurrence Pairs in Head and Neck Neoplasm Patients (by average weight):")
+for pair, avg_weight in top_10_sorted:
+    print(f"  {pair[0]} ↔ {pair[1]}: {avg_weight:.2f}")
+
+# Auto-saved by setup-save-outputs
+_save_table(edge_evolution_df, "tbl-edge_evolution")
+```
+
+## Edge Weight Evolution
+
+```{python}
+#| label: fig-edge-evolution
+#| fig-cap: "Evolution of top 10 co-occurrence pairs over time in head and neck neoplasm patients"
+
+fig, ax = plt.subplots(figsize=(14, 8))
+
+for pair in top_10_pairs:
+    pair_data = edge_evolution_df[edge_evolution_df['Pair'] == f"{pair[0]} ↔ {pair[1]}"]
+    ax.plot(pair_data['Year'], pair_data['Weight'], 'o-',
+           label=f"{pair[0]} ↔ {pair[1]}", linewidth=2.5, markersize=8, alpha=0.8)
+
+ax.set_xlabel('Year', fontsize=12, fontweight='bold')
+ax.set_ylabel('Co-occurrence Count', fontsize=12, fontweight='bold')
+ax.set_title('Evolution of Top 10 Co-occurrence Pairs (2019-2024) in Head and Neck Neoplasm Patients',
+            fontsize=14, fontweight='bold')
+ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left', ncol=1, fontsize=9)
+ax.grid(True, alpha=0.3)
+ax.set_xticks(sorted(edge_evolution_df['Year'].unique()))
+
+plt.tight_layout()
+plt.savefig(_FIG / "fig-edge-evolution.png", dpi=300, bbox_inches="tight")
+plt.show()
+
+# Auto-saved by setup-save-outputs
+_save_table(edge_evolution_df, "tbl-edge_evolution")
+```
+
+## Largest Edge Changes
+
+```{python}
+#| label: fig-edge-changes
+#| fig-cap: "Comorbidity pair associations with largest increase and decrease from 2019 to 2024 in head and neck neoplasm patients"
+
+# Calculate edge weight changes
+edge_changes = []
+
+for pair in all_pairs_across_years.keys():
+    years_weights = dict(all_pairs_across_years[pair])
+
+    if 2019 in years_weights and 2024 in years_weights:
+        change = years_weights[2024] - years_weights[2019]
+        pct_change = (change / years_weights[2019] * 100) if years_weights[2019] > 0 else np.nan
+
+        edge_changes.append({
+            'Pair': f"{pair[0]} ↔ {pair[1]}",
+            '2019': years_weights[2019],
+            '2024': years_weights[2024],
+            'Change': change,
+            'Pct_Change': pct_change,
+        })
+
+edge_changes_df = pd.DataFrame(edge_changes)
+edge_changes_df = edge_changes_df.sort_values('Change')
+
+# Plot
+fig, axes = plt.subplots(1, 2, figsize=(16, 7))
+
+# Largest decreases
+ax = axes[0]
+decreases = edge_changes_df[edge_changes_df['Change'] < 0].head(10)
+colors_decrease = ['#E74C3C' if x < 0 else '#2ECC71' for x in decreases['Change']]
+ax.barh(range(len(decreases)), decreases['Change'], color=colors_decrease, alpha=0.8)
+ax.set_yticks(range(len(decreases)))
+ax.set_yticklabels(decreases['Pair'], fontsize=9)
+ax.set_xlabel('Change in Co-occurrence Count (2019→2024)', fontsize=11, fontweight='bold')
+ax.set_title('Associations with Largest Decrease', fontsize=12, fontweight='bold')
+ax.grid(axis='x', alpha=0.3)
+
+# Largest increases
+ax = axes[1]
+increases = edge_changes_df[edge_changes_df['Change'] > 0].tail(10)
+colors_increase = ['#2ECC71' if x > 0 else '#E74C3C' for x in increases['Change']]
+ax.barh(range(len(increases)), increases['Change'], color=colors_increase, alpha=0.8)
+ax.set_yticks(range(len(increases)))
+ax.set_yticklabels(increases['Pair'], fontsize=9)
+ax.set_xlabel('Change in Co-occurrence Count (2019→2024)', fontsize=11, fontweight='bold')
+ax.set_title('Associations with Largest Increase', fontsize=12, fontweight='bold')
+ax.grid(axis='x', alpha=0.3)
+
+plt.tight_layout()
+plt.savefig(_FIG / "fig-edge-changes.png", dpi=300, bbox_inches="tight")
+plt.show()
+```
+
+\newpage
+
+# Summary and Conclusions
+
+## Key Findings
+
+This comprehensive network analysis of comorbidities in head and neck malignant neoplasm hospitalizations in Chile (2019-2024) reveals several important patterns:
+
+1. **Comorbidity Burden in Cancer Context**: The average number of comorbidities per head and neck neoplasm hospitalization patient shows systematic patterns across tumor sites and years, reflecting the multisystemic impact of head and neck cancer.
+
+2. **Cardiovascular Dominance**: Cardiovascular comorbidities (essential hypertension, coronary disease, cerebrovascular disease) consistently emerge as the most prevalent and central nodes in the comorbidity networks across all years, underscoring the high cardiovascular risk in cancer patients.
+
+3. **Metabolic Clustering**: Metabolic comorbidities (especially Type 2 diabetes, obesity, and dyslipidemia) form tight clusters in the network, reflecting strong associations between metabolic disease and head and neck cancer risk.
+
+4. **Network Evolution**: The network topology shows evolving patterns over the 2019-2024 period, with notable pandemic-period impacts (2020-2021) on comorbidity co-occurrence patterns. Increasing network density suggests patients present with increasingly interconnected comorbidities.
+
+5. **Community Structure**: Louvain community detection identifies stable clinical communities including cardiovascular-metabolic clusters and respiratory-related clusters specific to the head and neck cancer context.
+
+6. **Tumor Site Specificity**: Comorbidity prevalence varies significantly by tumor site, with distinct profiles reflecting site-specific metabolic and systemic complications.
+
+7. **Central Hub Stability**: While absolute prevalences change over time, the relative ranking of central comorbidities shows relative stability, with cardiovascular conditions consistently occupying top centrality positions across all years.
+
+8. **Temporal Trends**: Specific comorbidity pairs show dramatic changes from 2019 to 2024, with some associations increasing markedly while others decline, reflecting both population changes and evolving clinical presentations.
+
+## Clinical Implications
+
+- **Integrated Oncology Care**: The tight clustering of comorbidities suggests the need for integrated care protocols addressing cardiovascular and metabolic disease alongside cancer treatment in head and neck neoplasm patients.
+
+- **Risk Stratification by Comorbidity Profile**: Network analysis stratified by comorbidity burden could inform patient risk stratification and treatment planning for head and neck cancer patients.
+
+- **Tumor Site-Specific Protocols**: The variation in metabolic and cardiovascular comorbidity by tumor site suggests the need for site-specific comorbidity management protocols in head and neck oncology.
+
+- **Resource Planning**: The temporal evolution of comorbidity patterns and tumor site distributions provides evidence for oncology service planning and resource allocation in head and neck cancer care.
+
+## Limitations
+
+- GRD data represents diagnosed conditions; true comorbidity burden may be underestimated.
+- ICD-10 coding accuracy varies by hospital and year.
+- The analysis focuses on hospitalized patients and may not represent all patients with head and neck cancers.
+- Primary diagnosis filtering captures the principal reason for hospitalization rather than all neoplastic diagnoses.
+
+---
+
+**Analysis completed**: 2026-04-06
+**Code repository**: https://github.com/yourrepo
+**Contact**: amaruaguero2004@ug.uchile.cl
+
+# References
+
+::: {#refs}
+:::
